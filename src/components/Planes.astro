@@ -1,0 +1,64 @@
+---
+import { t, type Lang } from "../i18n";
+
+interface Props {
+    lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const getRows = (lang: Lang) => {
+    const rows: { title: string; money: string; percent: string }[] = [];
+    let i = 0;
+    while (true) {
+        const key = `planes.rows.${i}.title`;
+        const title = t(lang, key);
+        if (title === key) break;
+        rows.push({
+            title,
+            money: t(lang, `planes.rows.${i}.money`),
+            percent: t(lang, `planes.rows.${i}.percent`),
+        });
+        i++;
+    }
+    return rows;
+};
+
+const rows = getRows(lang);
+const netReturn = t(lang, "planes.netReturn");
+---
+
+<div style="display: grid; width: 100%; max-width: 450px;">
+    <img
+        src="/planes/planes-bg.svg"
+        alt=""
+        aria-hidden="true"
+        width="300"
+        height="300"
+        style="grid-area: 1 / 1; width: 100%; height: auto; display: block;"
+    />
+    <div
+        style="grid-area: 1 / 1; display: grid; grid-template-rows: repeat(3, minmax(0, 1fr));"
+    >
+        {
+            rows.map((row) => (
+                <div style="color: #ffffff; display: flex; flex-direction: column; justify-content: space-between; padding: 5% 11% 7% 11%;">
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <span style="font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">
+                            {row.title}
+                        </span>
+                        <span style="font-size: 10px; font-weight: 500;">
+                            {row.percent}
+                        </span>
+                    </div>
+
+                    <p style="font-size: 20px; line-height: 1; font-weight: 400; margin: 0;">
+                        {netReturn}
+                    </p>
+
+                    <p style="font-size: 10px; margin: 0;">{row.money}</p>
+                </div>
+            ))
+        }
+    </div>
+</div>

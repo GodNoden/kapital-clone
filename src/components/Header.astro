@@ -1,5 +1,13 @@
 ---
 import AnnouncementBar from "./AnnouncementBar.astro";
+import { t, type Lang } from "../i18n";
+import LanguageSelector from "./LanguageSelector.astro";
+
+interface Props {
+    lang: Lang;
+}
+
+const { lang } = Astro.props;
 
 interface SubItem {
     label: string;
@@ -19,147 +27,243 @@ interface NavItem {
 
 const navigation: NavItem[] = [
     {
-        label: "Empresas",
+        label: t(lang, "header.nav.business"),
         href: "/empresas",
         groups: [
             {
-                title: "FX",
+                title: t(lang, "header.business.fx"),
                 links: [
-                    { label: "Efectivo", href: "/divisas/efectivo" },
                     {
-                        label: "Transferencias",
+                        label: t(lang, "header.businessLinks.cash"),
+                        href: "/divisas/efectivo",
+                    },
+                    {
+                        label: t(lang, "header.businessLinks.transfers"),
                         href: "/divisas/transferencias",
                     },
-                    { label: "Cheques", href: "/divisas/cheques" },
-                    { label: "Crédito CLIC", href: "/divisas/credito-clic" },
-                    { label: "Transferencias Vostro", href: "/divisas/vostro" },
-                    { label: "SPID", href: "/divisas/spid" },
+                    {
+                        label: t(lang, "header.businessLinks.checks"),
+                        href: "/divisas/cheques",
+                    },
+                    {
+                        label: t(lang, "header.businessLinks.clicLoan"),
+                        href: "/divisas/credito-clic",
+                    },
+                    {
+                        label: t(lang, "header.businessLinks.vostroTransfers"),
+                        href: "/divisas/vostro",
+                    },
+                    {
+                        label: t(lang, "header.businessLinks.spid"),
+                        href: "/divisas/spid",
+                    },
                 ],
             },
             {
-                title: "Derivados",
-                links: [
-                    { label: "Forward", href: "/derivados/forward" },
-                    { label: "Tasas", href: "/derivados/tasas" },
-                ],
-            },
-            {
-                title: "Créditos",
+                title: t(lang, "header.business.derivatives"),
                 links: [
                     {
-                        label: "Crédito Empresarial",
+                        label: t(lang, "header.businessLinks.forward"),
+                        href: "/derivados/forward",
+                    },
+                    {
+                        label: t(lang, "header.businessLinks.rates"),
+                        href: "/derivados/tasas",
+                    },
+                ],
+            },
+            {
+                title: t(lang, "header.business.loans"),
+                links: [
+                    {
+                        label: t(lang, "header.businessLinks.businessLoan"),
                         href: "/credito/empresarial",
                     },
-                    { label: "Crédito PyME", href: "/credito/pyme" },
-                    { label: "Crédito FLEX", href: "/credito/flex" },
-                    { label: "Factoraje", href: "/credito/factoraje" },
+                    {
+                        label: t(lang, "header.businessLinks.smeLoan"),
+                        href: "/credito/pyme",
+                    },
+                    {
+                        label: t(lang, "header.businessLinks.flexLoan"),
+                        href: "/credito/flex",
+                    },
+                    {
+                        label: t(lang, "header.businessLinks.factoring"),
+                        href: "/credito/factoraje",
+                    },
                 ],
             },
             {
-                title: "Inversiones",
-                links: [
-                    { label: "Pagaré", href: "/inversiones/pagare" },
-                    { label: "CEDE", href: "/inversiones/cedes" },
-                ],
-            },
-            {
-                title: "Cuentas",
+                title: t(lang, "header.business.investments"),
                 links: [
                     {
-                        label: "Cuenta Empresarial",
+                        label: t(lang, "header.businessLinks.promissoryNote"),
+                        href: "/inversiones/pagare",
+                    },
+                    {
+                        label: t(lang, "header.businessLinks.cede"),
+                        href: "/inversiones/cedes",
+                    },
+                ],
+            },
+            {
+                title: t(lang, "header.business.accounts"),
+                links: [
+                    {
+                        label: t(lang, "header.businessLinks.businessAccount"),
                         href: "/cuentas/empresarial",
                     },
-                    { label: "Cuenta PyME", href: "/cuentas/pyme" },
+                    {
+                        label: t(lang, "header.businessLinks.smeAccount"),
+                        href: "/cuentas/pyme",
+                    },
                 ],
             },
             {
-                title: "Servicios",
+                title: t(lang, "header.business.services"),
                 links: [
                     {
-                        label: "Banca Empresarial",
+                        label: t(lang, "header.businessLinks.businessBanking"),
                         href: "/servicios/banca-digital",
                     },
                     {
-                        label: "Banca en línea",
+                        label: t(lang, "header.businessLinks.onlineBanking"),
                         href: "/servicios/banca-en-linea",
                     },
-                    { label: "Kapital IA", href: "/servicios/ia" },
+                    {
+                        label: t(lang, "header.businessLinks.kapitalAI"),
+                        href: "/servicios/ia",
+                    },
                 ],
             },
         ],
     },
     {
-        label: "Personas",
+        label: t(lang, "header.nav.individuals"),
         href: "/personas",
         groups: [
             {
-                title: "FX",
+                title: t(lang, "header.individuals.fx"),
                 links: [
-                    { label: "Efectivo", href: "/divisas/efectivo-personas" },
                     {
-                        label: "Transferencias",
+                        label: t(lang, "header.individualsLinks.cash"),
+                        href: "/divisas/efectivo-personas",
+                    },
+                    {
+                        label: t(lang, "header.individualsLinks.transfers"),
                         href: "/divisas/transferencias-personas",
                     },
-                    { label: "Cheques", href: "/divisas/cheques-personas" },
+                    {
+                        label: t(lang, "header.individualsLinks.checks"),
+                        href: "/divisas/cheques-personas",
+                    },
                 ],
             },
             {
-                title: "Derivados",
+                title: t(lang, "header.individuals.derivatives"),
                 links: [
                     {
-                        label: "Forward NDF",
+                        label: t(lang, "header.individualsLinks.forwardNDF"),
                         href: "/derivados/forward-personas",
                     },
-                    { label: "Tasas", href: "/derivados/tasas-personas" },
+                    {
+                        label: t(lang, "header.individualsLinks.rates"),
+                        href: "/derivados/tasas-personas",
+                    },
                 ],
             },
             {
-                title: "Inversiones",
-                links: [
-                    { label: "Pagaré", href: "/inversiones/pagare-personas" },
-                    { label: "CEDE", href: "/inversiones/cedes-personas" },
-                    { label: "Plan Crece", href: "/inversiones/plan-crece" },
-                ],
-            },
-            {
-                title: "Cuentas",
+                title: t(lang, "header.individuals.investments"),
                 links: [
                     {
-                        label: "Nómina Kapital",
+                        label: t(
+                            lang,
+                            "header.individualsLinks.promissoryNote",
+                        ),
+                        href: "/inversiones/pagare-personas",
+                    },
+                    {
+                        label: t(lang, "header.individualsLinks.cede"),
+                        href: "/inversiones/cedes-personas",
+                    },
+                    {
+                        label: t(lang, "header.individualsLinks.growthPlan"),
+                        href: "/inversiones/plan-crece",
+                    },
+                ],
+            },
+            {
+                title: t(lang, "header.individuals.accounts"),
+                links: [
+                    {
+                        label: t(
+                            lang,
+                            "header.individualsLinks.kapitalPayroll",
+                        ),
                         href: "/cuentas/nomina-kapital",
                     },
-                    { label: "Nómina Básica", href: "/cuentas/nomina-basica" },
                     {
-                        label: "Cuenta Kapital",
+                        label: t(lang, "header.individualsLinks.basicPayroll"),
+                        href: "/cuentas/nomina-basica",
+                    },
+                    {
+                        label: t(
+                            lang,
+                            "header.individualsLinks.kapitalAccount",
+                        ),
                         href: "/cuentas/kapital-personas",
                     },
-                    { label: "Cuenta Básica", href: "/cuentas/basica" },
-                    { label: "Cuenta Express", href: "/cuentas/express" },
-                    { label: "Mi Cuenta Kids", href: "/cuentas/kids" },
+                    {
+                        label: t(lang, "header.individualsLinks.basicAccount"),
+                        href: "/cuentas/basica",
+                    },
+                    {
+                        label: t(
+                            lang,
+                            "header.individualsLinks.expressAccount",
+                        ),
+                        href: "/cuentas/express",
+                    },
+                    {
+                        label: t(lang, "header.individualsLinks.kidsAccount"),
+                        href: "/cuentas/kids",
+                    },
                 ],
             },
             {
-                title: "Servicios",
+                title: t(lang, "header.individuals.services"),
                 links: [
-                    { label: "Kapital App", href: "/servicios/app" },
                     {
-                        label: "Banca Patrimonial",
+                        label: t(lang, "header.individualsLinks.kapitalApp"),
+                        href: "/servicios/app",
+                    },
+                    {
+                        label: t(lang, "header.individualsLinks.wealthBanking"),
                         href: "/servicios/patrimonial",
                     },
-                    { label: "Sucursales", href: "/servicios/sucursales" },
+                    {
+                        label: t(lang, "header.individualsLinks.branches"),
+                        href: "/servicios/sucursales",
+                    },
                 ],
             },
         ],
     },
     {
-        label: "Grupo Financiero",
+        label: t(lang, "header.nav.financialGroup"),
         href: "/grupo-financiero",
     },
 ];
 
 const entrarLinks = [
-    { label: "Plataforma empresarial", href: "https://app.kapital.com/" },
-    { label: "Banca en línea", href: "https://www.ieb.com.mx/NB/" },
+    {
+        label: t(lang, "header.login.businessPlatform"),
+        href: "https://app.kapital.com/",
+    },
+    {
+        label: t(lang, "header.login.onlineBanking"),
+        href: "https://www.ieb.com.mx/NB/",
+    },
 ];
 ---
 
@@ -169,7 +273,7 @@ const entrarLinks = [
     data-sticky="false"
     data-mobile-menu-open="false"
 >
-    <AnnouncementBar />
+    <AnnouncementBar lang={lang} />
 
     <div class="group/header-inner relative w-full">
         {
@@ -196,7 +300,7 @@ const entrarLinks = [
             <div class="flex items-center gap-11">
                 <a
                     href="/"
-                    aria-label="Inicio"
+                    aria-label={t(lang, "header.nav.openMenu")}
                     class="flex-shrink-0 transition-colors duration-500
          text-kapital-black
          group-data-[theme=dark]/site-header:text-white
@@ -302,6 +406,9 @@ const entrarLinks = [
 
             {/* Actions (derecha) */}
             <div class="flex items-center gap-6 md:gap-[10px] relative">
+                <div class="hidden md:block">
+                    <LanguageSelector lang={lang} variant="header" />
+                </div>
                 <a
                     href="https://onboarding.kapital.com/"
                     class="text-sm px-4 py-2 rounded-full transition-colors whitespace-nowrap text-kapital-black
@@ -311,7 +418,7 @@ const entrarLinks = [
            group-data-[sticky=true]/site-header:text-kapital-black
            hover:bg-[rgba(191,187,178,0.8)]"
                 >
-                    Abrir cuenta
+                    {t(lang, "header.nav.openAccount")}
                 </a>
 
                 {/* Dropdown "Entrar" */}
@@ -325,7 +432,7 @@ const entrarLinks = [
                            group-hover/header:text-kapital-black
                            hover:opacity-70"
                     >
-                        Entrar
+                        {t(lang, "header.nav.login")}
                         <svg
                             class="w-4 ms-1 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-aria-[expanded=true]:rotate-180"
                             viewBox="0 0 24 24"
@@ -428,9 +535,17 @@ const entrarLinks = [
             <div
                 class="flex flex-col px-5 py-6 h-[calc(100vh-72px)] overflow-y-auto w-full"
             >
+                <div class="md:hidden pb-6 border-b border-gray-300/50">
+                    <p class="text-sm text-gray-1 tracking-wider mb-2">
+                        Idioma
+                    </p>
+                    <LanguageSelector lang={lang} variant="header" />
+                </div>
                 {/* Entrar */}
                 <div class="flex flex-col gap-2 pb-6">
-                    <p class="text-sm text-gray-1 tracking-wider">Entrar</p>
+                    <p class="text-sm text-gray-1 tracking-wider">
+                        {t(lang, "header.nav.login")}
+                    </p>
                     <ul class="flex flex-col gap-[6px]">
                         {
                             entrarLinks.map((link) => (

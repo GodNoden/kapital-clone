@@ -1,5 +1,12 @@
 ---
 import SliderArrows from "./SliderArrows.astro";
+import { t, type Lang } from "../i18n";
+
+interface Props {
+    lang: Lang;
+}
+
+const { lang } = Astro.props;
 
 interface BlogPost {
     title: string;
@@ -8,25 +15,29 @@ interface BlogPost {
     image: string;
 }
 
+// Helper para obtener texto con fallback a vacío
+const getText = (index: number, field: string): string => {
+    const key = `blog.posts.${index}.${field}`;
+    const value = t(lang, key);
+    return value === key ? "" : value;
+};
+
 const posts: BlogPost[] = [
     {
-        title: "Kapital House: un nuevo espacio para las empresas que mueven México",
-        description:
-            "Kapital inauguró Kapital House en San Pedro Garza García. Revisa cómo funciona este hub para PyMEs, sus espacios de trabajo y modalidades de acceso.",
+        title: getText(0, "title"),
+        description: getText(0, "description"),
         link: "/blog/kapital/kapital-house-monterrey",
         image: "/blog/blog-1.webp",
     },
     {
-        title: "Buen Fin 2026: fechas, registro y sorteo del SAT",
-        description:
-            "El Buen Fin 2026 será del 13 al 17 de noviembre. Fechas, registro de comercios desde el 8 de septiembre, sorteo del SAT y las cifras de la edición pasada.",
+        title: getText(1, "title"),
+        description: getText(1, "description"),
         link: "/blog/pymes/buen-fin-2026",
         image: "/blog/blog-2.webp",
     },
     {
-        title: "¿Por qué Kapital FX es diferente?",
-        description:
-            "Descubre cómo Kapital FX ayuda a empresas mexicanas a operar divisas con mayor control, tipos de cambio pactados y transferencias ágiles sin la banca tradicional.",
+        title: getText(2, "title"),
+        description: getText(2, "description"),
         link: "/blog/kapital/kapital-fx-foreing-exchange",
         image: "/blog/blog-3.webp",
     },
@@ -38,14 +49,15 @@ const posts: BlogPost[] = [
         {/* Header */}
         <div class="flex flex-col gap-3 md:gap-10 max-w-[793px]">
             <div class="flex flex-col gap-4 md:gap-6">
-                <p class="text-base md:text-lg text-gray-1">Blog Kapital</p>
+                <p class="text-base md:text-lg text-gray-1">
+                    {t(lang, "blog.eyebrow")}
+                </p>
                 <h2 class="text-3xl md:text-4xl text-kapital-black">
-                    Ideas para crecer más allá del financiamiento
+                    {t(lang, "blog.title")}
                 </h2>
             </div>
             <p class="text-base md:text-xl text-gray-1">
-                Accede a artículos, recursos exclusivos de Kapital con
-                estrategias, consejos y tendencias para tu empresa.
+                {t(lang, "blog.description")}
             </p>
         </div>
 
@@ -85,7 +97,7 @@ const posts: BlogPost[] = [
                                             {post.description}
                                         </p>
                                         <span class="inline-flex items-center gap-1 py-1 text-base font-medium text-white">
-                                            Leer artículo
+                                            {t(lang, "blog.readMore")}
                                             <svg
                                                 width="20"
                                                 height="20"

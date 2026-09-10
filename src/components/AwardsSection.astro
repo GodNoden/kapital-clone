@@ -1,37 +1,51 @@
 ---
 import SliderArrows from "./SliderArrows.astro";
+import { t, type Lang } from "../i18n";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
 
 interface Award {
   logo: string;
   title: string;
-  link: string;
+  url: string; // ← antes "link", ahora "url" (dato, no se traduce)
 }
+
+// Helper para obtener texto con fallback a vacío
+const getText = (index: number, field: string): string => {
+  const key = `awards.items.${index}.${field}`;
+  const value = t(lang, key);
+  return value === key ? "" : value;
+};
 
 const awards: Award[] = [
   {
     logo: "/awards/mex.svg",
-    title: "El banco de las PyMEs mexicanas",
-    link: "https://www.gob.mx/se/prensa/participacion-del-secretario-de-economia-marcelo-ebrard-durante-la-presentacion-de-hecho-en-mexico-de-stori-kapital-bank-y-banco-donde",
+    title: getText(0, "title"),
+    url: getText(0, "url"),
   },
   {
     logo: "/awards/mod.svg",
-    title: "A-mx: Moody's reconoce nuestra solidez financiera",
-    link: "https://kapital.com/blog/kapital/hr-ratings-y-moodys-elevan-calificacion-a-kapital",
+    title: getText(1, "title"),
+    url: getText(1, "url"),
   },
   {
     logo: "/awards/wef.svg",
-    title: "Pionera tecnológica por segundo año consecutivo",
-    link: "https://www.proceso.com.mx/economia/2026/1/22/kapital-el-unicornio-bancario-mexicano-llega-davos-en-un-momento-clave-para-la-economia-nacional-367061.html",
+    title: getText(2, "title"),
+    url: getText(2, "url"),
   },
   {
     logo: "/awards/cnbc.svg",
-    title: "Compañías más disruptivas del mundo",
-    link: "https://www.cnbc.com/2024/05/14/kapital-cnbc-disruptor-50.html",
+    title: getText(3, "title"),
+    url: getText(3, "url"),
   },
   {
     logo: "/awards/forbes.svg",
-    title: "Líderes de la IA",
-    link: "https://forbes.com.mx/foro-forbes-economia-y-negocios-2024-lideres-en-inteligencia-artificial-en-mexico-reciben-reconocimientos/",
+    title: getText(4, "title"),
+    url: getText(4, "url"),
   },
 ];
 ---
@@ -40,7 +54,9 @@ const awards: Award[] = [
   <div class="max-w-container mx-auto py-12 md:py-44 px-4">
     {/* Header */}
     <div class="flex items-center justify-between mb-16 gap-8">
-      <h2 class="text-2xl md:text-3xl text-white">Reconocimientos globales</h2>
+      <h2 class="text-2xl md:text-3xl text-white">
+        {t(lang, "awards.title")}
+      </h2>
       <div class="flex justify-end mt-10 md:mt-12">
         <SliderArrows
           prevClass="awards-prev"
@@ -71,12 +87,12 @@ const awards: Award[] = [
                     {award.title}
                   </h3>
                   <a
-                    href={award.link}
+                    href={award.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     class="inline-flex items-center gap-1 py-1 text-sm text-white font-medium hover:opacity-70 transition-opacity"
                   >
-                    Saber más
+                    {t(lang, "awards.cta")}
                     <svg
                       width="16"
                       height="16"
@@ -114,4 +130,3 @@ const awards: Award[] = [
     },
   });
 </script>
-

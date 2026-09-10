@@ -1,18 +1,25 @@
 ---
-import { ecosystemCards } from "../data/ecosystem";
+import { getEcosystemCards } from "../data/ecosystem";
 import EcosystemPopup from "./EcosystemPopup.astro";
 import SliderArrows from "./SliderArrows.astro";
+import { t, type Lang } from "../i18n";
+
+interface Props {
+    lang: Lang;
+}
+
+const { lang } = Astro.props;
+const ecosystemCards = getEcosystemCards(lang);
 ---
 
 <section class="w-full overflow-hidden bg-white">
     <div class="max-w-container mx-auto px-4 md:px-8 pt-20 md:pt-28">
         <div class="flex flex-col gap-4 md:gap-10 md:col-span-8">
             <h2 class="text-4xl md:text-5xl text-kapital-black text-balance">
-                El ecosistema financiero para tu empresa
+                {t(lang, "ecosystem.title")}
             </h2>
             <p class="text-lg md:text-xl text-gray-1 text-pretty max-w-[600px]">
-                Maneja tu dinero con libertad: paga, ahorra e invierte sin
-                complicaciones.
+                {t(lang, "ecosystem.subtitle")}
             </p>
         </div>
 
@@ -51,7 +58,7 @@ import SliderArrows from "./SliderArrows.astro";
                                             data-ecosystem-trigger={index}
                                             class="inline-flex items-center justify-center px-6 py-5 rounded-full text-base lg:text-lg text-white bg-white/20 backdrop-blur-md hover:bg-white/30 transition-colors"
                                         >
-                                            Más información
+                                            {t(lang, "ecosystem.moreInfo")}
                                         </button>
                                     </div>
                                 </article>

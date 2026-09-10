@@ -1,5 +1,12 @@
 ---
-import SliderArrows from './SliderArrows.astro';
+import SliderArrows from "./SliderArrows.astro";
+import { t, type Lang } from "../i18n";
+
+interface Props {
+    lang: Lang;
+}
+
+const { lang } = Astro.props;
 
 interface Slide {
     id: number;
@@ -13,17 +20,27 @@ interface Slide {
     secondaryImage?: string;
     btnColor: string;
     btnColorHover: string;
-    btnTextColor: string; // ← NUEVO
+    btnTextColor: string;
 }
 
+const getSlideText = (index: number, field: string): string => {
+    const key = `hero.slides.${index}.${field}`;
+    const value = t(lang, key);
+    // Si t() devuelve la misma key, significa que no encontró la traducción
+    return value === key ? "" : value;
+};
 const slides: Slide[] = [
     {
         id: 0,
-        eyebrow: "Kapital",
-        lines: ["Equipamos", "empresas", "para crecer"],
-        copy: "Banca, crédito, inversión y divisas — todo lo que tu empresa necesita para seguir adelante.",
+        eyebrow: getSlideText(0, "eyebrow") || undefined,
+        lines: [
+            getSlideText(0, "title.0"),
+            getSlideText(0, "title.1"),
+            getSlideText(0, "title.2"),
+        ],
+        copy: getSlideText(0, "copy"),
         cta: {
-            label: "Abrir cuenta",
+            label: getSlideText(0, "cta"),
             href: "https://onboarding.kapital.com/",
             type: "link",
         },
@@ -32,14 +49,18 @@ const slides: Slide[] = [
         mobile: "/hero/slide-1-mobile.webp",
         btnColor: "rgba(220, 214, 207, 0.75)",
         btnColorHover: "rgba(220, 214, 207, 0.9)",
-        btnTextColor: "text-kapital-black", // ← NEGRO solo para el slide 1
+        btnTextColor: "text-kapital-black",
     },
     {
         id: 1,
-        lines: ["Tu empresa", "no se detiene,", "tu dinero tampoco"],
-        copy: "Haz tus transferencias internacionales con Kapital FX | 24/7.",
+        lines: [
+            getSlideText(1, "title.0"),
+            getSlideText(1, "title.1"),
+            getSlideText(1, "title.2"),
+        ],
+        copy: getSlideText(1, "copy"),
         cta: {
-            label: "Transfiere hoy",
+            label: getSlideText(1, "cta"),
             href: "/divisas/cambio-divisas-en-efectivo-personas",
         },
         theme: "dark",
@@ -47,14 +68,18 @@ const slides: Slide[] = [
         mobile: "/hero/slide-2-mobile.webp",
         btnColor: "rgba(114, 108, 100, 0.75)",
         btnColorHover: "rgba(114, 108, 100, 0.9)",
-        btnTextColor: "text-white", // ← BLANCO
+        btnTextColor: "text-white",
     },
     {
         id: 2,
-        lines: ["Tu dinero", "merece valentía"],
-        copy: "Todo lo que necesitas de un banco, pero sin las reglas tradicionales.",
+        lines: [
+            getSlideText(2, "title.0"),
+            getSlideText(2, "title.1"),
+            getSlideText(2, "title.2"),
+        ],
+        copy: getSlideText(2, "copy"),
         cta: {
-            label: "Solicitar asesoría personalizada",
+            label: getSlideText(2, "cta"),
             href: "#",
             type: "button",
         },
@@ -63,14 +88,18 @@ const slides: Slide[] = [
         mobile: "/hero/slide-3-mobile.webp",
         btnColor: "rgba(160, 155, 148, 0.75)",
         btnColorHover: "rgba(160, 155, 148, 0.9)",
-        btnTextColor: "text-white", // ← BLANCO
+        btnTextColor: "text-white",
     },
     {
         id: 3,
-        lines: ["Inversión simple.", "Rendimiento real."],
-        copy: "La inversión que te da rentabilidad, seguridad y ganancias de hasta 8.50%*",
+        lines: [
+            getSlideText(3, "title.0"),
+            getSlideText(3, "title.1"),
+            getSlideText(3, "title.2"),
+        ],
+        copy: getSlideText(3, "copy"),
         cta: {
-            label: "Quiero Invertir",
+            label: getSlideText(3, "cta"),
             href: "/inversiones/cedes-empresarial",
         },
         theme: "dark",
@@ -79,7 +108,7 @@ const slides: Slide[] = [
         secondaryImage: "/hero/slide-4-inversion.svg",
         btnColor: "rgba(144, 136, 127, 0.75)",
         btnColorHover: "rgba(144, 136, 127, 0.9)",
-        btnTextColor: "text-white", // ← BLANCO
+        btnTextColor: "text-white",
     },
 ];
 ---
@@ -142,9 +171,13 @@ const slides: Slide[] = [
                                     </p>
                                 )}
                                 <h2 class="text-[56px] lg:text-[72px] tracking-[-0.01em] leading-none">
-                                    {slide.lines.map((line) => (
-                                        <p>{line}</p>
-                                    ))}
+                                    {slide.lines
+                                        .filter(
+                                            (line) => line && line.length > 0,
+                                        )
+                                        .map((line) => (
+                                            <p>{line}</p>
+                                        ))}
                                 </h2>
                                 <p class="text-base md:text-xl max-w-[32ch]">
                                     {slide.copy}

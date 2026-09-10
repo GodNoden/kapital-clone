@@ -1,0 +1,481 @@
+{
+    "site": {
+        "title": "Kapital: Financial solutions for businesses and individuals | Mexico",
+        "description": "Apply for a business, personal or auto loan. Open an investment or payroll account easily and securely. Kapital: banking at your fingertips!"
+    },
+    "header": {
+        "announcement": {
+            "text": "Learn why Kapital requests your CIEC Key",
+            "link": "Learn more",
+            "close": "Close announcement"
+        },
+        "nav": {
+            "business": "Business",
+            "individuals": "Individuals",
+            "financialGroup": "Financial Group",
+            "openAccount": "Open an account",
+            "login": "Log in",
+            "openMenu": "Open menu"
+        },
+        "business": {
+            "fx": "FX",
+            "derivatives": "Derivatives",
+            "loans": "Loans",
+            "investments": "Investments",
+            "accounts": "Accounts",
+            "services": "Services"
+        },
+        "businessLinks": {
+            "cash": "Cash",
+            "transfers": "Transfers",
+            "checks": "Checks",
+            "clicLoan": "CLIC Loan",
+            "vostroTransfers": "Vostro Transfers",
+            "spid": "SPID",
+            "forward": "Forward",
+            "rates": "Rates",
+            "businessLoan": "Business Loan",
+            "smeLoan": "SME Loan",
+            "flexLoan": "FLEX Loan",
+            "factoring": "Factoring",
+            "promissoryNote": "Promissory Note",
+            "cede": "CD",
+            "businessAccount": "Business Account",
+            "smeAccount": "SME Account",
+            "businessBanking": "Business Banking",
+            "onlineBanking": "Online Banking",
+            "kapitalAI": "Kapital AI"
+        },
+        "individuals": {
+            "fx": "FX",
+            "derivatives": "Derivatives",
+            "investments": "Investments",
+            "accounts": "Accounts",
+            "services": "Services"
+        },
+        "individualsLinks": {
+            "cash": "Cash",
+            "transfers": "Transfers",
+            "checks": "Checks",
+            "forwardNDF": "Forward NDF",
+            "rates": "Rates",
+            "promissoryNote": "Promissory Note",
+            "cede": "CD",
+            "growthPlan": "Growth Plan",
+            "kapitalPayroll": "Kapital Payroll",
+            "basicPayroll": "Basic Payroll",
+            "kapitalAccount": "Kapital Account",
+            "basicAccount": "Basic Account",
+            "expressAccount": "Express Account",
+            "kidsAccount": "Kids Account",
+            "kapitalApp": "Kapital App",
+            "wealthBanking": "Wealth Banking",
+            "branches": "Branches"
+        },
+        "login": {
+            "businessPlatform": "Business platform",
+            "onlineBanking": "Online banking"
+        }
+    },
+    "hero": {
+        "slides": [
+            {
+                "eyebrow": "Kapital",
+                "title": [
+                    "We equip",
+                    "businesses",
+                    "to grow"
+                ],
+                "copy": "Banking, loans, investments and foreign exchange — everything your business needs to move forward.",
+                "cta": "Open an account"
+            },
+            {
+                "title": [
+                    "Your business",
+                    "never stops,",
+                    "neither does your money"
+                ],
+                "copy": "Make international transfers with Kapital FX | 24/7.",
+                "cta": "Transfer today"
+            },
+            {
+                "title": [
+                    "Your money",
+                    "deserves boldness"
+                ],
+                "copy": "Everything you need from a bank, but without the traditional rules.",
+                "cta": "Request personalized advice"
+            },
+            {
+                "title": [
+                    "Simple investing.",
+                    "Real returns."
+                ],
+                "copy": "The investment that gives you profitability, security and returns of up to 8.50%*",
+                "cta": "I want to invest"
+            }
+        ],
+        "prev": "Previous",
+        "next": "Next"
+    },
+    "ecosystem": {
+        "title": "The financial ecosystem for your business",
+        "subtitle": "Manage your money with freedom: pay, save and invest without complications.",
+        "moreInfo": "More information",
+        "prev": "Previous",
+        "next": "Next",
+        "cards": [
+            {
+                "eyebrow": "Kapital FX",
+                "title": "Do business with the world, same day",
+                "popup": {
+                    "heading": "Connect your business with the world",
+                    "intro": [
+                        "Boldness to do business without borders. Kapital FX gives you the ecosystem to operate in other currencies, pay international suppliers and move at the pace of the global market."
+                    ],
+                    "bulletsHeading": "With Kapital FX you can:",
+                    "bullets": [
+                        "Buy and transfer currencies with full control",
+                        "Fast, 100% digital execution",
+                        "Competitive and transparent prices, no surprises"
+                    ],
+                    "closing": "The financial ecosystem for companies that dare to operate beyond the known. Move money between countries with clarity, speed and expert support.",
+                    "cta": "Learn more"
+                }
+            },
+            {
+                "eyebrow": "SPID Kapital",
+                "title": "Send dollars to any company, in seconds",
+                "popup": {
+                    "heading": "Send dollars to any company, in seconds",
+                    "intro": [
+                        "SPID allows you to move dollars between companies in Mexico instantly, without conversions or correspondent banks."
+                    ],
+                    "bulletsHeading": "With SPID Kapital you can:",
+                    "bullets": [
+                        "Transfer dollars to any authorized bank in Mexico",
+                        "Pay suppliers in USD without converting to pesos",
+                        "Operate same day, during banking hours"
+                    ],
+                    "closing": "Everything you need to operate in dollars, in one place and without leaving Mexico."
+                }
+            },
+            {
+                "eyebrow": "FLEX Loan",
+                "title": "Pay your supplier today and negotiate in your favor",
+                "popup": {
+                    "heading": "Streamline your payments without affecting your cash flow",
+                    "intro": [
+                        "A revolving credit line to pay your suppliers without compromising your liquidity.",
+                        "Kapital Bank pays for you instantly and you pay in 1, 2, 3, 6, 9 or 12 months."
+                    ],
+                    "bulletsHeading": "With FLEX Loan you can:",
+                    "bullets": [
+                        "Negotiate early payment discounts",
+                        "Always have inventory available",
+                        "Don't stop your operations due to lack of cash flow"
+                    ],
+                    "closing": "Extend your payment terms without affecting your cash flow and, by always paying on time, strengthen your negotiating power with suppliers.",
+                    "cta": "I want my FLEX Loan"
+                }
+            },
+            {
+                "eyebrow": "Kapital Factoring",
+                "title": "Collect today what you've already sold",
+                "popup": {
+                    "heading": "Don't wait 90 days, collect your invoices today",
+                    "intro": [
+                        "Advance the collection of invoices and turn them into available cash today.",
+                        "This keeps your operations active, with constant cash flow and without depending on your clients' payment schedule."
+                    ],
+                    "bulletsHeading": "With Factoring you can:",
+                    "bullets": [
+                        "Receive immediate liquidity for your business.",
+                        "Reduce the risk of non-payment.",
+                        "Collect multiple invoices at once."
+                    ],
+                    "closing": "Make your company grow at its own pace, not your clients'. Collect today what you've already sold.",
+                    "cta": "Collect my invoices"
+                }
+            },
+            {
+                "eyebrow": "SME Loan",
+                "title": "Grow without limits, or worries",
+                "popup": {
+                    "heading": "Simple financing tailored to you",
+                    "intro": [
+                        "An agile and accessible solution for small and medium-sized businesses that need capital to keep operating, grow or get out of a tight spot.",
+                        "Apply from $50,000 MXN to pay payroll, buy inventory or invest in your business."
+                    ],
+                    "bulletsHeading": "With SME Loan you can:",
+                    "bullets": [
+                        "Use the capital freely, according to your business priorities. Apply once and use it when you need it.",
+                        "Once approved, your money arrives in 24 hours."
+                    ],
+                    "closing": "Finance the essentials and focus on what matters: growing your business.",
+                    "cta": "Finance my business"
+                }
+            },
+            {
+                "eyebrow": "Business Loan",
+                "title": "Expand your business with ease",
+                "popup": {
+                    "heading": "No more pauses: finance your decision today",
+                    "intro": [
+                        "A financing solution made for businesses that need to strengthen their operations, invest or expand.",
+                        "Get up to $50 million pesos to boost your project and take your company to the next level."
+                    ],
+                    "bulletsHeading": "With Business Loan you can:",
+                    "bullets": [
+                        "Use the capital for whatever your business needs",
+                        "Access clear terms",
+                        "Strengthen your finances with planned payments"
+                    ],
+                    "closing": "Get the capital your business needs, when it needs it.",
+                    "cta": "Finance my business"
+                }
+            },
+            {
+                "eyebrow": "Business CDs",
+                "title": "Make your money work for you",
+                "popup": {
+                    "heading": "Invest strategically, earn every month",
+                    "intro": [
+                        "An investment designed for companies that want profitability without losing liquidity.",
+                        "From $10,000 MXN, you choose the term and receive fixed returns every month."
+                    ],
+                    "bulletsHeading": "With CDs you can:",
+                    "bullets": [
+                        "Receive interest every month, without waiting until the end of the term.",
+                        "Invest for 90, 120, 180, 240 or up to 360 days.",
+                        "Earn up to 9.00%* return at 360 days with no hidden clauses."
+                    ],
+                    "closing": "Make your liquidity generate income without pauses. A simple, profitable investment at your own pace.",
+                    "cta": "I want to invest in CDs"
+                }
+            },
+            {
+                "eyebrow": "Kapital Banking",
+                "title": "All your operations, in one place",
+                "popup": {
+                    "heading": "Manage your business from one place",
+                    "intro": [
+                        "The digital platform that allows you to manage finances and operate your company in real time: accounts, payments, income, expenses and suppliers.",
+                        "Get the visibility you need. Maximum clarity for better decisions."
+                    ],
+                    "bulletsHeading": "With Banking you can:",
+                    "bullets": [
+                        "View and manage your business accounts.",
+                        "Control your income, expenses and invoices.",
+                        "Automate recurring payments and avoid delays."
+                    ],
+                    "closing": "Manage your company with the clarity you always needed.",
+                    "cta": "Learn more about Business Banking"
+                }
+            }
+        ]
+    },
+    "accountHighlight": {
+        "title": "Your money, free and always at hand",
+        "description": "Open your account from $1,000 MXN and manage your money easily with a debit card and instant SPEI.",
+        "cta": "Request my Kapital account"
+    },
+    "appSection": {
+        "eyebrow": "Kapital App",
+        "title": "Your experience is everything",
+        "items": [
+            {
+                "title": "Invest from anywhere",
+                "body": "Access Promissory Notes and CDs directly in the Kapital app, and put your company's money to work with attractive returns and the term you choose."
+            },
+            {
+                "title": "Total control",
+                "body": "Receive, pay, transfer and withdraw from one place. Monitor your transactions in real time, receive notifications and take control of your finances."
+            },
+            {
+                "title": "Security",
+                "body": "Authorize transactions with a unique token from your app, with encrypted and confidential transmission. Enjoy safer, faster and easier banking."
+            },
+            {
+                "title": "Hassle-free finances",
+                "body": "Open your account in 5 minutes, receive deposits of up to $25,000 MXN and an international debit card to shop, withdraw and check your balance wherever you are."
+            },
+            {
+                "title": "Services and taxes",
+                "body": "Access your accounts and make transactions wherever you are. Schedule payments for services, loans or cards, and enjoy your bank available 24/7."
+            },
+            {
+                "title": "Products tailored to you",
+                "body": "View, review conditions and contract products in minutes from the Kapital app, without affecting your operations."
+            }
+        ]
+    },
+    "applePay": {
+        "title": "Privacy. Security. That's Apple Pay.",
+        "description": "Apple Pay uses security features built into your Apple device, such as Face ID and Touch ID. It's designed so only you can authorize payments with your Kapital card.",
+        "cta": "More information"
+    },
+    "awards": {
+        "title": "Global recognition",
+        "cta": "Learn more",
+        "prev": "Previous",
+        "next": "Next",
+        "items": [
+            {
+                "title": "The bank for Mexican SMEs",
+                "url": "https://example.com/award-mex"
+            },
+            {
+                "title": "A-mx: Moody's recognizes our financial strength",
+                "url": "https://example.com/award-mod"
+            },
+            {
+                "title": "Technology pioneer for second consecutive year",
+                "url": "https://example.com/award-wef"
+            },
+            {
+                "title": "Most disruptive companies in the world",
+                "url": "https://example.com/award-cnbc"
+            },
+            {
+                "title": "AI Leaders",
+                "url": "https://example.com/award-forbes"
+            }
+        ]
+    },
+    "partners": {
+        "eyebrow": "Opinions about Kapital",
+        "title": "A world-class company",
+        "seeMore": "View"
+    },
+    "blog": {
+        "eyebrow": "Kapital Blog",
+        "title": "Ideas to grow beyond financing",
+        "description": "Access articles, exclusive Kapital resources with strategies, tips and trends for your business.",
+        "readMore": "Read article",
+        "prev": "Previous",
+        "next": "Next",
+        "posts": [
+            {
+                "title": "Kapital House: a new space for the companies that move Mexico",
+                "description": "Kapital inaugurated Kapital House in San Pedro Garza García. See how this hub for SMEs works, its workspaces and access modalities."
+            },
+            {
+                "title": "Buen Fin 2026: dates, registration and SAT raffle",
+                "description": "Buen Fin 2026 will be from November 13 to 17. Dates, merchant registration from September 8, SAT raffle and last edition's figures."
+            },
+            {
+                "title": "Why is Kapital FX different?",
+                "description": "Discover how Kapital FX helps Mexican companies operate currencies with greater control, agreed exchange rates and agile transfers without traditional banking."
+            }
+        ]
+    },
+    "bottomCta": {
+        "title": "Is your business ready to keep growing?",
+        "description": "Sign up and receive a call from an advisor, clear your doubts or learn more about how our banking works.",
+        "cta": "Receive a call"
+    },
+    "legal": {
+        "ratesDisclaimer": "*Rates are annual and fixed during the investment term, subject to prevailing conditions at the time of contracting. Check the offer validity, requirements and information about contracting or product features at kapital.com. Gross annual fixed rate 8.50% GROSS APY 8.50% and REAL APY 4.15%, before taxes, calculated as of August 27, 2026 on an investment range of $1,000.00 MXN to $49,999.99 MXN, for a 360-day term, valid until September 30, 2026. For informational and comparison purposes. Real APY is the return you would obtain after deducting estimated inflation. Contracting is subject to compliance with client profile and eligibility conditions available at kapital.com",
+        "termsTitle": "Terms and conditions:",
+        "clientProfile": "Client Profile and Eligibility: This promotional rate for the PRLV product (Promissory Note with Return Payable at Maturity) has been designed exclusively for retail investors, including individuals, individuals with business activity and legal entities (SMEs) seeking to optimize their cash flow through guaranteed savings instruments.",
+        "eligibility": "Eligibility: The offer is available to clients whose investment profile is compatible with this product. In order to maintain the sustainability of this promotional rate, this offer is not aimed at Development Banking institutions, Multiple Banking, other financial entities (public or private), or foreign institutions, as this product is not designed for institutional treasury operations or over-the-counter transactions between financial entities."
+    },
+    "footer": {
+        "about": {
+            "title": "About Kapital",
+            "links": {
+                "financialStatements": "Financial statements",
+                "branches": "Branches and ATMs",
+                "corporateGovernance": "Corporate Governance",
+                "financialGroup": "Financial Group",
+                "blog": "Blog and Media Center",
+                "missingPersons": "Missing Persons"
+            }
+        },
+        "transparency": {
+            "title": "Transparency",
+            "links": {
+                "terms": "Terms and Conditions",
+                "rates": "Our rates",
+                "financialBureau": "Financial Entities Bureau",
+                "ipab": "IPAB",
+                "condusef": "CONDUSEF",
+                "banxico": "Banxico",
+                "claims": "Claims and Inquiries",
+                "directDebit": "Direct Debit",
+                "remuneration": "Remuneration report",
+                "protectedProducts": "Products Protected by IPAB",
+                "une": "UNE Kapital"
+            }
+        },
+        "onlineServices": {
+            "title": "Online services",
+            "links": {
+                "onlineBanking": "Online banking",
+                "brokerage": "Brokerage",
+                "funds": "Funds",
+                "trustee": "Trustee",
+                "international": "International",
+                "pension": "Pension",
+                "newPension": "New Pension Platform",
+                "invoice": "Invoice",
+                "trusteeFees": "Trustee Fees Payment"
+            }
+        },
+        "social": {
+            "title": "Follow us",
+            "titleDesktop": "Follow us on social media"
+        },
+        "contact": {
+            "title": "Have questions?",
+            "description": "Talk to our team, we'll always help you",
+            "email": "soporte@kapital.com"
+        },
+        "countries": {
+            "puertoRico": "Puerto Rico",
+            "colombia": "Colombia"
+        },
+        "copyright": {
+            "address": "Lago Zurich, No. 245 Torre Frisco Piso 10, Col. Ampliación Granada, C.P. 11529, Alc. Miguel Hidalgo, Tel. 55 8880-9002. Mexico City, Mexico.",
+            "rights": "All rights reserved."
+        },
+        "altLinks": {
+            "privacy": "Privacy notice",
+            "costs": "See the Costs and Commissions of our products"
+        },
+        "regulatory": {
+            "entity": "KPTL MEXICO BANK, SOCIEDAD ANONIMA, INSTITUCION DE BANCA MULTIPLE, KAPITAL MEXICO GRUPO FINANCIERO",
+            "supervisedBy": "Entity supervised by the National Banking and Securities Commission (CNBV).",
+            "claims": "In case of any complaint or clarification, you can contact CONDUSEF at",
+            "or": "or visit",
+            "copyright": "© 2026 Kapital. Loans are subject to approval. See full terms and conditions at",
+            "terms": "our Terms and Conditions"
+        }
+    },
+    "hubspot": {
+        "loading": "Loading form...",
+        "error": "The form could not be loaded.",
+        "close": "Close modal"
+    },
+    "planes": {
+        "netReturn": "NET RETURN",
+        "rows": [
+            {
+                "title": "CEDE",
+                "money": "$10,926,000",
+                "percent": "1.3%"
+            },
+            {
+                "title": "PROMISSORY NOTE",
+                "money": "$1,867",
+                "percent": "1.5%"
+            },
+            {
+                "title": "PLAN CRECE",
+                "money": "$1,867",
+                "percent": "1.8%"
+            }
+        ]
+    }
+}

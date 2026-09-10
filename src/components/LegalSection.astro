@@ -1,5 +1,11 @@
 ---
-// Sección de disclaimer legal con texto de tasas y condiciones
+import { t, type Lang } from "../i18n";
+
+interface Props {
+    lang: Lang;
+}
+
+const { lang } = Astro.props;
 ---
 
 <section class="w-full bg-white pt-10 lg:pt-[120px]">
@@ -11,55 +17,104 @@
                 <div
                     class="text-[14px] leading-[1.25] tracking-[0.03em] text-gray-2 max-w-[900px]"
                 >
-                    <p>
-                        *Las tasas son anuales y fijas durante el plazo
-                        invertido, sujetas a las condiciones imperantes en el
-                        momento de su contratación. Consulte la vigencia de la
-                        oferta, requisitos e información sobre la contratación o
-                        características de los productos en <a
-                            href="http://kapital.com/"
-                            class="underline">kapital.com</a
-                        >. Tasa fija bruta anual <strong>8.50%</strong>
-                        <strong>GAT NOMINAL 8.50%</strong> y <strong
-                            >GAT REAL 4.15%</strong
-                        >, antes de impuestos, calculados al 27 de agosto de
-                        2026 sobre un rango de inversión de <strong
-                            >$1,000.00 MXN a $49,999.99 MXN</strong
-                        >, a un plazo de 360 días, vigente hasta el 30 de
-                        septiembre de 2026. Para fines informativos y de
-                        comparación. La GAT Real es el rendimiento que obtendría
-                        después de descontar la inflación estimada. <strong
-                            >La contratación está sujeta al cumplimiento del
-                            perfil de cliente y condiciones de elegibilidad
-                            consultables en</strong
-                        >
-                        <a href="http://kapital.com/" class="underline"
-                            >kapital.com</a
-                        >
-                    </p>
-                    <p class="mt-4">Términos y condiciones:</p>
-                    <p class="mt-2">
-                        Perfil del Cliente y Elegibilidad: La presente tasa
-                        promocional para el producto PRLV (Pagaré con
-                        Rendimiento Liquidable al Vencimiento) ha sido diseñada
-                        exclusivamente para inversionistas minoristas,
-                        incluyendo personas físicas, personas físicas con
-                        actividad empresarial y personas morales (PYMEs) que
-                        buscan optimizar su flujo de efectivo mediante
-                        instrumentos de ahorro garantizados.
-                    </p>
-                    <p class="mt-2">
-                        Elegibilidad: La oferta está disponible para clientes
-                        cuyo perfil de inversión sea compatible con este
-                        producto. Con el objetivo de mantener la sostenibilidad
-                        de esta tasa promocional, esta oferta no está dirigida a
-                        instituciones de Banca de Desarrollo, Banca Múltiple,
-                        otras entidades financieras (públicas o privadas), ni
-                        instituciones del extranjero, ya que este producto no
-                        está diseñado para operaciones de tesorería
-                        institucional o de ventanilla entre entidades
-                        financieras.
-                    </p>
+                    {
+                        lang === "es" ? (
+                            <p>
+                                *Las tasas son anuales y fijas durante el plazo
+                                invertido, sujetas a las condiciones imperantes
+                                en el momento de su contratación. Consulte la
+                                vigencia de la oferta, requisitos e información
+                                sobre la contratación o características de los
+                                productos en{" "}
+                                <a href="http://kapital.com/" class="underline">
+                                    kapital.com
+                                </a>
+                                . Tasa fija bruta anual <strong>8.50%</strong>
+                                <strong>GAT NOMINAL 8.50%</strong> y{" "}
+                                <strong>GAT REAL 4.15%</strong>, antes de
+                                impuestos, calculados al 27 de agosto de 2026
+                                sobre un rango de inversión de{" "}
+                                <strong>$1,000.00 MXN a $49,999.99 MXN</strong>,
+                                a un plazo de 360 días, vigente hasta el 30 de
+                                septiembre de 2026. Para fines informativos y de
+                                comparación. La GAT Real es el rendimiento que
+                                obtendría después de descontar la inflación
+                                estimada.{" "}
+                                <strong>
+                                    La contratación está sujeta al cumplimiento
+                                    del perfil de cliente y condiciones de
+                                    elegibilidad consultables en
+                                </strong>
+                                <a href="http://kapital.com/" class="underline">
+                                    kapital.com
+                                </a>
+                            </p>
+                        ) : lang === "en" ? (
+                            <p>
+                                *Rates are annual and fixed during the
+                                investment term, subject to prevailing
+                                conditions at the time of contracting. Check the
+                                offer validity, requirements and information
+                                about contracting or product features at{" "}
+                                <a href="http://kapital.com/" class="underline">
+                                    kapital.com
+                                </a>
+                                . Gross annual fixed rate <strong>8.50%</strong>
+                                <strong>GROSS APY 8.50%</strong> and{" "}
+                                <strong>REAL APY 4.15%</strong>, before taxes,
+                                calculated as of August 27, 2026 on an
+                                investment range of{" "}
+                                <strong>$1,000.00 MXN to $49,999.99 MXN</strong>
+                                , for a 360-day term, valid until September 30,
+                                2026. For informational and comparison purposes.
+                                Real APY is the return you would obtain after
+                                deducting estimated inflation.{" "}
+                                <strong>
+                                    Contracting is subject to compliance with
+                                    the client profile and eligibility
+                                    conditions available at
+                                </strong>
+                                <a href="http://kapital.com/" class="underline">
+                                    kapital.com
+                                </a>
+                            </p>
+                        ) : (
+                            <p>
+                                *Les taux sont annuels et fixes pendant la durée
+                                de l'investissement, sous réserve des conditions
+                                en vigueur au moment de la souscription.
+                                Consultez la validité de l'offre, les exigences
+                                et les informations sur la souscription ou les
+                                caractéristiques des produits sur{" "}
+                                <a href="http://kapital.com/" class="underline">
+                                    kapital.com
+                                </a>
+                                . Taux fixe brut annuel <strong>8,50 %</strong>
+                                <strong>TAR NOMINAL 8,50 %</strong> et{" "}
+                                <strong>TAR RÉEL 4,15 %</strong>, avant impôts,
+                                calculés au 27 août 2026 sur une plage
+                                d'investissement de{" "}
+                                <strong>1 000,00 MXN à 49 999,99 MXN</strong>,
+                                pour une durée de 360 jours, valable jusqu'au 30
+                                septembre 2026. À des fins informatives et de
+                                comparaison. Le TAR réel est le rendement que
+                                vous obtiendriez après déduction de l'inflation
+                                estimée.{" "}
+                                <strong>
+                                    La souscription est soumise au respect du
+                                    profil client et des conditions
+                                    d'éligibilité consultables sur
+                                </strong>
+                                <a href="http://kapital.com/" class="underline">
+                                    kapital.com
+                                </a>
+                            </p>
+                        )
+                    }
+
+                    <p class="mt-4">{t(lang, "legal.termsTitle")}</p>
+                    <p class="mt-2">{t(lang, "legal.clientProfile")}</p>
+                    <p class="mt-2">{t(lang, "legal.eligibility")}</p>
                 </div>
             </div>
         </div>

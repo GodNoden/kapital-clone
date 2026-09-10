@@ -1,5 +1,11 @@
 ---
-// Sección CTA final con imagen de fondo y botón de formulario
+import { t, type Lang } from "../i18n";
+
+interface Props {
+    lang: Lang;
+}
+
+const { lang } = Astro.props;
 ---
 
 <section
@@ -42,12 +48,10 @@
             >
                 <div class="flex flex-col gap-6">
                     <h2 class="text-3xl md:text-4xl text-white">
-                        ¿Tu empresa está lista para seguir creciendo?
+                        {t(lang, "bottomCta.title")}
                     </h2>
                     <p class="text-base md:text-lg text-white">
-                        Regístrate y recibe la llamada de un asesor, aclara tus
-                        dudas o conoce más sobre el funcionamiento de nuestra
-                        banca.
+                        {t(lang, "bottomCta.description")}
                     </p>
                 </div>
                 <div class="flex flex-wrap gap-3">
@@ -55,7 +59,7 @@
                         type="button"
                         class="activate-form rounded-full px-6 py-4 lg:px-8 lg:py-5 text-sm lg:text-base text-white bg-white/20 backdrop-blur-md hover:bg-white/30 transition-colors duration-300"
                     >
-                        Recibir llamada
+                        {t(lang, "bottomCta.cta")}
                     </button>
                 </div>
             </div>

@@ -1,35 +1,39 @@
 ---
-const announcement = {
-    text: "Conoce por qué Kapital solicita tu Clave CIEC",
-    link: "/blog/educacion-financiera/por-que-kapital-pide-tu-ciec-sat",
-    linkText: "Conocer más",
-};
+import { t, type Lang } from "../i18n";
+
+interface Props {
+    lang: Lang;
+}
+
+const { lang } = Astro.props;
 ---
 
 <aside
-    id="announcement-bar"
-    class="relative overflow-hidden max-h-[100px] opacity-100 transition-opacity duration-1000"
-    aria-label="Anuncio"
+    id="rebrand-announcement"
+    aria-label={t(lang, "header.announcement.close")}
+    class="relative overflow-hidden max-h-[100px] opacity-100 transition-opacity duration-1000 bg-kapital-black text-white"
 >
-    <div class="w-full bg-kapital-black text-white py-2.5">
+    <div class="w-full py-2.5">
         <div
             class="max-w-container mx-auto px-4 flex items-center justify-center gap-6"
         >
             <p class="text-xs md:text-sm whitespace-nowrap">
-                {announcement.text}
+                {t(lang, "header.announcement.text")}
             </p>
             <a
-                href={announcement.link}
+                href="/blog/educacion-financiera/por-que-kapital-pide-tu-ciec-sat"
+                target="_blank"
+                rel="noopener noreferrer"
                 class="text-xs font-medium hover:underline whitespace-nowrap"
             >
-                {announcement.linkText}
+                {t(lang, "header.announcement.link")}
             </a>
         </div>
     </div>
 
     <button
         id="announcement-close"
-        aria-label="Cerrar anuncio"
+        aria-label={t(lang, "header.announcement.close")}
         class="absolute right-2 top-1/2 -translate-y-1/2 w-5 h-5 flex items-center justify-center hover:opacity-70"
     >
         <svg
@@ -37,7 +41,7 @@ const announcement = {
             height="12"
             viewBox="0 0 12 12"
             fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
         >
             <path
                 d="M1 1L11 11M11 1L1 11"
@@ -49,11 +53,10 @@ const announcement = {
 </aside>
 
 <script is:inline>
-    const bar = document.getElementById("announcement-bar");
+    const bar = document.getElementById("rebrand-announcement");
     const closeBtn = document.getElementById("announcement-close");
     const storageKey = "announcement-dismissed";
 
-    // Check if already dismissed
     if (sessionStorage.getItem(storageKey) === "true") {
         bar?.remove();
     }

@@ -1,0 +1,469 @@
+{
+    "site": {
+        "title": "Kapital : Solutions financières pour entreprises et particuliers | Mexique",
+        "description": "Demandez un crédit professionnel, personnel ou auto. Ouvrez un compte d'investissement ou de paie facilement et en toute sécurité. Kapital : la banque à portée de main !"
+    },
+    "header": {
+        "announcement": {
+            "text": "Découvrez pourquoi Kapital demande votre clé CIEC",
+            "link": "En savoir plus",
+            "close": "Fermer l'annonce"
+        },
+        "nav": {
+            "business": "Entreprises",
+            "individuals": "Particuliers",
+            "financialGroup": "Groupe Financier",
+            "openAccount": "Ouvrir un compte",
+            "login": "Se connecter",
+            "openMenu": "Ouvrir le menu"
+        },
+        "business": {
+            "fx": "FX",
+            "derivatives": "Produits dérivés",
+            "loans": "Crédits",
+            "investments": "Investissements",
+            "accounts": "Comptes",
+            "services": "Services"
+        },
+        "businessLinks": {
+            "cash": "Espèces",
+            "transfers": "Virements",
+            "checks": "Chèques",
+            "clicLoan": "Crédit CLIC",
+            "vostroTransfers": "Virements Vostro",
+            "spid": "SPID",
+            "forward": "Forward",
+            "rates": "Taux",
+            "businessLoan": "Crédit Entreprise",
+            "smeLoan": "Crédit PME",
+            "flexLoan": "Crédit FLEX",
+            "factoring": "Affacturage",
+            "promissoryNote": "Billet à ordre",
+            "cede": "CEDE",
+            "businessAccount": "Compte Entreprise",
+            "smeAccount": "Compte PME",
+            "businessBanking": "Banque d'entreprise",
+            "onlineBanking": "Banque en ligne",
+            "kapitalAI": "Kapital IA"
+        },
+        "individuals": {
+            "fx": "FX",
+            "derivatives": "Produits dérivés",
+            "investments": "Investissements",
+            "accounts": "Comptes",
+            "services": "Services"
+        },
+        "individualsLinks": {
+            "cash": "Espèces",
+            "transfers": "Virements",
+            "checks": "Chèques",
+            "forwardNDF": "Forward NDF",
+            "rates": "Taux",
+            "promissoryNote": "Billet à ordre",
+            "cede": "CEDE",
+            "growthPlan": "Plan Croissance",
+            "kapitalPayroll": "Paie Kapital",
+            "basicPayroll": "Paie Basique",
+            "kapitalAccount": "Compte Kapital",
+            "basicAccount": "Compte Basique",
+            "expressAccount": "Compte Express",
+            "kidsAccount": "Compte Kids",
+            "kapitalApp": "Kapital App",
+            "wealthBanking": "Banque Privée",
+            "branches": "Agences"
+        },
+        "login": {
+            "businessPlatform": "Plateforme entreprise",
+            "onlineBanking": "Banque en ligne"
+        }
+    },
+    "hero": {
+        "slides": [
+            {
+                "eyebrow": "Kapital",
+                "title": [
+                    "Nous équipons",
+                    "les entreprises",
+                    "pour grandir"
+                ],
+                "copy": "Banque, crédit, investissement et change — tout ce dont votre entreprise a besoin pour aller de l'avant.",
+                "cta": "Ouvrir un compte"
+            },
+            {
+                "title": [
+                    "Votre entreprise",
+                    "ne s'arrête pas,",
+                    "votre argent non plus"
+                ],
+                "copy": "Effectuez vos virements internationaux avec Kapital FX | 24/7.",
+                "cta": "Transférez aujourd'hui"
+            },
+            {
+                "title": [
+                    "Votre argent",
+                    "mérite de l'audace"
+                ],
+                "copy": "Tout ce que vous attendez d'une banque, mais sans les règles traditionnelles.",
+                "cta": "Demander un conseil personnalisé"
+            },
+            {
+                "title": [
+                    "Investissement simple.",
+                    "Rendement réel."
+                ],
+                "copy": "L'investissement qui vous offre rentabilité, sécurité et des gains jusqu'à 8,50 %*",
+                "cta": "Je veux investir"
+            }
+        ],
+        "prev": "Précédent",
+        "next": "Suivant"
+    },
+    "ecosystem": {
+        "title": "L'écosystème financier pour votre entreprise",
+        "subtitle": "Gérez votre argent en toute liberté : payez, épargnez et investissez sans complications.",
+        "moreInfo": "Plus d'informations",
+        "prev": "Précédent",
+        "next": "Suivant",
+        "cards": [
+            {
+                "eyebrow": "Kapital FX",
+                "title": "Faites des affaires avec le monde, le jour même",
+                "popup": {
+                    "heading": "Connectez votre entreprise au monde",
+                    "intro": [
+                        "De l'audace pour faire des affaires sans frontières. Kapital FX vous donne l'écosystème pour opérer dans d'autres devises, payer des fournisseurs internationaux et avancer au rythme du marché mondial."
+                    ],
+                    "bulletsHeading": "Avec Kapital FX, vous pouvez :",
+                    "bullets": [
+                        "Acheter et transférer des devises avec un contrôle total",
+                        "Exécution rapide et 100 % numérique",
+                        "Des prix compétitifs et transparents, sans surprises"
+                    ],
+                    "closing": "L'écosystème financier pour les entreprises qui osent opérer au-delà du connu. Déplacez de l'argent entre pays avec clarté, rapidité et un accompagnement expert.",
+                    "cta": "En savoir plus"
+                }
+            },
+            {
+                "eyebrow": "SPID Kapital",
+                "title": "Envoyez des dollars à n'importe quelle entreprise, en quelques secondes",
+                "popup": {
+                    "heading": "Envoyez des dollars à n'importe quelle entreprise, en quelques secondes",
+                    "intro": [
+                        "SPID vous permet de déplacer des dollars entre entreprises au Mexique instantanément, sans conversions ni banques correspondantes."
+                    ],
+                    "bulletsHeading": "Avec SPID Kapital, vous pouvez :",
+                    "bullets": [
+                        "Transférer des dollars vers n'importe quelle banque autorisée au Mexique",
+                        "Payer vos fournisseurs en USD sans convertir en pesos",
+                        "Opérer le jour même, pendant les heures bancaires"
+                    ],
+                    "closing": "Tout ce dont vous avez besoin pour opérer en dollars, au même endroit et sans quitter le Mexique."
+                }
+            },
+            {
+                "eyebrow": "Crédit FLEX",
+                "title": "Payez votre fournisseur aujourd'hui et négociez en votre faveur",
+                "popup": {
+                    "heading": "Accélérez vos paiements sans affecter votre trésorerie",
+                    "intro": [
+                        "Une ligne de crédit renouvelable pour payer vos fournisseurs sans compromettre votre liquidité.",
+                        "Kapital Bank paie pour vous instantanément et vous remboursez en 1, 2, 3, 6, 9 ou 12 mois."
+                    ],
+                    "bulletsHeading": "Avec le Crédit FLEX, vous pouvez :",
+                    "bullets": [
+                        "Négocier des remises pour paiement anticipé",
+                        "Toujours avoir du stock disponible",
+                        "Ne pas arrêter vos opérations par manque de trésorerie"
+                    ],
+                    "closing": "Prolongez vos délais de paiement sans affecter votre trésorerie et, en payant toujours à temps, renforcez votre pouvoir de négociation avec vos fournisseurs.",
+                    "cta": "Je veux mon Crédit FLEX"
+                }
+            },
+            {
+                "eyebrow": "Affacturage Kapital",
+                "title": "Encaissez aujourd'hui ce que vous avez déjà vendu",
+                "popup": {
+                    "heading": "N'attendez pas 90 jours, encaissez vos factures aujourd'hui",
+                    "intro": [
+                        "Anticipez l'encaissement de vos factures et transformez-les en liquidités disponibles aujourd'hui.",
+                        "Ainsi, votre activité reste active, avec un flux de trésorerie constant et sans dépendre du calendrier de paiement de vos clients."
+                    ],
+                    "bulletsHeading": "Avec l'Affacturage, vous pouvez :",
+                    "bullets": [
+                        "Recevoir des liquidités immédiates pour votre entreprise.",
+                        "Réduire le risque d'impayés.",
+                        "Encaisser plusieurs factures à la fois."
+                    ],
+                    "closing": "Faites grandir votre entreprise à son propre rythme, pas à celui de vos clients. Encaissez aujourd'hui ce que vous avez déjà vendu.",
+                    "cta": "Encaisser mes factures"
+                }
+            },
+            {
+                "eyebrow": "Crédit PME",
+                "title": "Grandissez sans limites, ni soucis",
+                "popup": {
+                    "heading": "Un financement simple et sur mesure",
+                    "intro": [
+                        "Une solution agile et accessible pour les petites et moyennes entreprises qui ont besoin de capital pour continuer à opérer, grandir ou sortir d'une situation difficile.",
+                        "Demandez à partir de 50 000 MXN pour payer la paie, acheter du stock ou investir dans votre entreprise."
+                    ],
+                    "bulletsHeading": "Avec le Crédit PME, vous pouvez :",
+                    "bullets": [
+                        "Utiliser le capital librement, selon les priorités de votre entreprise. Demandez-le une seule fois et utilisez-le quand vous en avez besoin.",
+                        "Une fois approuvé, votre argent arrive en 24 heures."
+                    ],
+                    "closing": "Financez l'essentiel et concentrez-vous sur ce qui compte : faire grandir votre entreprise.",
+                    "cta": "Financer mon entreprise"
+                }
+            },
+            {
+                "eyebrow": "Crédit Entreprise",
+                "title": "Développez votre entreprise facilement",
+                "popup": {
+                    "heading": "Plus de pauses : financez votre décision aujourd'hui",
+                    "intro": [
+                        "Une solution de financement conçue pour les entreprises qui doivent renforcer leurs opérations, investir ou s'étendre.",
+                        "Obtenez jusqu'à 50 millions de pesos pour booster votre projet et faire passer votre entreprise au niveau supérieur."
+                    ],
+                    "bulletsHeading": "Avec le Crédit Entreprise, vous pouvez :",
+                    "bullets": [
+                        "Utiliser le capital selon les besoins de votre entreprise",
+                        "Accéder à des conditions claires",
+                        "Renforcer vos finances avec des paiements planifiés"
+                    ],
+                    "closing": "Obtenez le capital dont votre entreprise a besoin, quand elle en a besoin.",
+                    "cta": "Financer mon entreprise"
+                }
+            },
+            {
+                "eyebrow": "CEDE Entreprise",
+                "title": "Faites travailler votre argent pour vous",
+                "popup": {
+                    "heading": "Investissez avec stratégie, gagnez chaque mois",
+                    "intro": [
+                        "Un investissement pensé pour les entreprises qui veulent de la rentabilité sans perdre en liquidité.",
+                        "À partir de 10 000 MXN, vous choisissez la durée et recevez des rendements fixes chaque mois."
+                    ],
+                    "bulletsHeading": "Avec les CEDE, vous pouvez :",
+                    "bullets": [
+                        "Recevoir des intérêts chaque mois, sans attendre la fin de la durée.",
+                        "Investir sur 90, 120, 180, 240 ou jusqu'à 360 jours.",
+                        "Gagner jusqu'à 9,00 %* de rendement sur 360 jours sans clauses cachées."
+                    ],
+                    "closing": "Faites générer des revenus à votre liquidité sans interruption. Un investissement simple, rentable et à votre rythme.",
+                    "cta": "Je veux investir en CEDE"
+                }
+            },
+            {
+                "eyebrow": "Banque Kapital",
+                "title": "Toute votre activité, au même endroit",
+                "popup": {
+                    "heading": "Gérez votre entreprise depuis un seul endroit",
+                    "intro": [
+                        "La plateforme numérique qui vous permet d'administrer vos finances et d'opérer votre entreprise en temps réel : comptes, paiements, revenus, dépenses et fournisseurs.",
+                        "Obtenez la visibilité dont vous avez besoin. Une clarté maximale pour de meilleures décisions."
+                    ],
+                    "bulletsHeading": "Avec la Banque, vous pouvez :",
+                    "bullets": [
+                        "Consulter et gérer vos comptes d'entreprise.",
+                        "Contrôler vos revenus, dépenses et factures.",
+                        "Automatiser les paiements récurrents et éviter les retards."
+                    ],
+                    "closing": "Gérez votre entreprise avec la clarté dont vous avez toujours eu besoin.",
+                    "cta": "En savoir plus sur la Banque d'entreprise"
+                }
+            }
+        ]
+    },
+    "accountHighlight": {
+        "title": "Votre argent, libre et toujours à portée de main",
+        "description": "Ouvrez votre compte à partir de 1 000 MXN et gérez votre argent facilement avec une carte de débit et un SPEI instantané.",
+        "cta": "Demander mon compte Kapital"
+    },
+    "appSection": {
+        "eyebrow": "Kapital App",
+        "title": "Votre expérience, c'est tout",
+        "items": [
+            {
+                "title": "Investissez où que vous soyez",
+                "body": "Accédez aux Billets à ordre et aux CEDE directement depuis l'application Kapital, et faites travailler l'argent de votre entreprise avec des rendements attractifs et la durée que vous choisissez."
+            },
+            {
+                "title": "Contrôle total",
+                "body": "Recevez, payez, transférez et retirez depuis un seul endroit. Suivez vos opérations en temps réel, recevez des notifications et prenez le contrôle de vos finances."
+            },
+            {
+                "title": "Sécurité",
+                "body": "Autorisez les opérations avec un jeton unique depuis votre application, avec une transmission chiffrée et confidentielle. Profitez d'une banque plus sûre, plus rapide et plus simple."
+            },
+            {
+                "title": "Des finances sans complications",
+                "body": "Ouvrez votre compte en 5 minutes, recevez des dépôts jusqu'à 25 000 MXN et une carte de débit internationale pour acheter, retirer et consulter votre solde où que vous soyez."
+            },
+            {
+                "title": "Services et impôts",
+                "body": "Accédez à vos comptes et effectuez des opérations où que vous soyez. Programmez les paiements de services, prêts ou cartes, et profitez d'une banque disponible 24/7."
+            },
+            {
+                "title": "Des produits sur mesure",
+                "body": "Consultez, vérifiez les conditions et souscrivez des produits en quelques minutes depuis l'application Kapital, sans affecter votre activité."
+            }
+        ]
+    },
+    "applePay": {
+        "title": "Confidentialité. Sécurité. C'est Apple Pay.",
+        "description": "Apple Pay utilise les fonctionnalités de sécurité intégrées à votre appareil Apple, comme Face ID et Touch ID. Il est conçu pour que vous seul puissiez autoriser des paiements avec votre carte Kapital.",
+        "cta": "Plus d'informations"
+    },
+    "awards": {
+        "title": "Reconnaissance mondiale",
+        "cta": "En savoir plus",
+        "prev": "Précédent",
+        "next": "Suivant",
+        "items": [
+            {
+                "title": "La banque des PME mexicaines",
+                "url": "https://example.com/award-mex"
+            },
+            {
+                "title": "A-mx : Moody's reconnaît notre solidité financière",
+                "url": "https://example.com/award-mod"
+            },
+            {
+                "title": "Pionnière technologique pour la deuxième année consécutive",
+                "url": "https://example.com/award-wef"
+            },
+            {
+                "title": "Les entreprises les plus disruptives au monde",
+                "url": "https://example.com/award-cnbc"
+            },
+            {
+                "title": "Leaders de l'IA",
+                "url": "https://example.com/award-forbes"
+            }
+        ]
+    },
+    "partners": {
+        "eyebrow": "Avis sur Kapital",
+        "title": "Une entreprise de classe mondiale",
+        "seeMore": "Voir"
+    },
+    "blog": {
+        "eyebrow": "Blog Kapital",
+        "title": "Des idées pour grandir au-delà du financement",
+        "description": "Accédez à des articles et à des ressources exclusives de Kapital avec des stratégies, des conseils et des tendances pour votre entreprise.",
+        "readMore": "Lire l'article",
+        "prev": "Précédent",
+        "next": "Suivant",
+        "posts": [
+            {
+                "title": "Kapital House : un nouvel espace pour les entreprises qui font bouger le Mexique",
+                "description": "Kapital a inauguré Kapital House à San Pedro Garza García. Découvrez comment fonctionne ce hub pour les PME, ses espaces de travail et ses modalités d'accès."
+            },
+            {
+                "title": "Buen Fin 2026 : dates, inscription et tirage au sort du SAT",
+                "description": "Le Buen Fin 2026 aura lieu du 13 au 17 novembre. Dates, inscription des commerçants à partir du 8 septembre, tirage au sort du SAT et chiffres de l'édition précédente."
+            },
+            {
+                "title": "Pourquoi Kapital FX est-il différent ?",
+                "description": "Découvrez comment Kapital FX aide les entreprises mexicaines à opérer sur les devises avec plus de contrôle, des taux de change convenus et des transferts agiles, sans la banque traditionnelle."
+            }
+        ]
+    },
+    "bottomCta": {
+        "title": "Votre entreprise est-elle prête à continuer de grandir ?",
+        "description": "Inscrivez-vous et recevez l'appel d'un conseiller, clarifiez vos doutes ou apprenez-en plus sur le fonctionnement de notre banque.",
+        "cta": "Recevoir un appel"
+    },
+    "legal": {
+        "ratesDisclaimer": "*Les taux sont annuels et fixes pendant la durée de l'investissement, sous réserve des conditions en vigueur au moment de la souscription. Consultez la validité de l'offre, les exigences et les informations sur la souscription ou les caractéristiques des produits sur kapital.com. Taux fixe brut annuel 8,50 % GAT NOMINAL 8,50 % et GAT RÉEL 4,15 %, avant impôts, calculés au 27 août 2026 sur une plage d'investissement de 1 000,00 MXN à 49 999,99 MXN, pour une durée de 360 jours, valable jusqu'au 30 septembre 2026. À titre informatif et de comparaison. Le GAT Réel est le rendement que vous obtiendriez après déduction de l'inflation estimée. La souscription est soumise au respect du profil client et aux conditions d'éligibilité consultables sur kapital.com",
+        "termsTitle": "Termes et conditions :",
+        "clientProfile": "Profil Client et Éligibilité : Ce taux promotionnel pour le produit PRLV (Billet à ordre avec rendement payable à l'échéance) a été conçu exclusivement pour les investisseurs particuliers, y compris les personnes physiques, les personnes physiques exerçant une activité commerciale et les personnes morales (PME) cherchant à optimiser leur trésorerie grâce à des instruments d'épargne garantis.",
+        "eligibility": "Éligibilité : L'offre est disponible pour les clients dont le profil d'investissement est compatible avec ce produit. Afin de maintenir la durabilité de ce taux promotionnel, cette offre ne s'adresse pas aux institutions de Banque de Développement, de Banque Multiple, aux autres entités financières (publiques ou privées), ni aux institutions étrangères, ce produit n'étant pas conçu pour des opérations de trésorerie institutionnelle ou de guichet entre entités financières."
+    },
+    "footer": {
+        "about": {
+            "title": "À propos de Kapital",
+            "links": {
+                "financialStatements": "États financiers",
+                "branches": "Agences et distributeurs",
+                "corporateGovernance": "Gouvernance d'entreprise",
+                "financialGroup": "Groupe Financier",
+                "blog": "Blog et Centre de Presse",
+                "missingPersons": "Personnes disparues"
+            }
+        },
+        "transparency": {
+            "title": "Transparence",
+            "links": {
+                "terms": "Termes et Conditions",
+                "rates": "Nos taux",
+                "financialBureau": "Bureau des Entités Financières",
+                "ipab": "IPAB",
+                "condusef": "CONDUSEF",
+                "banxico": "Banxico",
+                "claims": "Réclamations et Renseignements",
+                "directDebit": "Prélèvement automatique",
+                "remuneration": "Rapport sur les rémunérations",
+                "protectedProducts": "Produits protégés par l'IPAB",
+                "une": "UNE Kapital"
+            }
+        },
+        "onlineServices": {
+            "title": "Services en ligne",
+            "links": {
+                "onlineBanking": "Banque en ligne",
+                "brokerage": "Courtage",
+                "funds": "Fonds",
+                "trustee": "Fiduciaire",
+                "international": "International",
+                "pension": "Retraite",
+                "newPension": "Nouvelle Plateforme Retraite",
+                "invoice": "Facture",
+                "trusteeFees": "Paiement des honoraires fiduciaires"
+            }
+        },
+        "social": {
+            "title": "Suivez-nous",
+            "titleDesktop": "Suivez-nous sur les réseaux sociaux"
+        },
+        "contact": {
+            "title": "Des questions ?",
+            "description": "Parlez à notre équipe, nous vous aiderons toujours",
+            "email": "soporte@kapital.com"
+        },
+        "countries": {
+            "puertoRico": "Porto Rico",
+            "colombia": "Colombie"
+        },
+        "copyright": {
+            "address": "Lago Zurich, No. 245 Torre Frisco Piso 10, Col. Ampliación Granada, C.P. 11529, Alc. Miguel Hidalgo, Tél. 55 8880-9002. Mexico, Mexique.",
+            "rights": "Tous droits réservés."
+        },
+        "altLinks": {
+            "privacy": "Avis de confidentialité",
+            "costs": "Consultez les coûts et les commissions de nos produits"
+        },
+        "regulatory": {
+            "entity": "KPTL MEXICO BANK, SOCIEDAD ANONIMA, INSTITUCION DE BANCA MULTIPLE, KAPITAL MEXICO GRUPO FINANCIERO",
+            "supervisedBy": "Entité supervisée par la Commission Nationale Bancaire et des Valeurs (CNBV).",
+            "claims": "En cas de réclamation ou de clarification, vous pouvez contacter la CONDUSEF au",
+            "or": "ou visiter",
+            "copyright": "© 2026 Kapital. Les crédits sont soumis à approbation. Consultez les termes et conditions complets sur",
+            "terms": "nos Termes et Conditions"
+        }
+    },
+    "hubspot": {
+        "loading": "Chargement du formulaire...",
+        "error": "Le formulaire n'a pas pu être chargé.",
+        "close": "Fermer la fenêtre"
+    },
+    "planes": {
+        "netReturn": "RENDEMENT NET",
+        "rows": [
+            { "title": "CEDE",           "money": "10 926 000 $", "percent": "1,3 %" },
+            { "title": "BILLET À ORDRE", "money": "1 867 $",      "percent": "1,5 %" },
+            { "title": "PLAN CRECE",     "money": "1 867 $",      "percent": "1,8 %" }
+        ]
+    }
+}

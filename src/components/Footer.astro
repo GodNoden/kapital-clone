@@ -1,4 +1,13 @@
 ---
+import { t, type Lang } from "../i18n";
+import LanguageSelector from "./LanguageSelector.astro";
+
+interface Props {
+    lang: Lang;
+}
+
+const { lang } = Astro.props;
+
 interface FooterLink {
     label: string;
     href: string;
@@ -12,115 +21,133 @@ interface FooterColumn {
 
 const columns: FooterColumn[] = [
     {
-        title: "Sobre Kapital",
+        title: t(lang, "footer.about.title"),
         links: [
             {
-                label: "Estados financieros",
+                label: t(lang, "footer.about.links.financialStatements"),
                 href: "/recursos/estados-financieros",
             },
-            { label: "Sucursales y cajeros", href: "/servicios/sucursales" },
             {
-                label: "Gobierno Corporativo",
+                label: t(lang, "footer.about.links.branches"),
+                href: "/servicios/sucursales",
+            },
+            {
+                label: t(lang, "footer.about.links.corporateGovernance"),
                 href: "/recursos/gobierno-corporativo",
             },
-            { label: "Grupo Financiero", href: "/grupo-financiero/" },
-            { label: "Blog y Centro de Medios", href: "/blog/" },
             {
-                label: "Personas Desaparecidas",
+                label: t(lang, "footer.about.links.financialGroup"),
+                href: "/grupo-financiero/",
+            },
+            {
+                label: t(lang, "footer.about.links.blog"),
+                href: "/blog/",
+            },
+            {
+                label: t(lang, "footer.about.links.missingPersons"),
                 href: "/recursos/personas-desaparecidas",
                 target: "_blank",
             },
         ],
     },
     {
-        title: "Transparencia",
+        title: t(lang, "footer.transparency.title"),
         links: [
             {
-                label: "Terminos y Condiciones",
+                label: t(lang, "footer.transparency.links.terms"),
                 href: "/recursos/terminos-y-condiciones",
             },
-            { label: "Nuestras tasas", href: "/recursos/nuestras-tasas" },
             {
-                label: "Buró de Entidades Financieras",
+                label: t(lang, "footer.transparency.links.rates"),
+                href: "/recursos/nuestras-tasas",
+            },
+            {
+                label: t(lang, "footer.transparency.links.financialBureau"),
                 href: "https://assets.ctfassets.net/vr3zuj968faf/5q0UFJTmKYLqbEwI6PLcWr/426c9acb4f4f4c8442bd1760b30af4e9/Buro-entidades-financieras.pdf",
                 target: "_blank",
             },
             {
-                label: "IPAB",
+                label: t(lang, "footer.transparency.links.ipab"),
                 href: "https://www.gob.mx/ipab",
                 target: "_blank",
             },
-            { label: "CONDUSEF", href: "/recursos/condusef" },
             {
-                label: "Banxico",
+                label: t(lang, "footer.transparency.links.condusef"),
+                href: "/recursos/condusef",
+            },
+            {
+                label: t(lang, "footer.transparency.links.banxico"),
                 href: "https://www.banxico.org.mx/",
                 target: "_blank",
             },
             {
-                label: "Aclaraciones y Consultas",
+                label: t(lang, "footer.transparency.links.claims"),
                 href: "/recursos/aclaraciones",
             },
             {
-                label: "Domiciliación",
+                label: t(lang, "footer.transparency.links.directDebit"),
                 href: "https://assets.ctfassets.net/vr3zuj968faf/35Oze39RfKCThMMus24qBS/44745a14936ff3e4b89cd0c5166f45c7/Domiciliacion.pdf",
                 target: "_blank",
             },
             {
-                label: "Informe de remuneraciones",
+                label: t(lang, "footer.transparency.links.remuneration"),
                 href: "/recursos/remuneraciones",
             },
             {
-                label: "Productos Protegidos por el IPAB",
+                label: t(lang, "footer.transparency.links.protectedProducts"),
                 href: "/recursos/productos-protegidos-por-el-ipab",
             },
-            { label: "UNE Kapital", href: "/recursos/une" },
+            {
+                label: t(lang, "footer.transparency.links.une"),
+                href: "/recursos/une",
+            },
         ],
     },
     {
-        title: "Servicios en linea",
+        title: t(lang, "footer.onlineServices.title"),
         links: [
             {
-                label: "Banca en línea",
+                label: t(lang, "footer.onlineServices.links.onlineBanking"),
                 href: "https://www.ieb.com.mx/NB/",
                 target: "_blank",
             },
             {
-                label: "Casa de Bolsa",
+                label: t(lang, "footer.onlineServices.links.brokerage"),
                 href: "https://www.ibex.com.mx/ibolsa/login",
                 target: "_blank",
             },
             {
-                label: "Fondos",
+                label: t(lang, "footer.onlineServices.links.funds"),
                 href: "https://www.ibex.com.mx/ifondos/login",
                 target: "_blank",
             },
             {
-                label: "Fiduciario",
+                label: t(lang, "footer.onlineServices.links.trustee"),
                 href: "https://www.ibex.com.mx/interfofae/Account/Login?ReturnUrl=%2finterfofae",
                 target: "_blank",
             },
             {
-                label: "Internacional",
+                label: t(lang, "footer.onlineServices.links.international"),
                 href: "https://intercam.com.pr/",
                 target: "_blank",
             },
             {
-                label: "Previsional",
+                label: t(lang, "footer.onlineServices.links.pension"),
                 href: "https://www.igffondos.com.mx/sistemaFondos/",
                 target: "_blank",
             },
             {
-                label: "Nueva Plataforma Previsional",
+                label: t(lang, "footer.onlineServices.links.newPension"),
                 href: "https://previsional.kapital.com/",
                 target: "_blank",
             },
             {
-                label: "Factura",
+                label: t(lang, "footer.onlineServices.links.invoice"),
                 href: "https://www.ibex.com.mx/ifactura/",
                 target: "_blank",
             },
             {
-                label: "Pago de Honorarios Fiduciarios",
+                label: t(lang, "footer.onlineServices.links.trusteeFees"),
                 href: "https://www.ipagoelectronico.intercam.com.mx/honorarios#/pagos/ingreso-contrato",
                 target: "_blank",
             },
@@ -258,8 +285,10 @@ const regulatoryLogos = [
                         <p
                             class="text-sm font-semibold text-kapital-black shrink-0"
                         >
-                            Síguenos<span class="hidden md:inline">
-                                en redes</span
+                            {t(lang, "footer.social.title")}<span
+                                class="hidden md:inline"
+                            >
+                                {lang === "es" ? " en redes" : ""}</span
                             >
                         </p>
                         <ul
@@ -296,18 +325,16 @@ const regulatoryLogos = [
                     {/* Contact */}
                     <div>
                         <p class="text-sm font-semibold text-kapital-black">
-                            ¿Tienes dudas?
+                            {t(lang, "footer.contact.title")}
                         </p>
                         <p class="text-sm text-gray-1 mt-1">
-                            Habla con nuestro equipo, <br
-                                class="hidden md:inline"
-                            />te ayudaremos siempre
+                            {t(lang, "footer.contact.description")}
                         </p>
                         <a
                             class="block text-xs text-kapital-black mt-3 underline"
                             href="mailto:soporte@kapital.com"
                         >
-                            soporte@kapital.com
+                            {t(lang, "footer.contact.email")}
                         </a>
                     </div>
 
@@ -351,7 +378,7 @@ const regulatoryLogos = [
                                         ></g
                                     >
                                 </svg>
-                                Puerto Rico
+                                {t(lang, "footer.countries.puertoRico")}
                             </a>
                         </li>
                         <li>
@@ -382,10 +409,16 @@ const regulatoryLogos = [
                                             d="M0 384h512v128H0z"></path></g
                                     >
                                 </svg>
-                                Colombia
+                                {t(lang, "footer.countries.colombia")}
                             </a>
                         </li>
                     </ul>
+
+                    {/* Language selector */}
+                    <div class="mt-4 pt-4 border-t border-divider">
+                        <p class="text-xs text-gray-1 mb-2">Idioma</p>
+                        <LanguageSelector lang={lang} variant="footer" />
+                    </div>
                 </div>
             </div>
 
@@ -550,11 +583,9 @@ const regulatoryLogos = [
                         class="flex flex-col gap-y-2 text-[11px] md:text-[12px] font-medium leading-[1.5] tracking-[0.03em] text-gray-2 max-w-[480px]"
                     >
                         <p>
-                            Lago Zurich, No. 245 Torre Frisco Piso 10, Col.
-                            Ampliación Granada, C.P. 11529, Alc. Miguel Hidalgo,
-                            Tel. 55 8880-9002. México CDMX.
+                            {t(lang, "footer.copyright.address")}
                         </p>
-                        <p>Todos los derechos reservados.</p>
+                        <p>{t(lang, "footer.copyright.rights")}</p>
                     </div>
                     <ul class="flex gap-2 w-fit text-xs text-gray-2">
                         <li>
@@ -562,7 +593,7 @@ const regulatoryLogos = [
                                 class="text-xs text-gray-2 hover:border-b hover:border-gray-2 py-[2px]"
                                 href="/recursos/aviso-de-privacidad"
                             >
-                                Aviso de privacidad
+                                {t(lang, "footer.altLinks.privacy")}
                             </a>
                         </li>
                         <hr class="border-none bg-gray-3 w-px h-auto" />
@@ -571,8 +602,7 @@ const regulatoryLogos = [
                                 class="text-xs text-gray-2 hover:border-b hover:border-gray-2 py-[2px]"
                                 href="/recursos/costos-y-comisiones"
                             >
-                                Consulta los Costos y las Comisiones de nuestros
-                                productos
+                                {t(lang, "footer.altLinks.costs")}
                             </a>
                         </li>
                     </ul>
@@ -584,23 +614,23 @@ const regulatoryLogos = [
                 class="col-span-full flex flex-col gap-y-2 border-t border-white pt-[44px] text-gray-2 text-[11px] md:text-[12px] font-medium leading-[1.5] tracking-[0.03em]"
             >
                 <p>
-                    <strong
-                        >KPTL MEXICO BANK, SOCIEDAD ANONIMA, INSTITUCION DE
-                        BANCA MULTIPLE, KAPITAL MEXICO GRUPO FINANCIERO</strong
-                    > — Entidad supervisada por la Comisión Nacional Bancaria y de
-                    Valores (CNBV).
+                    <strong>{t(lang, "footer.regulatory.entity")}</strong> — {
+                        t(lang, "footer.regulatory.supervisedBy")
+                    }
                 </p>
                 <p>
-                    En caso de cualquier queja o aclaración, puede comunicarse
-                    con la CONDUSEF al teléfono <strong>800 999 8080</strong> o visitar
+                    {t(lang, "footer.regulatory.claims")}
+                    <strong>800 999 8080</strong>
+                    {t(lang, "footer.regulatory.or")}
                     <a href="https://www.condusef.gob.mx" class="underline"
-                        >www.condusef.gob.mx</a>
+                        >www.condusef.gob.mx</a
+                    >
                 </p>
                 <p>
-                    © 2026 Kapital. Los créditos están sujetos a aprobación.
-                    Consulta términos y condiciones completos en <a
-                        href="/recursos/terminos-y-condiciones"
-                        class="underline">nuestros Términos y Condiciones</a>
+                    {t(lang, "footer.regulatory.copyright")}
+                    <a href="/recursos/terminos-y-condiciones" class="underline"
+                        >{t(lang, "footer.regulatory.terms")}</a
+                    >
                 </p>
             </div>
         </div>

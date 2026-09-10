@@ -1,9 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
 import EcosystemSection from "../components/EcosystemSection.astro";
 import AccountHighlight from "../components/AccountHighlight.astro";
-import HubspotModal from "../components/HubspotModal.astro";
 import AppSection from "../components/AppSection.astro";
 import ApplePaySection from "../components/ApplePaySection.astro";
 import AwardsSection from "../components/AwardsSection.astro";
@@ -12,23 +12,27 @@ import BlogSection from "../components/BlogSection.astro";
 import BottomCTA from "../components/BottomCTA.astro";
 import LegalSection from "../components/LegalSection.astro";
 import Footer from "../components/Footer.astro";
+import HubspotModal from "../components/HubspotModal.astro";
+
+const lang = "es";
 ---
 
 <Layout
 	title="Kapital: Soluciones financieras para empresas y personas | México"
 >
+	<Header lang={lang} />
 	<main>
-		<Hero />
-		<EcosystemSection />
-		<AccountHighlight />
-		<AppSection />
-		<ApplePaySection />
-		<AwardsSection />
-		<PartnersSection />
-		<BlogSection />
-		<BottomCTA />
-		<LegalSection />
+		<Hero lang={lang} />
+		<EcosystemSection lang={lang} />
+		<AccountHighlight lang={lang} />
+		<AppSection lang={lang} />
+		<ApplePaySection lang={lang} />
+		<AwardsSection lang={lang} />
+		<PartnersSection lang={lang} />
+		<BlogSection lang={lang} />
+		<BottomCTA lang={lang} />
+		<LegalSection lang={lang} />
 	</main>
-	<Footer />
-	<HubspotModal />
+	<Footer lang={lang} />
+	<HubspotModal lang={lang} />
 </Layout>

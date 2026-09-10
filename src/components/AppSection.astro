@@ -1,5 +1,12 @@
 ---
 import SliderArrows from "./SliderArrows.astro";
+import { t, type Lang } from "../i18n";
+
+interface Props {
+    lang: Lang;
+}
+
+const { lang } = Astro.props;
 
 interface PhoneImage {
     bg: string;
@@ -12,35 +19,42 @@ interface AccordionItem {
     phone: PhoneImage;
 }
 
+// Helper para obtener texto con fallback a vacío
+const getText = (index: number, field: string): string => {
+    const key = `appSection.items.${index}.${field}`;
+    const value = t(lang, key);
+    return value === key ? "" : value;
+};
+
 const items: AccordionItem[] = [
     {
-        title: "Invierte desde donde estés",
-        body: "Accede a Pagaré y CEDES directamente en la app de Kapital, y pon a trabajar el dinero de tu empresa con rendimientos atractivos y el plazo que tú elijas.",
+        title: getText(0, "title"),
+        body: getText(0, "body"),
         phone: { bg: "/app/phone-1-bg.webp", label: "/app/phone-1-label.svg" },
     },
     {
-        title: "Control total",
-        body: "Recibe, paga, transfiere y retira desde un solo lugar. Monitorea tus movimientos en tiempo real, recibe notificaciones y toma el control de tus finanzas.",
+        title: getText(1, "title"),
+        body: getText(1, "body"),
         phone: { bg: "/app/phone-2-bg.webp" },
     },
     {
-        title: "Seguridad",
-        body: "Autoriza movimientos con un token único desde tu app, con transmisión cifrada y confidencial. Disfruta de una banca más segura, rápida y fácil de usar.",
+        title: getText(2, "title"),
+        body: getText(2, "body"),
         phone: { bg: "/app/phone-3-bg.webp", label: "/app/phone-3-label.svg" },
     },
     {
-        title: "Finanzas sin complicaciones",
-        body: "Abre tu cuenta en 5 minutos, recibe depósitos de hasta $25,000 MXN y una tarjeta de débito internacional para comprar, retirar y consultar tu saldo donde quieras.",
+        title: getText(3, "title"),
+        body: getText(3, "body"),
         phone: { bg: "/app/phone-4-bg.webp" },
     },
     {
-        title: "Servicios e impuestos",
-        body: "Accede a tus cuentas y realiza operaciones donde estés. Programa pagos de servicios, préstamos o tarjetas, y disfruta de tu banco disponible 24/7.",
+        title: getText(4, "title"),
+        body: getText(4, "body"),
         phone: { bg: "/app/phone-5-bg.webp", label: "/app/phone-5-label.svg" },
     },
     {
-        title: "Productos a tu medida",
-        body: "Consulta, revisa condiciones y contrata productos en minutos desde la app Kapital, sin afectar tu operación.",
+        title: getText(5, "title"),
+        body: getText(5, "body"),
         phone: { bg: "/app/phone-6-bg.webp" },
     },
 ];
@@ -54,9 +68,11 @@ const items: AccordionItem[] = [
         <div
             class="col-span-full max-w-[793px] mx-auto w-full flex flex-col lg:items-center gap-2 lg:gap-8 lg:text-center mb-8 lg:mb-24"
         >
-            <p class="text-sm font-semibold text-gray-1">Kapital App</p>
+            <p class="text-sm font-semibold text-gray-1">
+                {t(lang, "appSection.eyebrow")}
+            </p>
             <h2 class="text-4xl md:text-5xl text-kapital-black">
-                Tu experiencia lo es todo
+                {t(lang, "appSection.title")}
             </h2>
         </div>
 

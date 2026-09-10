@@ -1,0 +1,368 @@
+---
+import { languages, type Lang } from "../i18n";
+
+interface Props {
+    lang: Lang;
+    variant?: "header" | "footer";
+}
+
+const { lang, variant = "header" } = Astro.props;
+
+// Mapeo de idioma a bandera/código
+const languageConfig = {
+    es: {
+        code: "ES",
+        flag: "mx",
+        label: "Español",
+    },
+    en: {
+        code: "EN",
+        flag: "us",
+        label: "English",
+    },
+    fr: {
+        code: "FR",
+        flag: "fr",
+        label: "Français",
+    },
+} as const;
+
+const current = languageConfig[lang];
+const otherLanguages = (Object.keys(languages) as Lang[]).filter(
+    (l) => l !== lang,
+);
+
+// Obtener el pathname actual desde Astro (servidor)
+const currentPath = Astro.url.pathname;
+
+// Función para generar la URL en otro idioma (lado servidor)
+const getLocalizedUrl = (targetLang: Lang): string => {
+    // Si target es español (default), remover prefijo
+    if (targetLang === "es") {
+        // Remover /en/ o /fr/ si existe
+        const cleaned = currentPath.replace(/^\/(en|fr)(\/.*)?$/, "$2");
+        return cleaned || "/";
+    }
+
+    // Si estamos en la raíz, agregar prefijo
+    if (currentPath === "/" || currentPath === "") {
+        return `/${targetLang}/`;
+    }
+
+    // Reemplazar prefijo existente
+    if (currentPath.match(/^\/(en|fr)(\/.*)?$/)) {
+        return currentPath.replace(/^\/(en|fr)/, `/${targetLang}`);
+    }
+
+    // Agregar prefijo al path actual
+    return `/${targetLang}${currentPath}`;
+};
+
+// Variantes de estilo según donde se use
+const containerClasses =
+    variant === "header"
+        ? "text-sm text-kapital-black md:group-hover/header:text-kapital-black group-data-[theme=dark]/site-header:text-white"
+        : "text-xs text-gray-1";
+---
+
+<div class="language-selector relative" data-current-lang={lang}>
+    <button
+        type="button"
+        class:list={[
+            "language-trigger flex items-center gap-2 py-2 px-2 rounded-md transition-colors hover:opacity-70",
+            containerClasses,
+        ]}
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        aria-label="Seleccionar idioma"
+    >
+        <span class="block w-5 h-5 rounded-full overflow-hidden shrink-0">
+            {
+                current.flag === "mx" && (
+                    <svg viewBox="0 0 512 512" class="w-full h-full">
+                        <defs>
+                            <clipPath id={`flag-mx-${variant}`}>
+                                <circle cx="256" cy="256" r="256" />
+                            </clipPath>
+                        </defs>
+                        <g clip-path={`url(#flag-mx-${variant})`}>
+                            <path fill="#006847" d="M0 0h170.67v512H0z" />
+                            <path
+                                fill="#fff"
+                                d="M170.67 0h170.67v512H170.67z"
+                            />
+                            <path
+                                fill="#CE1126"
+                                d="M341.33 0H512v512H341.33z"
+                            />
+                            <circle
+                                cx="256"
+                                cy="256"
+                                r="42"
+                                fill="#8B4513"
+                                opacity="0.6"
+                            />
+                        </g>
+                    </svg>
+                )
+            }
+            {
+                current.flag === "us" && (
+                    <svg viewBox="0 0 512 512" class="w-full h-full">
+                        <defs>
+                            <clipPath id={`flag-us-${variant}`}>
+                                <circle cx="256" cy="256" r="256" />
+                            </clipPath>
+                        </defs>
+                        <g clip-path={`url(#flag-us-${variant})`}>
+                            <path fill="#B22234" d="M0 0h512v512H0z" />
+                            <path
+                                fill="#fff"
+                                d="M0 39.38h512v39.39H0zm0 78.77h512v39.39H0zm0 78.77h512v39.39H0zm0 78.77h512v39.39H0zm0 78.77h512v39.39H0zm0 78.77h512v39.39H0z"
+                            />
+                            <path fill="#3C3B6E" d="M0 0h204.8v275.69H0z" />
+                        </g>
+                    </svg>
+                )
+            }
+            {
+                current.flag === "fr" && (
+                    <svg viewBox="0 0 512 512" class="w-full h-full">
+                        <defs>
+                            <clipPath id={`flag-fr-${variant}`}>
+                                <circle cx="256" cy="256" r="256" />
+                            </clipPath>
+                        </defs>
+                        <g clip-path={`url(#flag-fr-${variant})`}>
+                            <path fill="#002395" d="M0 0h170.67v512H0z" />
+                            <path
+                                fill="#fff"
+                                d="M170.67 0h170.67v512H170.67z"
+                            />
+                            <path
+                                fill="#ED2939"
+                                d="M341.33 0H512v512H341.33z"
+                            />
+                        </g>
+                    </svg>
+                )
+            }
+        </span>
+        <span class="font-medium">{current.code}</span>
+        <svg
+            class="w-3 h-3 transition-transform duration-300"
+            viewBox="0 0 24 24"
+            fill="none"
+            aria-hidden="true"
+        >
+            <path
+                d="M6 9l6 6 6-6"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
+        </svg>
+    </button>
+
+    <div
+        class="language-dropdown absolute right-0 top-full mt-2 min-w-[140px] rounded-lg bg-white shadow-lg border border-gray-200 opacity-0 invisible pointer-events-none translate-y-1 transition-all duration-200 z-50 overflow-hidden"
+        role="listbox"
+    >
+        {
+            otherLanguages.map((l) => {
+                const other = languageConfig[l];
+                return (
+                    <a
+                        href={getLocalizedUrl(l)}
+                        class="flex items-center gap-2 px-3 py-2 hover:bg-gray-50 transition-colors text-kapital-black text-sm"
+                        role="option"
+                    >
+                        <span class="block w-5 h-5 rounded-full overflow-hidden shrink-0">
+                            {other.flag === "mx" && (
+                                <svg
+                                    viewBox="0 0 512 512"
+                                    class="w-full h-full"
+                                >
+                                    <defs>
+                                        <clipPath
+                                            id={`flag-mx-${variant}-${l}`}
+                                        >
+                                            <circle cx="256" cy="256" r="256" />
+                                        </clipPath>
+                                    </defs>
+                                    <g
+                                        clip-path={`url(#flag-mx-${variant}-${l})`}
+                                    >
+                                        <path
+                                            fill="#006847"
+                                            d="M0 0h170.67v512H0z"
+                                        />
+                                        <path
+                                            fill="#fff"
+                                            d="M170.67 0h170.67v512H170.67z"
+                                        />
+                                        <path
+                                            fill="#CE1126"
+                                            d="M341.33 0H512v512H341.33z"
+                                        />
+                                        <circle
+                                            cx="256"
+                                            cy="256"
+                                            r="42"
+                                            fill="#8B4513"
+                                            opacity="0.6"
+                                        />
+                                    </g>
+                                </svg>
+                            )}
+                            {other.flag === "us" && (
+                                <svg
+                                    viewBox="0 0 512 512"
+                                    class="w-full h-full"
+                                >
+                                    <defs>
+                                        <clipPath
+                                            id={`flag-us-${variant}-${l}`}
+                                        >
+                                            <circle cx="256" cy="256" r="256" />
+                                        </clipPath>
+                                    </defs>
+                                    <g
+                                        clip-path={`url(#flag-us-${variant}-${l})`}
+                                    >
+                                        <path
+                                            fill="#B22234"
+                                            d="M0 0h512v512H0z"
+                                        />
+                                        <path
+                                            fill="#fff"
+                                            d="M0 39.38h512v39.39H0zm0 78.77h512v39.39H0zm0 78.77h512v39.39H0zm0 78.77h512v39.39H0zm0 78.77h512v39.39H0zm0 78.77h512v39.39H0z"
+                                        />
+                                        <path
+                                            fill="#3C3B6E"
+                                            d="M0 0h204.8v275.69H0z"
+                                        />
+                                    </g>
+                                </svg>
+                            )}
+                            {other.flag === "fr" && (
+                                <svg
+                                    viewBox="0 0 512 512"
+                                    class="w-full h-full"
+                                >
+                                    <defs>
+                                        <clipPath
+                                            id={`flag-fr-${variant}-${l}`}
+                                        >
+                                            <circle cx="256" cy="256" r="256" />
+                                        </clipPath>
+                                    </defs>
+                                    <g
+                                        clip-path={`url(#flag-fr-${variant}-${l})`}
+                                    >
+                                        <path
+                                            fill="#002395"
+                                            d="M0 0h170.67v512H0z"
+                                        />
+                                        <path
+                                            fill="#fff"
+                                            d="M170.67 0h170.67v512H170.67z"
+                                        />
+                                        <path
+                                            fill="#ED2939"
+                                            d="M341.33 0H512v512H341.33z"
+                                        />
+                                    </g>
+                                </svg>
+                            )}
+                        </span>
+                        <span class="flex-1">{other.label}</span>
+                        <span class="text-xs text-gray-500">{other.code}</span>
+                    </a>
+                );
+            })
+        }
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll(".language-selector").forEach((selector) => {
+        const trigger =
+            selector.querySelector<HTMLElement>(".language-trigger");
+        const dropdown =
+            selector.querySelector<HTMLElement>(".language-dropdown");
+        if (!trigger || !dropdown) return;
+
+        let closeTimeout: number;
+
+        const open = () => {
+            clearTimeout(closeTimeout);
+            trigger.setAttribute("aria-expanded", "true");
+            dropdown.classList.remove(
+                "opacity-0",
+                "invisible",
+                "pointer-events-none",
+                "translate-y-1",
+            );
+            dropdown.classList.add(
+                "opacity-100",
+                "visible",
+                "pointer-events-auto",
+                "translate-y-0",
+            );
+            trigger.querySelector("svg")?.classList.add("rotate-180");
+        };
+
+        const close = () => {
+            closeTimeout = window.setTimeout(() => {
+                trigger.setAttribute("aria-expanded", "false");
+                dropdown.classList.add(
+                    "opacity-0",
+                    "invisible",
+                    "pointer-events-none",
+                    "translate-y-1",
+                );
+                dropdown.classList.remove(
+                    "opacity-100",
+                    "visible",
+                    "pointer-events-auto",
+                    "translate-y-0",
+                );
+                trigger.querySelector("svg")?.classList.remove("rotate-180");
+            }, 150);
+        };
+
+        selector.addEventListener("mouseenter", open);
+        selector.addEventListener("mouseleave", close);
+        dropdown.addEventListener("mouseenter", () =>
+            clearTimeout(closeTimeout),
+        );
+
+        trigger.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const isOpen = trigger.getAttribute("aria-expanded") === "true";
+            if (isOpen) {
+                close();
+            } else {
+                open();
+            }
+        });
+
+        document.addEventListener("click", (e) => {
+            if (!selector.contains(e.target as Node)) {
+                close();
+            }
+        });
+
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") close();
+        });
+    });
+</script>
+
+<style>
+    .language-dropdown {
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.95);
+    }
+</style>

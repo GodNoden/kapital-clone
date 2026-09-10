@@ -1,5 +1,11 @@
 ---
-// Sección simple de Apple Pay - sin JavaScript necesario
+import { t, type Lang } from "../i18n";
+
+interface Props {
+    lang: Lang;
+}
+
+const { lang } = Astro.props;
 ---
 
 <section
@@ -37,22 +43,21 @@
                 <h2
                     class="text-xl md:text-2xl text-balance text-center md:text-left"
                 >
-                    Privacidad. Seguridad. Eso es Apple Pay.
+                    {t(lang, "applePay.title")}
                 </h2>
                 <p
                     class="text-sm md:text-base text-gray-1 text-center md:text-left"
                 >
-                    Apple Pay usa funcionalidades de seguridad integradas en tu
-                    dispositivo Apple, como Face ID y Touch ID. Está diseñado
-                    para que sólo tú puedas autorizar pagos con tu tarjeta
-                    Kapital.
+                    {t(lang, "applePay.description")}
                 </p>
                 <div class="flex gap-3 flex-wrap justify-center">
                     <a
                         href="/recursos/apple-pay"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         class="inline-flex items-center justify-center px-6 py-5 rounded-full text-base lg:text-lg bg-kapital-black text-white hover:bg-opacity-90 transition-colors"
                     >
-                        Más información
+                        {t(lang, "applePay.cta")}
                     </a>
                 </div>
             </div>
