@@ -1,0 +1,64 @@
+---
+// Sección CTA final con imagen de fondo y botón de formulario
+---
+
+<section
+    class="w-full relative overflow-clip bg-kapital-black h-[640px] 2xl:h-[40vw]"
+>
+    {/* Background images */}
+    <div class="absolute inset-0">
+        <img
+            src="/cta/bottom-cta-mobile.webp"
+            alt=""
+            aria-hidden="true"
+            class="absolute inset-0 w-full h-full object-cover object-top md:hidden"
+            loading="lazy"
+            decoding="async"
+            width="1440"
+            height="929"
+        />
+        <img
+            src="/cta/bottom-cta-desktop.webp"
+            alt=""
+            aria-hidden="true"
+            class="absolute inset-0 w-full h-full object-cover object-top hidden md:block"
+            loading="lazy"
+            decoding="async"
+            width="1440"
+            height="640"
+        />
+        {/* Gradient overlay */}
+        <div
+            class="absolute inset-0 bg-gradient-to-b from-transparent to-[rgba(28,24,13,0.9)]"
+        >
+        </div>
+    </div>
+
+    {/* Content */}
+    <div class="max-w-container mx-auto px-4 md:px-8 h-full relative">
+        <div class="grid grid-cols-5 md:grid-cols-12 gap-4 lg:gap-5 h-full">
+            <div
+                class="col-span-5 md:col-span-6 flex flex-col gap-6 justify-end pb-[72px]"
+            >
+                <div class="flex flex-col gap-6">
+                    <h2 class="text-3xl md:text-4xl text-white">
+                        ¿Tu empresa está lista para seguir creciendo?
+                    </h2>
+                    <p class="text-base md:text-lg text-white">
+                        Regístrate y recibe la llamada de un asesor, aclara tus
+                        dudas o conoce más sobre el funcionamiento de nuestra
+                        banca.
+                    </p>
+                </div>
+                <div class="flex flex-wrap gap-3">
+                    <button
+                        type="button"
+                        class="activate-form rounded-full px-6 py-4 lg:px-8 lg:py-5 text-sm lg:text-base text-white bg-white/20 backdrop-blur-md hover:bg-white/30 transition-colors duration-300"
+                    >
+                        Recibir llamada
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

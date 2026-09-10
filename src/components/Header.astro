@@ -1,0 +1,285 @@
+---
+import AnnouncementBar from "./AnnouncementBar.astro";
+
+interface NavItem {
+    label: string;
+    href: string;
+    subItems?: Array<{
+        title: string;
+        links: Array<{ label: string; href: string }>;
+    }>;
+}
+
+const navigation: NavItem[] = [
+    {
+        label: "Empresas",
+        href: "/empresas",
+        subItems: [
+            {
+                title: "FX",
+                links: [
+                    { label: "Efectivo", href: "/divisas/efectivo" },
+                    {
+                        label: "Transferencias",
+                        href: "/divisas/transferencias",
+                    },
+                    { label: "Cheques", href: "/divisas/cheques" },
+                ],
+            },
+            {
+                title: "Créditos",
+                links: [
+                    {
+                        label: "Crédito Empresarial",
+                        href: "/credito/empresarial",
+                    },
+                    { label: "Crédito PyME", href: "/credito/pyme" },
+                    { label: "Crédito FLEX", href: "/credito/flex" },
+                ],
+            },
+            {
+                title: "Inversiones",
+                links: [
+                    { label: "Pagaré", href: "/inversiones/pagare" },
+                    { label: "CEDE", href: "/inversiones/cedes" },
+                ],
+            },
+        ],
+    },
+    {
+        label: "Personas",
+        href: "/personas",
+        subItems: [
+            {
+                title: "Cuentas",
+                links: [
+                    { label: "Nómina Kapital", href: "/cuentas/nomina" },
+                    { label: "Cuenta Kapital", href: "/cuentas/kapital" },
+                    { label: "Cuenta Express", href: "/cuentas/express" },
+                ],
+            },
+            {
+                title: "Inversiones",
+                links: [
+                    { label: "Pagaré", href: "/inversiones/pagare-personas" },
+                    { label: "CEDE", href: "/inversiones/cedes-personas" },
+                ],
+            },
+        ],
+    },
+    {
+        label: "Grupo Financiero",
+        href: "/grupo-financiero",
+    },
+];
+---
+
+<header
+    id="site-header"
+    class="group/site-header fixed top-0 left-0 z-50 w-full bg-transparent transition-all duration-1000"
+    data-sticky="false"
+>
+    <AnnouncementBar />
+
+    <div
+        class="max-w-container mx-auto px-4 flex items-center justify-between py-2.5 relative z-50"
+    >
+        <!-- Logo -->
+        <a
+            href="/"
+            aria-label="Inicio"
+            class="flex-shrink-0 text-kapital-black"
+        >
+            <svg
+                width="30"
+                height="35"
+                viewBox="0 0 31 35"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    d="M25.2889 29.5449H30.4752L24.6406 19.2644C24.2705 18.6161 24.0844 17.9678 24.0844 17.3195C24.0844 16.6713 24.2705 16.023 24.6406 15.3747L30.4752 5.09422H25.2889L19.7305 14.7264C19.1743 15.6528 18.8981 16.5792 18.8981 17.3195C18.8981 18.0599 19.1743 18.9863 19.7305 19.9127L25.2889 29.5449ZM13.6179 16.6713C14.7303 16.6713 15.6548 16.4852 16.3971 16.023C16.9533 15.7468 17.6016 15.0966 18.1578 14.0781L23.8083 4.44593L21.3072 0L15.1945 10.1865C14.8243 10.8348 14.3621 11.2989 13.8059 11.5751C13.1576 11.9453 12.6014 12.0373 11.861 12.0373H0.00391712L2.59705 16.5753L13.6198 16.6673V16.6713H13.6179ZM21.3052 34.8252L23.8043 30.3792L18.1539 20.747C17.5977 19.7286 16.9494 19.0803 16.3931 18.8022C15.6509 18.34 14.7264 18.1539 13.614 18.1539L2.59118 18.2459L0 22.782H11.8552C12.5975 22.782 13.1517 22.874 13.8 23.2442C14.3562 23.5204 14.8185 23.9865 15.1886 24.6348L21.3013 34.8212V34.8252H21.3052Z"
+                ></path>
+            </svg>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav
+            class="hidden md:flex items-center gap-3"
+            aria-label="Navegación principal"
+        >
+            {
+                navigation.map((item) => (
+                    <div class="relative group/trigger">
+                        <a
+                            href={item.href}
+                            class="flex items-center gap-1 px-3 py-2 text-sm hover:opacity-70 transition"
+                            aria-haspopup={item.subItems ? "true" : "false"}
+                            aria-expanded="false"
+                        >
+                            {item.label}
+                            {item.subItems && (
+                                <svg
+                                    class="w-4 transition-transform duration-500 group-hover/trigger:rotate-180"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                >
+                                    <path d="M6 9l6 6 6-6" />
+                                </svg>
+                            )}
+                        </a>
+
+                        {item.subItems && (
+                            <div class="absolute top-full left-0 mt-2 p-4 flex gap-4 rounded-xl bg-white/75 backdrop-blur-xl opacity-0 pointer-events-none translate-y-2 group-hover/trigger:opacity-100 group-hover/trigger:pointer-events-auto group-hover/trigger:translate-y-0 transition-all duration-500 z-20">
+                                {item.subItems.map((group) => (
+                                    <div class="min-w-36">
+                                        <p class="text-xs font-semibold text-neutral-500 mb-2">
+                                            {group.title}
+                                        </p>
+                                        <ul class="flex flex-col gap-1">
+                                            {group.links.map((link) => (
+                                                <li>
+                                                    <a
+                                                        href={link.href}
+                                                        class="text-sm whitespace-nowrap hover:font-medium"
+                                                    >
+                                                        {link.label}
+                                                    </a>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                ))
+            }
+        </nav>
+
+        <!-- Actions -->
+        <div class="flex items-center gap-4">
+            <a
+                href="https://onboarding.kapital.com/"
+                class="text-sm px-4 py-2 rounded-full bg-kapital-black text-white hover:bg-opacity-90 transition"
+            >
+                Abrir cuenta
+            </a>
+
+            <button
+                id="mobile-menu-btn"
+                class="md:hidden"
+                aria-expanded="false"
+                aria-controls="mobile-menu"
+                aria-label="Abrir menú"
+            >
+                <svg
+                    width="32"
+                    height="32"
+                    viewBox="0 0 36 32"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <rect
+                        width="36"
+                        height="1.5"
+                        transform="translate(0 12.5)"
+                        fill="currentColor"></rect>
+                    <rect
+                        width="36"
+                        height="1.5"
+                        transform="translate(0 18)"
+                        fill="currentColor"></rect>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Panel -->
+    <div
+        id="mobile-menu-panel"
+        class="absolute top-full left-0 w-full bg-white/90 backdrop-blur-xl z-40 overflow-hidden h-0 opacity-0 invisible transition-all duration-500 md:hidden"
+    >
+        <div
+            class="flex flex-col px-5 py-6 h-[calc(100vh-72px)] overflow-y-auto"
+        >
+            {
+                navigation.map((item) => (
+                    <details class="border-b border-neutral-200 py-4">
+                        <summary class="flex justify-between items-center cursor-pointer list-none">
+                            <span class="text-lg font-semibold">
+                                {item.label}
+                            </span>
+                            <svg
+                                class="w-6 transition-transform duration-500"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                            >
+                                <path d="M6 9l6 6 6-6" />
+                            </svg>
+                        </summary>
+                        <div class="mt-4 flex flex-col gap-6">
+                            {item.subItems?.map((group) => (
+                                <div class="flex flex-col gap-2">
+                                    <p class="text-sm font-semibold text-neutral-500">
+                                        {group.title}
+                                    </p>
+                                    <ul class="flex flex-col gap-1">
+                                        {group.links.map((link) => (
+                                            <li>
+                                                <a
+                                                    href={link.href}
+                                                    class="text-sm py-1"
+                                                >
+                                                    {link.label}
+                                                </a>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            ))}
+                        </div>
+                    </details>
+                ))
+            }
+        </div>
+    </div>
+</header>
+
+<script is:inline>
+    // Header sticky behavior
+    const header = document.getElementById("site-header");
+    const onScroll = () => {
+        const sticky = window.scrollY > 20;
+        header?.setAttribute("data-sticky", String(sticky));
+        header?.classList.toggle("bg-white/75", sticky);
+        header?.classList.toggle("backdrop-blur-xl", sticky);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    // Mobile menu toggle
+    const btn = document.getElementById("mobile-menu-btn");
+    const panel = document.getElementById("mobile-menu-panel");
+
+    btn?.addEventListener("click", () => {
+        const expanded = btn.getAttribute("aria-expanded") === "true";
+        btn.setAttribute("aria-expanded", String(!expanded));
+
+        if (!expanded) {
+            panel?.classList.replace("h-0", "h-[calc(100vh-72px)]");
+            panel?.classList.replace("opacity-0", "opacity-100");
+            panel?.classList.replace("invisible", "visible");
+            document.body.style.overflow = "hidden";
+        } else {
+            panel?.classList.replace("h-[calc(100vh-72px)]", "h-0");
+            panel?.classList.replace("opacity-100", "opacity-0");
+            panel?.classList.replace("visible", "invisible");
+            document.body.style.overflow = "";
+        }
+    });
+</script>

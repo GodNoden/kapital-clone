@@ -1,0 +1,127 @@
+---
+// Modal de HubSpot con carga diferida (lazy load)
+// El script de HubSpot SOLO se descarga cuando el usuario hace click por primera vez
+// Esto elimina ~150KB del bundle inicial y mejora el TBT significativamente
+---
+
+<div
+    id="hubspot-modal"
+    class="hidden fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/50 backdrop-blur-lg"
+>
+    <div
+        class="relative bg-white overflow-y-auto p-6 md:p-8 rounded-xl w-full md:w-[80vw] md:max-w-[800px] max-h-[90vh]"
+    >
+        <button
+            id="hubspot-modal-close"
+            class="absolute top-3 right-3 flex items-center justify-center w-8 h-8 rounded-full hover:bg-gray-100 transition-colors"
+            aria-label="Cerrar modal"
+        >
+            <svg width="18" height="18" viewBox="0 0 36 32" fill="none">
+                <rect
+                    width="24"
+                    height="1.5"
+                    transform="translate(10 7) rotate(45)"
+                    fill="currentColor"></rect>
+                <rect
+                    width="24"
+                    height="1.5"
+                    transform="translate(9 24) rotate(-45)"
+                    fill="currentColor"></rect>
+            </svg>
+        </button>
+
+        {/* Loading state */}
+        <div
+            id="hubspot-loading"
+            class="flex flex-col items-center justify-center min-h-[260px] gap-4 text-center text-gray-500"
+        >
+            <span
+                class="w-6 h-6 rounded-full border-[3px] border-gray-200 border-t-gray-600 animate-spin"
+            ></span>
+            <span>Cargando formulario...</span>
+        </div>
+
+        {/* HubSpot form target */}
+        <div id="hubspot-form-container"></div>
+    </div>
+</div>
+
+<script is:inline>
+    let hubspotLoaded = false;
+    let hubspotLoading = false;
+
+    function loadHubspotScript() {
+        return new Promise((resolve, reject) => {
+            if (window.hbspt) {
+                resolve();
+                return;
+            }
+            if (hubspotLoading) {
+                resolve();
+                return;
+            }
+            hubspotLoading = true;
+
+            const script = document.createElement("script");
+            script.src = "https://js.hsforms.net/forms/embed/v2.js";
+            script.async = true;
+            script.onload = resolve;
+            script.onerror = reject;
+            document.head.appendChild(script);
+        });
+    }
+
+    function createForm() {
+        if (hubspotLoaded) return;
+
+        if (window.hbspt) {
+            document.getElementById("hubspot-loading").style.display = "none";
+            window.hbspt.forms.create({
+                region: "na1",
+                portalId: "7077006",
+                formId: "fdd1fb6f-2cc4-4252-a9e8-e1eb24319e79",
+                target: "#hubspot-form-container",
+            });
+            hubspotLoaded = true;
+        }
+    }
+
+    function openModal() {
+        const modal = document.getElementById("hubspot-modal");
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+        document.body.style.overflow = "hidden";
+
+        if (!hubspotLoaded && !hubspotLoading) {
+            loadHubspotScript().then(createForm);
+        } else if (hubspotLoaded) {
+            document.getElementById("hubspot-loading").style.display = "none";
+        }
+    }
+
+    function closeModal() {
+        const modal = document.getElementById("hubspot-modal");
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+        document.body.style.overflow = "";
+    }
+
+    // Bind all .activate-form buttons
+    document.querySelectorAll(".activate-form").forEach((btn) => {
+        btn.addEventListener("click", openModal);
+    });
+
+    document
+        .getElementById("hubspot-modal-close")
+        ?.addEventListener("click", closeModal);
+
+    // Close on backdrop click
+    document.getElementById("hubspot-modal")?.addEventListener("click", (e) => {
+        if (e.target === e.currentTarget) closeModal();
+    });
+
+    // Close on Escape
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeModal();
+    });
+</script>

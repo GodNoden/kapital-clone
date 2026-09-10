@@ -1,0 +1,209 @@
+---
+interface BlogPost {
+    title: string;
+    description: string;
+    link: string;
+    image: string;
+}
+
+const posts: BlogPost[] = [
+    {
+        title: "Kapital House: un nuevo espacio para las empresas que mueven México",
+        description:
+            "Kapital inauguró Kapital House en San Pedro Garza García. Revisa cómo funciona este hub para PyMEs, sus espacios de trabajo y modalidades de acceso.",
+        link: "/blog/kapital/kapital-house-monterrey",
+        image: "/blog/blog-1.webp",
+    },
+    {
+        title: "Buen Fin 2026: fechas, registro y sorteo del SAT",
+        description:
+            "El Buen Fin 2026 será del 13 al 17 de noviembre. Fechas, registro de comercios desde el 8 de septiembre, sorteo del SAT y las cifras de la edición pasada.",
+        link: "/blog/pymes/buen-fin-2026",
+        image: "/blog/blog-2.webp",
+    },
+    {
+        title: "¿Por qué Kapital FX es diferente?",
+        description:
+            "Descubre cómo Kapital FX ayuda a empresas mexicanas a operar divisas con mayor control, tipos de cambio pactados y transferencias ágiles sin la banca tradicional.",
+        link: "/blog/kapital/kapital-fx-foreing-exchange",
+        image: "/blog/blog-3.webp",
+    },
+];
+---
+
+<section class="w-full bg-white">
+    <div class="max-w-container mx-auto px-4 md:px-8 pb-[72px]">
+        {/* Header */}
+        <div class="flex flex-col gap-3 md:gap-10 max-w-[793px]">
+            <div class="flex flex-col gap-4 md:gap-6">
+                <p class="text-base md:text-lg text-gray-1">Blog Kapital</p>
+                <h2 class="text-3xl md:text-4xl text-kapital-black">
+                    Ideas para crecer más allá del financiamiento
+                </h2>
+            </div>
+            <p class="text-base md:text-xl text-gray-1">
+                Accede a artículos, recursos exclusivos de Kapital con
+                estrategias, consejos y tendencias para tu empresa.
+            </p>
+        </div>
+
+        {/* Slider */}
+        <div class="flex flex-col gap-9 mt-14">
+            <div class="swiper blog-swiper !overflow-visible w-full">
+                <div class="swiper-wrapper">
+                    {
+                        posts.map((post) => (
+                            <div class="swiper-slide blog-slide">
+                                <a
+                                    href={post.link}
+                                    class="blog-card group flex flex-col justify-end gap-6 md:justify-between overflow-hidden p-6 md:p-12 relative rounded-[22px] shrink-0 w-[85vw] max-w-[342px] md:max-w-none md:w-[793px] h-[540px] md:h-[494px]"
+                                >
+                                    {/* Background */}
+                                    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+                                        <img
+                                            src={post.image}
+                                            alt={post.description}
+                                            class="image absolute inset-0 w-full h-full object-cover"
+                                            loading="lazy"
+                                            decoding="async"
+                                        />
+                                        <div class="image-overlay absolute inset-0" />
+                                    </div>
+
+                                    {/* Título */}
+                                    <div class="relative flex items-start justify-between gap-4">
+                                        <h3 class="text-lg md:text-xl text-white max-w-[488px]">
+                                            {post.title}
+                                        </h3>
+                                    </div>
+
+                                    {/* Descripción + Link */}
+                                    <div class="relative flex flex-col gap-4 max-w-[387px]">
+                                        <p class="text-sm text-white">
+                                            {post.description}
+                                        </p>
+                                        <span class="inline-flex items-center gap-1 py-1 text-base font-medium text-white">
+                                            Leer artículo
+                                            <svg
+                                                width="20"
+                                                height="20"
+                                                viewBox="-1.5 -3.5 10.5 18"
+                                                fill="none"
+                                            >
+                                                <path
+                                                    d="M5.2077 5.5L0.75 1.0423L1.77115 0.0211484L7.25 5.5L1.77115 10.9788L0.75 9.95769L5.2077 5.5Z"
+                                                    fill="currentColor"
+                                                />
+                                            </svg>
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+
+            {/* Navegación */}
+            <div class="flex items-center gap-9 md:gap-12 h-[30px]">
+                <div
+                    class="flex-1 h-[3px] w-full rounded-full overflow-hidden bg-gray-4"
+                >
+                    <div
+                        id="blog-progress"
+                        class="h-full bg-kapital-black rounded-full transition-all duration-1000 ease-out"
+                        style={`width: ${100 / posts.length}%`}
+                    >
+                    </div>
+                </div>
+                <div class="flex items-center gap-[18px] shrink-0">
+                    <button
+                        class="blog-prev -scale-x-100 text-kapital-black disabled:opacity-40 disabled:cursor-not-allowed transition"
+                        aria-label="Anterior"
+                    >
+                        <svg
+                            width="30"
+                            height="30"
+                            viewBox="0 0 30 30"
+                            fill="none"
+                        >
+                            <path
+                                d="M16.5033 25L15.1843 23.6963L22.9297 15.9356H3.52783V14.0644H22.9297L15.1843 6.30368L16.5033 5L26.4726 15L16.5033 25Z"
+                                fill="currentColor"></path>
+                        </svg>
+                    </button>
+                    <button
+                        class="blog-next text-kapital-black disabled:opacity-40 disabled:cursor-not-allowed transition"
+                        aria-label="Siguiente"
+                    >
+                        <svg
+                            width="30"
+                            height="30"
+                            viewBox="0 0 30 30"
+                            fill="none"
+                        >
+                            <path
+                                d="M16.5033 25L15.1843 23.6963L22.9297 15.9356H3.52783V14.0644H22.9297L15.1843 6.30368L16.5033 5L26.4726 15L16.5033 25Z"
+                                fill="currentColor"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .blog-card .image {
+        transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .blog-card .image-overlay {
+        background: linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.8),
+            rgba(0, 0, 0, 0) 80%
+        );
+        transition: background 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .blog-card:hover .image {
+        transform: scale(1.02);
+    }
+
+    .blog-slide {
+        height: auto;
+        width: 85vw;
+        max-width: 342px;
+        flex-shrink: 0;
+    }
+    @media (min-width: 768px) {
+        .blog-slide {
+            width: 793px;
+            max-width: none;
+        }
+    }
+</style>
+
+<script>
+    import Swiper from "swiper";
+    import { Navigation } from "swiper/modules";
+
+    new Swiper(".blog-swiper", {
+        modules: [Navigation],
+        slidesPerView: "auto",
+        spaceBetween: 20,
+        grabCursor: true,
+        watchSlidesProgress: true,
+        navigation: {
+            nextEl: ".blog-next",
+            prevEl: ".blog-prev",
+        },
+        on: {
+            slideChange(s) {
+                const bar = document.getElementById("blog-progress");
+                const total = s.slides.length;
+                const current = Math.min(s.realIndex + 1, total);
+                if (bar) bar.style.width = `${(current / total) * 100}%`;
+            },
+        },
+    });
+</script>

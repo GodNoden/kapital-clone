@@ -1,0 +1,319 @@
+---
+interface PhoneImage {
+    bg: string;
+    label?: string;
+}
+
+interface AccordionItem {
+    title: string;
+    body: string;
+    phone: PhoneImage;
+}
+
+const items: AccordionItem[] = [
+    {
+        title: "Invierte desde donde estés",
+        body: "Accede a Pagaré y CEDES directamente en la app de Kapital, y pon a trabajar el dinero de tu empresa con rendimientos atractivos y el plazo que tú elijas.",
+        phone: { bg: "/app/phone-1-bg.webp", label: "/app/phone-1-label.svg" },
+    },
+    {
+        title: "Control total",
+        body: "Recibe, paga, transfiere y retira desde un solo lugar. Monitorea tus movimientos en tiempo real, recibe notificaciones y toma el control de tus finanzas.",
+        phone: { bg: "/app/phone-2-bg.webp" },
+    },
+    {
+        title: "Seguridad",
+        body: "Autoriza movimientos con un token único desde tu app, con transmisión cifrada y confidencial. Disfruta de una banca más segura, rápida y fácil de usar.",
+        phone: { bg: "/app/phone-3-bg.webp", label: "/app/phone-3-label.svg" },
+    },
+    {
+        title: "Finanzas sin complicaciones",
+        body: "Abre tu cuenta en 5 minutos, recibe depósitos de hasta $25,000 MXN y una tarjeta de débito internacional para comprar, retirar y consultar tu saldo donde quieras.",
+        phone: { bg: "/app/phone-4-bg.webp" },
+    },
+    {
+        title: "Servicios e impuestos",
+        body: "Accede a tus cuentas y realiza operaciones donde estés. Programa pagos de servicios, préstamos o tarjetas, y disfruta de tu banco disponible 24/7.",
+        phone: { bg: "/app/phone-5-bg.webp", label: "/app/phone-5-label.svg" },
+    },
+    {
+        title: "Productos a tu medida",
+        body: "Consulta, revisa condiciones y contrata productos en minutos desde la app Kapital, sin afectar tu operación.",
+        phone: { bg: "/app/phone-6-bg.webp" },
+    },
+];
+---
+
+<section class="w-full relative overflow-clip bg-white py-14 md:py-24">
+    <div class="max-w-container mx-auto px-4 md:px-8">
+        {/* Header */}
+        <div
+            class="col-span-full max-w-[793px] mx-auto w-full flex flex-col lg:items-center gap-2 lg:gap-8 lg:text-center mb-8 lg:mb-24"
+        >
+            <p class="text-sm font-semibold text-gray-1">Kapital App</p>
+            <h2 class="text-4xl md:text-5xl text-kapital-black">
+                Tu experiencia lo es todo
+            </h2>
+        </div>
+
+        {/* Desktop layout */}
+        <div class="hidden md:grid md:grid-cols-12 gap-8">
+            {/* Accordion */}
+            <div
+                class="md:col-span-5 flex flex-col justify-center"
+                data-app-accordion
+                data-always-one-open="true"
+            >
+                {
+                    items.map((item, i) => (
+                        <div
+                            class="group border-b border-divider px-[2px]"
+                            data-accordion-item
+                            data-open={i === 0 ? "true" : "false"}
+                        >
+                            <button
+                                type="button"
+                                class="flex w-full items-center gap-6 py-4 md:py-6 text-left cursor-pointer"
+                                aria-expanded={i === 0}
+                                data-accordion-trigger
+                            >
+                                <span class="flex-1 text-kapital-black text-lg font-semibold">
+                                    {item.title}
+                                </span>
+                                <span
+                                    class="shrink-0 text-kapital-black transition-transform duration-1000 ease-out group-data-[open=true]:rotate-180"
+                                    aria-hidden="true"
+                                >
+                                    <svg
+                                        width="14"
+                                        height="14"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                    >
+                                        <path
+                                            d="M22 8L12 18L2 8"
+                                            stroke="currentColor"
+                                            stroke-width="2.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        />
+                                    </svg>
+                                </span>
+                            </button>
+                            <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-1000 ease-out group-data-[open=true]:grid-rows-[1fr]">
+                                <div class="overflow-hidden">
+                                    <p class="pb-4 md:pb-6 text-sm text-gray-1">
+                                        {item.body}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+
+            {/* Phone images */}
+            <div
+                class="md:col-span-7 flex flex-row items-center justify-between gap-20 ml-[84px]"
+            >
+                <div
+                    class="relative overflow-hidden rounded-[28px] w-full max-w-[500px] aspect-[500/670]"
+                >
+                    {
+                        items.map((item, i) => (
+                            <div
+                                class="app-phone-img absolute inset-0 transition-all duration-[1200ms] ease-in-out"
+                                data-phone-index={i}
+                                style={
+                                    i === 0
+                                        ? "clip-path: inset(0);"
+                                        : "clip-path: inset(100% 0 0 0);"
+                                }
+                            >
+                                <img
+                                    src={item.phone.bg}
+                                    alt={item.title}
+                                    width="500"
+                                    height="670"
+                                    class="absolute inset-0 w-full h-full object-cover"
+                                    loading="lazy"
+                                    decoding="async"
+                                    style={
+                                        i === 0
+                                            ? "transform: translateY(0%);"
+                                            : "transform: translateY(5%);"
+                                    }
+                                />
+                                {item.phone.label && (
+                                    <img
+                                        src={item.phone.label}
+                                        alt=""
+                                        width="300"
+                                        height="300"
+                                        class="absolute w-full object-contain bottom-0 left-0 right-0 mx-auto max-w-[300px]"
+                                        loading="lazy"
+                                        decoding="async"
+                                        style={
+                                            i === 0
+                                                ? "transform: translateY(0%);"
+                                                : "transform: translateY(5%);"
+                                        }
+                                    />
+                                )}
+                            </div>
+                        ))
+                    }
+                    <div
+                        class="absolute inset-0 bg-black/35 rounded-[28px] pointer-events-none"
+                    >
+                    </div>
+                </div>
+
+                {/* Dots */}
+                <div
+                    class="flex relative h-full flex-col justify-center items-end"
+                >
+                    <div class="flex flex-col gap-[10px]" data-app-dots>
+                        {
+                            items.map((_, i) => (
+                                <button
+                                    type="button"
+                                    class:list={[
+                                        "h-2 w-2 rounded-full transition-all duration-300",
+                                        i === 0
+                                            ? "bg-kapital-black h-6"
+                                            : "bg-gray-4",
+                                    ]}
+                                    data-dot-index={i}
+                                    aria-label={`Ir a ${items[i].title}`}
+                                />
+                            ))
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {/* Mobile layout */}
+        <div class="md:hidden">
+            <div class="swiper app-mobile-swiper !overflow-visible">
+                <div class="swiper-wrapper">
+                    {
+                        items.map((item) => (
+                            <div class="swiper-slide flex flex-col gap-6">
+                                <div class="relative overflow-hidden rounded-[28px] w-full max-w-[500px] aspect-[500/670] mx-auto">
+                                    <img
+                                        src={item.phone.bg}
+                                        alt={item.title}
+                                        class="absolute inset-0 w-full h-full object-cover"
+                                        loading="lazy"
+                                        decoding="async"
+                                    />
+                                    {item.phone.label && (
+                                        <img
+                                            src={item.phone.label}
+                                            alt=""
+                                            class="absolute w-full object-contain bottom-0 left-0 right-0 mx-auto max-w-[300px]"
+                                            loading="lazy"
+                                            decoding="async"
+                                        />
+                                    )}
+                                    <div class="absolute inset-0 bg-black/35 rounded-[28px]" />
+                                </div>
+                                <div>
+                                    <h3 class="pt-6 text-xl font-semibold text-kapital-black">
+                                        {item.title}
+                                    </h3>
+                                    <p class="text-sm text-gray-1 mt-4">
+                                        {item.body}
+                                    </p>
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    import Swiper from "swiper";
+    import { Pagination } from "swiper/modules";
+
+    // Desktop: Acordeón + Phone images
+    const accordion = document.querySelector<HTMLElement>(
+        "[data-app-accordion]",
+    );
+    const phoneImages = Array.from(
+        document.querySelectorAll<HTMLElement>(".app-phone-img"),
+    );
+    const dots = Array.from(
+        document.querySelectorAll<HTMLButtonElement>("[data-app-dots] button"),
+    );
+
+    function setActiveIndex(index: number) {
+        // Update accordion
+        accordion
+            ?.querySelectorAll("[data-accordion-item]")
+            .forEach((item, i) => {
+                const htmlItem = item as HTMLElement;
+                const isOpen = i === index;
+                htmlItem.dataset.open = String(isOpen);
+                const trigger = htmlItem.querySelector(
+                    "[data-accordion-trigger]",
+                );
+                trigger?.setAttribute("aria-expanded", String(isOpen));
+            });
+
+        // Update phone images
+        phoneImages.forEach((el, i) => {
+            if (i === index) {
+                el.style.clipPath = "inset(0)";
+                el.querySelectorAll<HTMLImageElement>("img").forEach(
+                    (child) => {
+                        child.style.transform = "translateY(0%)";
+                    },
+                );
+            } else {
+                el.style.clipPath = "inset(100% 0 0 0)";
+                el.querySelectorAll<HTMLImageElement>("img").forEach(
+                    (child) => {
+                        child.style.transform = "translateY(5%)";
+                    },
+                );
+            }
+        });
+
+        // Update dots
+        dots.forEach((dot, i) => {
+            if (i === index) {
+                dot.classList.add("bg-kapital-black", "h-6");
+                dot.classList.remove("bg-gray-4");
+            } else {
+                dot.classList.remove("bg-kapital-black", "h-6");
+                dot.classList.add("bg-gray-4");
+            }
+        });
+    }
+
+    // Accordion triggers
+    accordion
+        ?.querySelectorAll("[data-accordion-trigger]")
+        .forEach((trigger, i) => {
+            trigger.addEventListener("click", () => setActiveIndex(i));
+        });
+
+    // Dot triggers
+    dots.forEach((dot, i) => {
+        dot.addEventListener("click", () => setActiveIndex(i));
+    });
+
+    // Mobile: Swiper
+    new Swiper(".app-mobile-swiper", {
+        modules: [Pagination],
+        slidesPerView: 1,
+        spaceBetween: 20,
+        grabCursor: true,
+    });
+</script>

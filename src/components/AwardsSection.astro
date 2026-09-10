@@ -1,0 +1,115 @@
+---
+interface Award {
+  logo: string;
+  title: string;
+  link: string;
+}
+
+const awards: Award[] = [
+  {
+    logo: '/awards/mex.svg',
+    title: 'El banco de las PyMEs mexicanas',
+    link: 'https://www.gob.mx/se/prensa/participacion-del-secretario-de-economia-marcelo-ebrard-durante-la-presentacion-de-hecho-en-mexico-de-stori-kapital-bank-y-banco-donde',
+  },
+  {
+    logo: '/awards/mod.svg',
+    title: 'A-mx: Moody\'s reconoce nuestra solidez financiera',
+    link: 'https://kapital.com/blog/kapital/hr-ratings-y-moodys-elevan-calificacion-a-kapital',
+  },
+  {
+    logo: '/awards/wef.svg',
+    title: 'Pionera tecnológica por segundo año consecutivo',
+    link: 'https://www.proceso.com.mx/economia/2026/1/22/kapital-el-unicornio-bancario-mexicano-llega-davos-en-un-momento-clave-para-la-economia-nacional-367061.html',
+  },
+  {
+    logo: '/awards/cnbc.svg',
+    title: 'Compañías más disruptivas del mundo',
+    link: 'https://www.cnbc.com/2024/05/14/kapital-cnbc-disruptor-50.html',
+  },
+  {
+    logo: '/awards/forbes.svg',
+    title: 'Líderes de la IA',
+    link: 'https://forbes.com.mx/foro-forbes-economia-y-negocios-2024-lideres-en-inteligencia-artificial-en-mexico-reciben-reconocimientos/',
+  },
+];
+---
+
+<section class="w-full bg-kapital-black font-inter overflow-hidden">
+  <div class="max-w-container mx-auto py-12 md:py-44 px-4">
+    {/* Header */}
+    <div class="flex items-center justify-between mb-16 gap-8">
+      <h2 class="text-2xl md:text-3xl text-white">Reconocimientos globales</h2>
+      <div class="flex items-center gap-4">
+        <button
+          class="awards-prev text-white disabled:opacity-40 disabled:cursor-not-allowed transition"
+          aria-label="Anterior"
+        >
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+            <path d="M16.5033 25L15.1843 23.6963L22.9297 15.9356H3.52783V14.0644H22.9297L15.1843 6.30368L16.5033 5L26.4726 15L16.5033 25Z" fill="currentColor"/>
+          </svg>
+        </button>
+        <button
+          class="awards-next text-white disabled:opacity-40 disabled:cursor-not-allowed transition"
+          aria-label="Siguiente"
+        >
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+            <path d="M16.5033 25L15.1843 23.6963L22.9297 15.9356H3.52783V14.0644H22.9297L15.1843 6.30368L16.5033 5L26.4726 15L16.5033 25Z" fill="currentColor"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    {/* Swiper */}
+    <div class="swiper awards-swiper w-full !overflow-visible">
+      <div class="swiper-wrapper">
+        {awards.map((award) => (
+          <div class="swiper-slide !w-auto">
+            <div class="flex flex-col gap-5 w-[80vw] max-w-[272px] md:w-auto md:max-w-none md:min-w-[386px] rounded-2xl shrink-0">
+              <div class="flex items-center h-12">
+                <img
+                  src={award.logo}
+                  alt=""
+                  class="h-auto max-h-12 w-auto"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="flex flex-col gap-3">
+                <h3 class="text-base md:text-lg text-white whitespace-normal md:whitespace-nowrap">
+                  {award.title}
+                </h3>
+                <a
+                  href={award.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1 py-1 text-sm text-white font-medium hover:opacity-70 transition-opacity"
+                >
+                  Saber más
+                  <svg width="16" height="16" viewBox="-1.5 -3.5 10.5 18" fill="none">
+                    <path d="M5.2077 5.5L0.75 1.0423L1.77115 0.0211484L7.25 5.5L1.77115 10.9788L0.75 9.95769L5.2077 5.5Z" fill="currentColor"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import Swiper from 'swiper';
+  import { Navigation } from 'swiper/modules';
+
+  new Swiper('.awards-swiper', {
+    modules: [Navigation],
+    slidesPerView: 'auto',
+    spaceBetween: 96,
+    grabCursor: true,
+    navigation: {
+      nextEl: '.awards-next',
+      prevEl: '.awards-prev',
+    },
+  });
+</script> 

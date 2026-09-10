@@ -1,0 +1,61 @@
+---
+// Sección simple de Apple Pay - sin JavaScript necesario
+---
+
+<section
+    class="w-full bg-white font-inter text-kapital-black py-24 px-4 xl:px-0"
+>
+    <div class="max-w-container mx-auto">
+        <article
+            class="flex rounded-[25px] bg-[#EDE9E3] h-[640px] md:h-[520px] relative overflow-hidden"
+        >
+            {/* Imagen del dispositivo */}
+            <div class="absolute inset-0 flex items-end justify-end">
+                <img
+                    src="/apple-pay/device.webp"
+                    alt="Apple Pay en dispositivo"
+                    width="397"
+                    height="494"
+                    class="w-auto md:max-w-[50%] lg:max-w-none h-auto max-h-[340px] md:max-h-full"
+                    loading="lazy"
+                    decoding="async"
+                />
+            </div>
+
+            {/* Contenido */}
+            <div
+                class="w-full md:max-w-[50%] xl:max-w-[740px] flex flex-col gap-6 items-center md:items-start justify-start md:justify-center px-4 pt-14 md:pt-0 md:pl-14 xl:pl-[120px] relative"
+            >
+                <img
+                    src="/apple-pay/logos.png"
+                    alt="Kapital Apple Pay"
+                    width="200"
+                    height="40"
+                    loading="lazy"
+                    decoding="async"
+                />
+                <h2
+                    class="text-xl md:text-2xl text-balance text-center md:text-left"
+                >
+                    Privacidad. Seguridad. Eso es Apple Pay.
+                </h2>
+                <p
+                    class="text-sm md:text-base text-gray-1 text-center md:text-left"
+                >
+                    Apple Pay usa funcionalidades de seguridad integradas en tu
+                    dispositivo Apple, como Face ID y Touch ID. Está diseñado
+                    para que sólo tú puedas autorizar pagos con tu tarjeta
+                    Kapital.
+                </p>
+                <div class="flex gap-3 flex-wrap justify-center">
+                    <a
+                        href="/recursos/apple-pay"
+                        class="inline-flex items-center justify-center px-5 py-4 rounded-full text-sm bg-kapital-black text-white hover:bg-opacity-90 transition-colors"
+                    >
+                        Más información
+                    </a>
+                </div>
+            </div>
+        </article>
+    </div>
+</section>

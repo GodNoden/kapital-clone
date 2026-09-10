@@ -1,0 +1,323 @@
+---
+interface Partner {
+    logo: string;
+    link: string;
+}
+
+const partners: Partner[] = [
+    {
+        logo: "/partners/heraldo.webp",
+        link: "https://heraldodemexico.com.mx/opinion/2024/9/5/kapital-bank-el-orden-del-caos-635431.html",
+    },
+    {
+        logo: "/partners/economista.webp",
+        link: "https://www.eleconomista.com.mx/empresas/La-velocidad-de-una-Fintech-con-la-solidez-de-un-banco-20240416-0053.html",
+    },
+    {
+        logo: "/partners/financiero.webp",
+        link: "https://www.elfinanciero.com.mx/economia/2025/05/08/era-digital-en-la-banca-mexicana-apenas-comienza/",
+    },
+    {
+        logo: "/partners/forbes.webp",
+        link: "https://forbes.com.mx/tag/kapital/",
+    },
+    { logo: "/partners/reforma.webp", link: "https://www.reforma.com/" },
+];
+---
+
+<section class="w-full bg-white pt-14 md:pt-24 pb-[120px]">
+    <div class="max-w-container mx-auto px-4 md:px-8">
+        <div class="bg-white border border-divider overflow-hidden rounded-3xl">
+            <div
+                class="flex flex-col gap-6 md:gap-[72px] px-5 py-5 md:py-[72px] md:px-[72px]"
+            >
+                {/* Título */}
+                <div class="flex flex-col gap-4">
+                    <p class="text-base md:text-lg text-gray-1">
+                        Opiniones sobre Kapital
+                    </p>
+                    <h2 class="text-2xl md:text-3xl text-kapital-black">
+                        Una empresa de talla mundial
+                    </h2>
+                </div>
+
+                {/* Marquee */}
+                <div
+                    class="overflow-hidden -mx-6 px-6 md:-mx-[71px] md:px-[71px]"
+                >
+                    <div
+                        class="flex gap-3 partners-marquee"
+                        data-partners-track
+                    >
+                        <div class="flex gap-3 shrink-0" data-partners-group>
+                            {
+                                partners.map((partner) => (
+                                    <a
+                                        href={partner.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="partner-card group bg-kapital-black flex items-center justify-center relative rounded-xl shrink-0 w-[250px] h-[300px] md:w-[340px] md:h-[170px]"
+                                    >
+                                        <img
+                                            src={partner.logo}
+                                            alt=""
+                                            class="max-h-[54px] w-auto object-contain"
+                                            loading="lazy"
+                                            decoding="async"
+                                        />
+                                        {/* Flecha hover (desktop) */}
+                                        <svg
+                                            class="fine-arrow absolute right-[23px] top-[23px] size-[15px] text-gray-4"
+                                            width="15"
+                                            height="15"
+                                            viewBox="0 0 15 15"
+                                            fill="none"
+                                        >
+                                            <path
+                                                d="M15 12.5465L13.3547 12.5561L13.3451 2.82874L1.17383 15L0 13.8262L12.1713 1.65491L2.44387 1.64529L2.4535 0L14.9808 0.0192431L15 12.5465Z"
+                                                fill="currentColor"
+                                            />
+                                        </svg>
+                                        {/* Label táctil (mobile) */}
+                                        <div class="touch-label md:hidden">
+                                            <span class="text-sm text-white">
+                                                Ver
+                                            </span>
+                                            <svg
+                                                width="20"
+                                                height="20"
+                                                viewBox="-1.5 -3.5 10.5 18"
+                                                fill="none"
+                                            >
+                                                <path
+                                                    d="M5.2077 5.5L0.75 1.0423L1.77115 0.0211484L7.25 5.5L1.77115 10.9788L0.75 9.95769L5.2077 5.5Z"
+                                                    fill="currentColor"
+                                                />
+                                            </svg>
+                                        </div>
+                                    </a>
+                                ))
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .partner-card {
+        position: relative;
+        overflow: clip;
+    }
+    .partner-card::before {
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 0;
+        opacity: 0;
+        transform: scale(1.5);
+        background:
+            linear-gradient(
+                43.45deg,
+                rgba(28, 24, 13, 0.5) 2.13%,
+                rgba(212, 207, 201, 0.25)
+            ),
+            #666260;
+        transition:
+            opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1),
+            transform 1.5s cubic-bezier(0.76, 0, 0.24, 1);
+    }
+    .partner-card img,
+    .partner-card .fine-arrow,
+    .partner-card .touch-label {
+        z-index: 1;
+    }
+    .fine-arrow {
+        opacity: 0;
+        transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .touch-label {
+        display: none;
+        position: absolute;
+        bottom: 36px;
+        left: 50%;
+        transform: translateX(-50%);
+        align-items: center;
+        gap: 4px;
+        color: white;
+    }
+
+    @media (pointer: fine) {
+        .partner-card:hover::before {
+            transform: scale(1) translate(0, 0);
+            opacity: 1;
+        }
+        .partner-card:hover .fine-arrow {
+            opacity: 1;
+        }
+    }
+
+    @media (pointer: coarse) {
+        .partner-card::before {
+            transform: scale(1) translate(0, 0);
+            opacity: 1;
+        }
+        .fine-arrow {
+            display: none;
+        }
+        .touch-label {
+            display: flex;
+        }
+    }
+
+    .partners-marquee {
+        will-change: transform;
+    }
+</style>
+
+<script>
+    const lerp = (start: number, end: number, t: number) =>
+        start + (end - start) * t;
+
+    function initMarquees() {
+        document
+            .querySelectorAll<HTMLElement>("[data-partners-track]")
+            .forEach((track) => {
+                const container = track.parentElement;
+                const group = track.querySelector<HTMLElement>(
+                    "[data-partners-group]",
+                );
+                if (!container || !group || !track) return;
+
+                const state = {
+                    raf: 0,
+                    x: 0,
+                    speed: 0,
+                    targetSpeed: 0,
+                    loopWidth: 0,
+                    lastTime: 0,
+                    isPaused: false,
+                    isInView: false,
+                };
+
+                const getGap = () => {
+                    const style = window.getComputedStyle(track);
+                    return parseFloat(style.columnGap || style.gap || "0") || 0;
+                };
+
+                const getSpeed = () =>
+                    window.matchMedia("(min-width: 768px)").matches ? 102 : 84;
+
+                const cloneGroup = () => {
+                    const clone = group.cloneNode(true) as HTMLElement;
+                    clone.removeAttribute("data-partners-group");
+                    clone.setAttribute("aria-hidden", "true");
+                    clone.querySelectorAll("a").forEach((a) => {
+                        a.tabIndex = -1;
+                    });
+                    return clone;
+                };
+
+                const setup = () => {
+                    track
+                        .querySelectorAll("[data-partners-clone]")
+                        .forEach((c) => c.remove());
+                    const gap = getGap();
+                    state.loopWidth = group.scrollWidth + gap;
+                    if (!state.loopWidth) return;
+
+                    let totalWidth = group.scrollWidth;
+                    const viewportWidth =
+                        container.offsetWidth + state.loopWidth;
+                    while (totalWidth < viewportWidth) {
+                        track.appendChild(cloneGroup());
+                        totalWidth += state.loopWidth;
+                    }
+                    state.x = state.x % state.loopWidth;
+                    track.style.transform = `translate3d(${-state.x}px, 0, 0)`;
+                };
+
+                const updateTargetSpeed = () => {
+                    state.targetSpeed = state.isPaused ? 0 : getSpeed();
+                };
+
+                const setPaused = (paused: boolean) => {
+                    state.isPaused = paused;
+                    updateTargetSpeed();
+                };
+
+                const animate = (time: number) => {
+                    const dt = state.lastTime
+                        ? (time - state.lastTime) / 1000
+                        : 0;
+                    state.lastTime = time;
+                    updateTargetSpeed();
+                    state.speed = lerp(state.speed, state.targetSpeed, 0.05);
+
+                    if (state.loopWidth) {
+                        state.x =
+                            (state.x + state.speed * dt) % state.loopWidth;
+                        track.style.transform = `translate3d(${-state.x}px, 0, 0)`;
+                    }
+                    state.raf = requestAnimationFrame(animate);
+                };
+
+                const start = () => {
+                    if (!state.raf) {
+                        state.lastTime = 0;
+                        state.raf = requestAnimationFrame(animate);
+                    }
+                };
+
+                const stop = () => {
+                    if (state.raf) {
+                        cancelAnimationFrame(state.raf);
+                        state.raf = 0;
+                        state.lastTime = 0;
+                    }
+                };
+
+                setup();
+                setPaused(false);
+
+                if ("IntersectionObserver" in window) {
+                    new IntersectionObserver(
+                        ([entry]) => {
+                            state.isInView = entry?.isIntersecting ?? false;
+                            if (state.isInView) {
+                                setup();
+                                start();
+                            } else {
+                                stop();
+                            }
+                        },
+                        { rootMargin: "200px 0px", threshold: 0 },
+                    ).observe(container);
+                } else {
+                    state.isInView = true;
+                    start();
+                }
+
+                container.addEventListener("mouseenter", () => setPaused(true));
+                container.addEventListener("mouseleave", () =>
+                    setPaused(false),
+                );
+                container.addEventListener("focusin", () => setPaused(true));
+                container.addEventListener("focusout", () => setPaused(false));
+                window.addEventListener("resize", setup);
+            });
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initMarquees, {
+            once: true,
+        });
+    } else {
+        initMarquees();
+    }
+</script>

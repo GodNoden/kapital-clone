@@ -1,0 +1,265 @@
+---
+interface Slide {
+    id: number;
+    eyebrow?: string;
+    lines: string[];
+    copy: string;
+    cta: { label: string; href: string; type?: "link" | "button" };
+    theme: "light" | "dark";
+    desktop: string;
+    mobile: string;
+    secondaryImage?: string;
+}
+
+const slides: Slide[] = [
+    {
+        id: 0,
+        eyebrow: "Kapital",
+        lines: ["Equipamos", "empresas", "para crecer"],
+        copy: "Banca, crédito, inversión y divisas — todo lo que tu empresa necesita para seguir adelante.",
+        cta: {
+            label: "Abrir cuenta",
+            href: "https://onboarding.kapital.com/",
+            type: "link",
+        },
+        theme: "light",
+        desktop: "/hero/slide-1-desktop.webp",
+        mobile: "/hero/slide-1-mobile.webp",
+    },
+    {
+        id: 1,
+        lines: ["Tu empresa", "no se detiene,", "tu dinero tampoco"],
+        copy: "Haz tus transferencias internacionales con Kapital FX | 24/7.",
+        cta: {
+            label: "Transfiere hoy",
+            href: "/divisas/cambio-divisas-en-efectivo-personas",
+        },
+        theme: "dark",
+        desktop: "/hero/slide-2-desktop.webp",
+        mobile: "/hero/slide-2-mobile.webp",
+    },
+    {
+        id: 2,
+        lines: ["Tu dinero", "merece valentía"],
+        copy: "Todo lo que necesitas de un banco, pero sin las reglas tradicionales.",
+        cta: {
+            label: "Solicitar asesoría personalizada",
+            href: "#",
+            type: "button",
+        },
+        theme: "dark",
+        desktop: "/hero/slide-3-desktop.webp",
+        mobile: "/hero/slide-3-mobile.webp",
+    },
+    {
+        id: 3,
+        lines: ["Inversión simple.", "Rendimiento real."],
+        copy: "La inversión que te da rentabilidad, seguridad y ganancias de hasta 8.50%*",
+        cta: {
+            label: "Quiero Invertir",
+            href: "/inversiones/cedes-empresarial",
+        },
+        theme: "dark",
+        desktop: "/hero/slide-4-desktop.webp",
+        mobile: "/hero/slide-4-desktop.webp",
+        secondaryImage: "/hero/slide-4-inversion.svg",
+    },
+];
+---
+
+<section class="w-full relative overflow-clip min-h-[842px] h-svh">
+    <div class="hero-swiper relative w-full h-full">
+        <div class="swiper-wrapper">
+            {
+                slides.map((slide, index) => (
+                    <div
+                        class:list={[
+                            "swiper-slide relative flex items-center justify-center",
+                            slide.theme === "light"
+                                ? "text-kapital-black"
+                                : "bg-black text-white",
+                        ]}
+                    >
+                        {/* Imagen de fondo desktop */}
+                        <img
+                            src={slide.desktop}
+                            alt=""
+                            aria-hidden="true"
+                            loading={index === 0 ? "eager" : "lazy"}
+                            decoding={index === 0 ? "sync" : "async"}
+                            fetchpriority={index === 0 ? "high" : "auto"}
+                            class="absolute top-0 left-0 w-full h-full object-cover object-top hidden md:block"
+                            width="1920"
+                            height="1080"
+                        />
+                        {/* Imagen de fondo mobile */}
+                        <img
+                            src={slide.mobile}
+                            alt=""
+                            aria-hidden="true"
+                            loading={index === 0 ? "eager" : "lazy"}
+                            decoding={index === 0 ? "sync" : "async"}
+                            fetchpriority={index === 0 ? "high" : "auto"}
+                            class="absolute top-0 left-0 w-full h-full object-cover object-top md:hidden"
+                            width="768"
+                            height="1080"
+                        />
+
+                        {/* Overlay */}
+                        <div
+                            class:list={[
+                                "absolute inset-0",
+                                slide.theme === "light"
+                                    ? "bg-gradient-to-t from-[var(--color-cream-gradient)] to-transparent md:bg-gradient-to-r md:from-[var(--color-cream-gradient)] md:to-transparent"
+                                    : "bg-gradient-to-b from-black/70 to-transparent md:bg-gradient-to-r md:from-black/70 md:to-transparent",
+                            ]}
+                        />
+
+                        {/* Contenido */}
+                        <div class="container mx-auto relative items-end lg:items-center h-full grid gap-y-12 xl:grid-cols-12 px-4 lg:px-[56px] xl:max-w-[1600px] pt-36 pb-20 xl:py-40">
+                            <div class="flex flex-col gap-y-8 xl:col-span-8">
+                                {slide.eyebrow && (
+                                    <p class="text-lg font-semibold">
+                                        {slide.eyebrow}
+                                    </p>
+                                )}
+                                <h2 class="text-[56px] lg:text-[72px] tracking-[-0.01em] leading-none">
+                                    {slide.lines.map((line) => (
+                                        <p>{line}</p>
+                                    ))}
+                                </h2>
+                                <p class="text-base md:text-xl max-w-[32ch]">
+                                    {slide.copy}
+                                </p>
+                                <div class="flex flex-wrap gap-3">
+                                    {slide.cta.type === "button" ? (
+                                        <button
+                                            type="button"
+                                            class="rounded-full px-6 py-4 text-sm lg:px-8 lg:py-5 bg-white/90 backdrop-blur-md text-kapital-black hover:bg-white transition-colors"
+                                        >
+                                            {slide.cta.label}
+                                        </button>
+                                    ) : (
+                                        <a
+                                            href={slide.cta.href}
+                                            class="rounded-full px-6 py-4 text-sm lg:px-8 lg:py-5 bg-white/90 backdrop-blur-md text-kapital-black hover:bg-white transition-colors"
+                                        >
+                                            {slide.cta.label}
+                                        </a>
+                                    )}
+                                </div>
+                            </div>
+
+                            {slide.secondaryImage && (
+                                <div class="hidden lg:block xl:col-span-4">
+                                    <img
+                                        src={slide.secondaryImage}
+                                        alt=""
+                                        loading="lazy"
+                                        decoding="async"
+                                        class="max-w-[450px] w-full"
+                                    />
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+
+    {/* Controles */}
+    <div class="absolute bottom-0 right-1/2 translate-x-1/2 z-10">
+        <div class="flex items-center justify-center pb-4 md:pb-8">
+            <div class="flex items-center gap-8">
+                <div class="hero-dots flex items-center gap-2.5"></div>
+                <div class="flex items-center gap-4">
+                    <button
+                        class="hero-prev rotate-180 text-gray-500 hover:text-kapital-black disabled:opacity-40 disabled:cursor-not-allowed"
+                        aria-label="Anterior"
+                    >
+                        <svg
+                            width="30"
+                            height="30"
+                            viewBox="0 0 30 30"
+                            fill="none"
+                        >
+                            <path
+                                d="M16.5033 25L15.1843 23.6963L22.9297 15.9356H3.52783V14.0644H22.9297L15.1843 6.30368L16.5033 5L26.4726 15L16.5033 25Z"
+                                fill="currentColor"></path>
+                        </svg>
+                    </button>
+                    <button
+                        class="hero-next text-gray-500 hover:text-kapital-black disabled:opacity-40 disabled:cursor-not-allowed"
+                        aria-label="Siguiente"
+                    >
+                        <svg
+                            width="30"
+                            height="30"
+                            viewBox="0 0 30 30"
+                            fill="none"
+                        >
+                            <path
+                                d="M16.5033 25L15.1843 23.6963L22.9297 15.9356H3.52783V14.0644H22.9297L15.1843 6.30368L16.5033 5L26.4726 15L16.5033 25Z"
+                                fill="currentColor"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Estilos para los dots del hero */
+    .hero-dots :global(.swiper-pagination-bullet) {
+        width: 8px;
+        height: 8px;
+        border-radius: 9999px;
+        background: #e6e5e3;
+        opacity: 0.6;
+        transition: all 0.3s ease;
+    }
+    .hero-dots :global(.swiper-pagination-bullet-active) {
+        width: 24px;
+        background: white;
+        opacity: 1;
+    }
+</style>
+
+<script>
+    import Swiper from "swiper";
+    import { Navigation, Pagination, Autoplay } from "swiper/modules";
+    import "swiper/css";
+
+    new Swiper(".hero-swiper", {
+        modules: [Navigation, Pagination, Autoplay],
+        loop: true,
+        speed: 1200,
+        autoplay: {
+            delay: 6000,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: ".hero-dots",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".hero-next",
+            prevEl: ".hero-prev",
+        },
+        on: {
+            slideChangeTransitionStart() {
+                // Animación de entrada del contenido
+                document.querySelectorAll(".swiper-slide").forEach((slide) => {
+                    const content = slide.querySelector(".container > div");
+                    if (slide.classList.contains("swiper-slide-active")) {
+                        content?.classList.add("animate-in");
+                    } else {
+                        content?.classList.remove("animate-in");
+                    }
+                });
+            },
+        },
+    });
+</script>

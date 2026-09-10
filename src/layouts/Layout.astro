@@ -1,0 +1,29 @@
+---
+import Header from "../components/Header.astro";
+import "../styles/global.css";
+
+interface Props {
+    title: string;
+    description?: string;
+}
+
+const {
+    title,
+    description = "Soluciones financieras para empresas y personas",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es-MX">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content={description} />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <title>{title}</title>
+    </head>
+    <body class="bg-white text-kapital-black overflow-x-clip">
+        <Header />
+        <slot />
+    </body>
+</html>

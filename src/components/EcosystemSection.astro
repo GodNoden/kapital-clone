@@ -1,0 +1,188 @@
+---
+import { ecosystemCards } from "../data/ecosystem";
+import EcosystemPopup from "./EcosystemPopup.astro";
+---
+
+<section class="w-full overflow-hidden bg-white">
+    <div class="max-w-container mx-auto px-4 md:px-8 pt-20 md:pt-28">
+        <div class="flex flex-col gap-4 md:gap-10 md:col-span-8">
+            <h2 class="text-4xl md:text-5xl text-kapital-black text-balance">
+                El ecosistema financiero para tu empresa
+            </h2>
+            <p class="text-lg md:text-xl text-gray-1 text-pretty max-w-[600px]">
+                Maneja tu dinero con libertad: paga, ahorra e invierte sin
+                complicaciones.
+            </p>
+        </div>
+
+        <div class="flex flex-col gap-8 mt-10 mb-16 md:my-14">
+            <div
+                class="ecosystem-swiper h-[540px] xl:h-[640px] w-full !overflow-visible"
+            >
+                <div class="swiper-wrapper" style="cursor: grab;">
+                    {
+                        ecosystemCards.map((card, index) => (
+                            <div class="swiper-slide !w-[85vw] !max-w-[1202px]">
+                                <article class="relative flex flex-col justify-end gap-y-6 md:justify-between overflow-hidden rounded-[22px] bg-white p-6 md:p-8 xl:p-[72px] w-full h-[540px] xl:h-[640px]">
+                                    <div class="absolute inset-0">
+                                        <img
+                                            src={card.image}
+                                            alt={card.title}
+                                            loading="lazy"
+                                            decoding="async"
+                                            class="absolute inset-0 w-full h-full object-cover pointer-events-none"
+                                        />
+                                        <div class="absolute inset-0 bg-gradient-to-t from-black/75 to-transparent md:bg-gradient-to-r md:from-black/75 md:to-transparent" />
+                                    </div>
+
+                                    <div class="relative flex flex-col gap-3 text-white w-full max-w-[488px]">
+                                        <p class="text-sm md:text-base font-semibold">
+                                            {card.eyebrow}
+                                        </p>
+                                        <h3 class="text-2xl md:text-3xl">
+                                            {card.title}
+                                        </h3>
+                                    </div>
+
+                                    <div class="relative shrink-0">
+                                        <button
+                                            type="button"
+                                            data-ecosystem-trigger={index}
+                                            class="inline-flex items-center justify-center px-6 py-5 rounded-full text-sm lg:text-base text-white bg-white/20 backdrop-blur-md hover:bg-white/30 transition-colors"
+                                        >
+                                            Más información
+                                        </button>
+                                    </div>
+                                </article>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <div class="flex items-center gap-9 md:gap-12 h-[30px]">
+                <div
+                    class="flex-1 h-[3px] w-full rounded-full overflow-hidden bg-gray-4"
+                >
+                    <div
+                        id="ecosystem-progress"
+                        class="h-full bg-kapital-black rounded-full transition-all duration-1000 ease-out"
+                        style={`width: ${100 / ecosystemCards.length}%`}
+                    >
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-[18px] shrink-0">
+                    <button
+                        class="ecosystem-prev -scale-x-100 text-kapital-black disabled:opacity-40 disabled:cursor-not-allowed transition"
+                        aria-label="Anterior"
+                    >
+                        <svg
+                            width="30"
+                            height="30"
+                            viewBox="0 0 30 30"
+                            fill="none"
+                        >
+                            <path
+                                d="M16.5033 25L15.1843 23.6963L22.9297 15.9356H3.52783V14.0644H22.9297L15.1843 6.30368L16.5033 5L26.4726 15L16.5033 25Z"
+                                fill="currentColor"></path>
+                        </svg>
+                    </button>
+                    <button
+                        class="ecosystem-next text-kapital-black disabled:opacity-40 disabled:cursor-not-allowed transition"
+                        aria-label="Siguiente"
+                    >
+                        <svg
+                            width="30"
+                            height="30"
+                            viewBox="0 0 30 30"
+                            fill="none"
+                        >
+                            <path
+                                d="M16.5033 25L15.1843 23.6963L22.9297 15.9356H3.52783V14.0644H22.9297L15.1843 6.30368L16.5033 5L26.4726 15L16.5033 25Z"
+                                fill="currentColor"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {
+        ecosystemCards.map((card, index) => (
+            <EcosystemPopup card={card} index={index} />
+        ))
+    }
+</section>
+
+<script>
+    import Swiper from "swiper";
+    import { Navigation } from "swiper/modules";
+
+    const swiper = new Swiper(".ecosystem-swiper", {
+        modules: [Navigation],
+        slidesPerView: "auto",
+        spaceBetween: 24,
+        grabCursor: true,
+        navigation: {
+            nextEl: ".ecosystem-next",
+            prevEl: ".ecosystem-prev",
+        },
+        on: {
+            slideChange(s) {
+                const bar = document.getElementById("ecosystem-progress");
+                const total = s.slides.length;
+                const current = Math.min(s.realIndex + 1, total);
+                if (bar) bar.style.width = `${(current / total) * 100}%`;
+            },
+        },
+    });
+
+    // Popups
+    function openPopup(index: number) {
+        const el = document.getElementById(`ecosystem-popup-${index}`);
+        el?.classList.remove("opacity-0", "pointer-events-none");
+        el?.classList.add("opacity-100");
+        document.body.style.overflow = "hidden";
+    }
+
+    function closePopup(index: number) {
+        const el = document.getElementById(`ecosystem-popup-${index}`);
+        el?.classList.add("opacity-0", "pointer-events-none");
+        el?.classList.remove("opacity-100");
+        document.body.style.overflow = "";
+    }
+
+    document.querySelectorAll("[data-ecosystem-trigger]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const idx = parseInt(
+                (btn as HTMLElement).dataset.ecosystemTrigger ?? "0",
+                10,
+            );
+            openPopup(idx);
+        });
+    });
+
+    document.querySelectorAll("[data-popup-close]").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const idx = parseInt(
+                (btn as HTMLElement).dataset.popupId ?? "0",
+                10,
+            );
+            closePopup(idx);
+        });
+    });
+
+    document.querySelectorAll(".ecosystem-popup").forEach((popup) => {
+        popup.addEventListener("click", (e) => {
+            if (e.target === popup) {
+                const idx = parseInt(
+                    (popup as HTMLElement).dataset.popupId ?? "0",
+                    10,
+                );
+                closePopup(idx);
+            }
+        });
+    });
+</script>
