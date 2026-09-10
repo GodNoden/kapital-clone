@@ -241,79 +241,96 @@ const items: AccordionItem[] = [
     import Swiper from "swiper";
     import { Pagination } from "swiper/modules";
 
-    // Desktop: Acordeón + Phone images
-    const accordion = document.querySelector<HTMLElement>(
-        "[data-app-accordion]",
-    );
+    // Desktop: Accordion + Phone images
+    const accordion = document.querySelector<HTMLElement>("[data-accordion]");
     const phoneImages = Array.from(
-        document.querySelectorAll<HTMLElement>(".app-phone-img"),
+        document.querySelectorAll<HTMLElement>(".monitoring-phone-img"),
     );
-    const dots = Array.from(
-        document.querySelectorAll<HTMLButtonElement>("[data-app-dots] button"),
+    const desktopDots = Array.from(
+        document.querySelectorAll<HTMLButtonElement>(
+            "#monitoring-dots-desktop button",
+        ),
+    );
+    const mobileDots = Array.from(
+        document.querySelectorAll<HTMLButtonElement>(
+            "#monitoring-dots-mobile button",
+        ),
     );
 
     function setActiveIndex(index: number) {
-        // Update accordion
+        // Update accordion items
         accordion
-            ?.querySelectorAll("[data-accordion-item]")
+            ?.querySelectorAll<HTMLElement>("[data-accordion-item]")
             .forEach((item, i) => {
-                const htmlItem = item as HTMLElement;
                 const isOpen = i === index;
-                htmlItem.dataset.open = String(isOpen);
-                const trigger = htmlItem.querySelector(
-                    "[data-accordion-trigger]",
+                item.dataset.open = String(isOpen);
+                item.querySelector("[data-accordion-trigger]")?.setAttribute(
+                    "aria-expanded",
+                    String(isOpen),
                 );
-                trigger?.setAttribute("aria-expanded", String(isOpen));
             });
 
-        // Update phone images
+        // Update phone images with clip-path animation
         phoneImages.forEach((el, i) => {
             if (i === index) {
                 el.style.clipPath = "inset(0)";
-                el.querySelectorAll<HTMLImageElement>("img").forEach(
-                    (child) => {
-                        child.style.transform = "translateY(0%)";
-                    },
-                );
+                el.querySelectorAll<HTMLElement>("img").forEach((child) => {
+                    child.style.transform = "translateY(0%)";
+                });
             } else {
                 el.style.clipPath = "inset(100% 0 0 0)";
-                el.querySelectorAll<HTMLImageElement>("img").forEach(
-                    (child) => {
-                        child.style.transform = "translateY(5%)";
-                    },
-                );
+                el.querySelectorAll<HTMLElement>("img").forEach((child) => {
+                    child.style.transform = "translateY(5%)";
+                });
             }
         });
 
-        // Update dots
-        dots.forEach((dot, i) => {
+        // Update desktop dots
+        desktopDots.forEach((dot, i) => {
             if (i === index) {
-                dot.classList.add("bg-kapital-black", "h-6");
-                dot.classList.remove("bg-gray-4");
+                dot.dataset.active = "true";
             } else {
-                dot.classList.remove("bg-kapital-black", "h-6");
-                dot.classList.add("bg-gray-4");
+                dot.dataset.active = "false";
+            }
+        });
+
+        // Update mobile dots
+        mobileDots.forEach((dot, i) => {
+            if (i === index) {
+                dot.dataset.active = "true";
+            } else {
+                dot.dataset.active = "false";
             }
         });
     }
 
     // Accordion triggers
     accordion
-        ?.querySelectorAll("[data-accordion-trigger]")
+        ?.querySelectorAll<HTMLElement>("[data-accordion-trigger]")
         .forEach((trigger, i) => {
             trigger.addEventListener("click", () => setActiveIndex(i));
         });
 
-    // Dot triggers
-    dots.forEach((dot, i) => {
+    // Desktop dot triggers
+    desktopDots.forEach((dot, i) => {
         dot.addEventListener("click", () => setActiveIndex(i));
     });
 
-    // Mobile: Swiper
-    new Swiper(".app-mobile-swiper", {
+    // Mobile dot triggers
+    mobileDots.forEach((dot, i) => {
+        dot.addEventListener("click", () => setActiveIndex(i));
+    });
+
+    // Mobile Swiper
+    const mobileSwiper = new Swiper(".monitoring-mobile-swiper", {
         modules: [Pagination],
         slidesPerView: 1,
         spaceBetween: 20,
         grabCursor: true,
+        on: {
+            slideChange(swiper) {
+                setActiveIndex(swiper.realIndex);
+            },
+        },
     });
 </script>

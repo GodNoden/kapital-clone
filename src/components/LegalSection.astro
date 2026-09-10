@@ -65,3 +65,149 @@
         </div>
     </div>
 </section>
+
+<script>
+    const lerp = (start: number, end: number, t: number) =>
+        start + (end - start) * t;
+
+    function initMarquees() {
+        document
+            .querySelectorAll<HTMLElement>("[data-partners-track]")
+            .forEach((track) => {
+                const container = track.parentElement;
+                const group = track.querySelector<HTMLElement>(
+                    "[data-partners-group]",
+                );
+                if (!container || !group || !track) return;
+
+                const state = {
+                    raf: 0,
+                    x: 0,
+                    speed: 0,
+                    targetSpeed: 0,
+                    loopWidth: 0,
+                    lastTime: 0,
+                    isPaused: false,
+                    isInView: false,
+                };
+
+                const getGap = (): number => {
+                    const style = window.getComputedStyle(track);
+                    return parseFloat(style.columnGap || style.gap || "0") || 0;
+                };
+
+                const getSpeed = (): number =>
+                    window.matchMedia("(min-width: 768px)").matches ? 102 : 84;
+
+                const cloneGroup = (): HTMLElement => {
+                    const clone = group.cloneNode(true) as HTMLElement;
+                    clone.removeAttribute("data-partners-group");
+                    clone.setAttribute("data-partners-clone", "");
+                    clone.setAttribute("aria-hidden", "true");
+                    clone
+                        .querySelectorAll<HTMLAnchorElement>("a")
+                        .forEach((a) => {
+                            a.tabIndex = -1;
+                        });
+                    return clone;
+                };
+
+                const setup = () => {
+                    track
+                        .querySelectorAll("[data-partners-clone]")
+                        .forEach((c) => c.remove());
+                    const gap = getGap();
+                    state.loopWidth = group.scrollWidth + gap;
+                    if (!state.loopWidth) return;
+
+                    let totalWidth = group.scrollWidth;
+                    const viewportWidth =
+                        container.offsetWidth + state.loopWidth;
+                    while (totalWidth < viewportWidth) {
+                        track.appendChild(cloneGroup());
+                        totalWidth += state.loopWidth;
+                    }
+                    state.x = state.x % state.loopWidth;
+                    track.style.transform = `translate3d(${-state.x}px, 0, 0)`;
+                };
+
+                const updateTargetSpeed = () => {
+                    state.targetSpeed = state.isPaused ? 0 : getSpeed();
+                };
+
+                const setPaused = (paused: boolean) => {
+                    state.isPaused = paused;
+                    updateTargetSpeed();
+                };
+
+                const animate = (time: number) => {
+                    const dt = state.lastTime
+                        ? (time - state.lastTime) / 1000
+                        : 0;
+                    state.lastTime = time;
+                    updateTargetSpeed();
+                    state.speed = lerp(state.speed, state.targetSpeed, 0.05);
+
+                    if (state.loopWidth) {
+                        state.x =
+                            (state.x + state.speed * dt) % state.loopWidth;
+                        track.style.transform = `translate3d(${-state.x}px, 0, 0)`;
+                    }
+                    state.raf = requestAnimationFrame(animate);
+                };
+
+                const start = () => {
+                    if (!state.raf) {
+                        state.lastTime = 0;
+                        state.raf = requestAnimationFrame(animate);
+                    }
+                };
+
+                const stop = () => {
+                    if (state.raf) {
+                        cancelAnimationFrame(state.raf);
+                        state.raf = 0;
+                        state.lastTime = 0;
+                    }
+                };
+
+                setup();
+                setPaused(false);
+
+                if ("IntersectionObserver" in window) {
+                    const observer = new IntersectionObserver(
+                        ([entry]) => {
+                            state.isInView = entry?.isIntersecting ?? false;
+                            if (state.isInView) {
+                                setup();
+                                start();
+                            } else {
+                                stop();
+                            }
+                        },
+                        { rootMargin: "200px 0px", threshold: 0 },
+                    );
+                    observer.observe(container);
+                } else {
+                    state.isInView = true;
+                    start();
+                }
+
+                container.addEventListener("mouseenter", () => setPaused(true));
+                container.addEventListener("mouseleave", () =>
+                    setPaused(false),
+                );
+                container.addEventListener("focusin", () => setPaused(true));
+                container.addEventListener("focusout", () => setPaused(false));
+                window.addEventListener("resize", setup);
+            });
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initMarquees, {
+            once: true,
+        });
+    } else {
+        initMarquees();
+    }
+</script>

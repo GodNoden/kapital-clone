@@ -1,7 +1,19 @@
+/* 1. La fuente primero (Vite la resuelve y la emite en el build) */
+@import '@fontsource-variable/inter-tight';
+
+/* 2. Tailwind */
 @import 'tailwindcss';
 
-/* Variables de color de Kapital */
+/* 3. Theme tokens */
 @theme {
+    /* Fuente default del sitio (la usa el preflight de Tailwind en <html>) */
+    --font-sans: 'Inter Tight Variable', ui-sans-serif, system-ui, -apple-system,
+        'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+    /* Genera la utility `font-inter` que usan varios componentes */
+    --font-inter: 'Inter Tight Variable', ui-sans-serif, system-ui, sans-serif;
+
+    /* Tus colores existentes */
     --color-kapital-black: #1C180D;
     --color-kapital-white: #FFFFFF;
     --color-cream-gradient: #EDE9E3;
@@ -13,18 +25,18 @@
     --color-divider: rgba(28, 24, 13, 0.1);
 }
 
-/* Estilos base */
+/* 4. Base */
 html {
     scroll-behavior: smooth;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* Animación de entrada para el contenido del hero */
+/* 5. Animación del hero (si la tenías) */
 .animate-in {
     animation: fadeInUp 0.8s ease-out;
 }

@@ -22,7 +22,7 @@ const slides: Slide[] = [
             href: "https://onboarding.kapital.com/",
             type: "link",
         },
-        theme: "light",
+        theme: "light", // ← Agregar esto
         desktop: "/hero/slide-1-desktop.webp",
         mobile: "/hero/slide-1-mobile.webp",
     },
@@ -34,7 +34,7 @@ const slides: Slide[] = [
             label: "Transfiere hoy",
             href: "/divisas/cambio-divisas-en-efectivo-personas",
         },
-        theme: "dark",
+        theme: "dark", // ← Agregar esto
         desktop: "/hero/slide-2-desktop.webp",
         mobile: "/hero/slide-2-mobile.webp",
     },
@@ -47,7 +47,7 @@ const slides: Slide[] = [
             href: "#",
             type: "button",
         },
-        theme: "dark",
+        theme: "dark", // ← Agregar esto
         desktop: "/hero/slide-3-desktop.webp",
         mobile: "/hero/slide-3-mobile.webp",
     },
@@ -59,7 +59,7 @@ const slides: Slide[] = [
             label: "Quiero Invertir",
             href: "/inversiones/cedes-empresarial",
         },
-        theme: "dark",
+        theme: "dark", // ← Agregar esto
         desktop: "/hero/slide-4-desktop.webp",
         mobile: "/hero/slide-4-desktop.webp",
         secondaryImage: "/hero/slide-4-inversion.svg",
@@ -79,6 +79,7 @@ const slides: Slide[] = [
                                 ? "text-kapital-black"
                                 : "bg-black text-white",
                         ]}
+                        data-theme={slide.theme}
                     >
                         {/* Imagen de fondo desktop */}
                         <img
@@ -232,7 +233,7 @@ const slides: Slide[] = [
     import { Navigation, Pagination, Autoplay } from "swiper/modules";
     import "swiper/css";
 
-    new Swiper(".hero-swiper", {
+    const heroSwiper = new Swiper(".hero-swiper", {
         modules: [Navigation, Pagination, Autoplay],
         loop: true,
         speed: 1200,
@@ -249,7 +250,17 @@ const slides: Slide[] = [
             prevEl: ".hero-prev",
         },
         on: {
-            slideChangeTransitionStart() {
+            slideChange(swiper) {
+                const activeSlide = swiper.slides[
+                    swiper.activeIndex
+                ] as HTMLElement;
+                const theme = activeSlide?.dataset.theme || "light";
+                const header = document.getElementById("rebrand-site-header");
+
+                if (header) {
+                    header.setAttribute("data-theme", theme);
+                }
+
                 // Animación de entrada del contenido
                 document.querySelectorAll(".swiper-slide").forEach((slide) => {
                     const content = slide.querySelector(".container > div");
@@ -261,5 +272,17 @@ const slides: Slide[] = [
                 });
             },
         },
+    });
+
+    // Set initial theme
+    document.addEventListener("DOMContentLoaded", () => {
+        const firstSlide = document.querySelector(
+            ".swiper-slide",
+        ) as HTMLElement;
+        const theme = firstSlide?.dataset.theme || "light";
+        const header = document.getElementById("rebrand-site-header");
+        if (header) {
+            header.setAttribute("data-theme", theme);
+        }
     });
 </script>
