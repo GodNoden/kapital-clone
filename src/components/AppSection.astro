@@ -1,4 +1,6 @@
 ---
+import SliderArrows from "./SliderArrows.astro";
+
 interface PhoneImage {
     bg: string;
     label?: string;
@@ -44,9 +46,11 @@ const items: AccordionItem[] = [
 ];
 ---
 
-<section class="w-full relative overflow-clip bg-white py-14 md:py-24">
-    <div class="max-w-container mx-auto px-4 md:px-8">
-        {/* Header */}
+<section class="w-full relative overflow-clip min-w-0 bg-white py-14 md:py-24">
+    <div
+        class="grid grid-cols-5 gap-4 px-4 md:grid-cols-12 lg:gap-5 xl:px-0 w-full max-w-container mx-auto"
+    >
+        {/* Header - centrado */}
         <div
             class="col-span-full max-w-[793px] mx-auto w-full flex flex-col lg:items-center gap-2 lg:gap-8 lg:text-center mb-8 lg:mb-24"
         >
@@ -57,11 +61,11 @@ const items: AccordionItem[] = [
         </div>
 
         {/* Desktop layout */}
-        <div class="hidden md:grid md:grid-cols-12 gap-8">
-            {/* Accordion */}
+        <div class="hidden md:contents">
+            {/* Accordion - izquierda */}
             <div
                 class="md:col-span-5 flex flex-col justify-center"
-                data-app-accordion
+                data-accordion
                 data-always-one-open="true"
             >
                 {
@@ -81,7 +85,7 @@ const items: AccordionItem[] = [
                                     {item.title}
                                 </span>
                                 <span
-                                    class="shrink-0 text-kapital-black transition-transform duration-1000 ease-out group-data-[open=true]:rotate-180"
+                                    class="shrink-0 text-kapital-black transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-data-[open=true]:rotate-180"
                                     aria-hidden="true"
                                 >
                                     <svg
@@ -100,9 +104,9 @@ const items: AccordionItem[] = [
                                     </svg>
                                 </span>
                             </button>
-                            <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-1000 ease-out group-data-[open=true]:grid-rows-[1fr]">
+                            <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-data-[open=true]:grid-rows-[1fr]">
                                 <div class="overflow-hidden">
-                                    <p class="pb-4 md:pb-6 text-sm text-gray-1">
+                                    <p class="pb-4 md:pb-6 text-base text-gray-1">
                                         {item.body}
                                     </p>
                                 </div>
@@ -112,7 +116,7 @@ const items: AccordionItem[] = [
                 }
             </div>
 
-            {/* Phone images */}
+            {/* Phone images + Dots - derecha (TODO EN EL MISMO CONTENEDOR) */}
             <div
                 class="md:col-span-7 flex flex-row items-center justify-between gap-20 ml-[84px]"
             >
@@ -122,12 +126,12 @@ const items: AccordionItem[] = [
                     {
                         items.map((item, i) => (
                             <div
-                                class="app-phone-img absolute inset-0 transition-all duration-[1200ms] ease-in-out"
+                                class="monitoring-phone-img absolute inset-0 w-full h-full transition-[opacity,transform] duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
                                 data-phone-index={i}
                                 style={
                                     i === 0
-                                        ? "clip-path: inset(0);"
-                                        : "clip-path: inset(100% 0 0 0);"
+                                        ? "opacity: 1; transform: translateY(0%) scale(1); z-index: 2;"
+                                        : "opacity: 0; transform: translateY(4%) scale(1.02); z-index: 1;"
                                 }
                             >
                                 <img
@@ -136,13 +140,8 @@ const items: AccordionItem[] = [
                                     width="500"
                                     height="670"
                                     class="absolute inset-0 w-full h-full object-cover"
-                                    loading="lazy"
+                                    loading={i === 0 ? "eager" : "lazy"}
                                     decoding="async"
-                                    style={
-                                        i === 0
-                                            ? "transform: translateY(0%);"
-                                            : "transform: translateY(5%);"
-                                    }
                                 />
                                 {item.phone.label && (
                                     <img
@@ -153,15 +152,13 @@ const items: AccordionItem[] = [
                                         class="absolute w-full object-contain bottom-0 left-0 right-0 mx-auto max-w-[300px]"
                                         loading="lazy"
                                         decoding="async"
-                                        style={
-                                            i === 0
-                                                ? "transform: translateY(0%);"
-                                                : "transform: translateY(5%);"
-                                        }
                                     />
                                 )}
                             </div>
                         ))
+                    }
+                    {
+                        /* Overlay en degradado: oscurece solo la base (para legibilidad del label), deja el resto de la foto con su brillo real */
                     }
                     <div
                         class="absolute inset-0 bg-black/35 rounded-[28px] pointer-events-none"
@@ -169,11 +166,16 @@ const items: AccordionItem[] = [
                     </div>
                 </div>
 
-                {/* Dots */}
+                {
+                    /* Dots verticales - AHORA DENTRO del contenedor de imágenes */
+                }
                 <div
                     class="flex relative h-full flex-col justify-center items-end"
                 >
-                    <div class="flex flex-col gap-[10px]" data-app-dots>
+                    <div
+                        id="monitoring-dots-desktop"
+                        class="flex flex-col gap-[10px]"
+                    >
                         {
                             items.map((_, i) => (
                                 <button
@@ -195,29 +197,31 @@ const items: AccordionItem[] = [
         </div>
 
         {/* Mobile layout */}
-        <div class="md:hidden">
-            <div class="swiper app-mobile-swiper !overflow-visible">
+        <div class="md:hidden col-span-full">
+            <div class="swiper monitoring-mobile-swiper !overflow-visible">
                 <div class="swiper-wrapper">
                     {
                         items.map((item) => (
                             <div class="swiper-slide flex flex-col gap-6">
                                 <div class="relative overflow-hidden rounded-[28px] w-full max-w-[500px] aspect-[500/670] mx-auto">
-                                    <img
-                                        src={item.phone.bg}
-                                        alt={item.title}
-                                        class="absolute inset-0 w-full h-full object-cover"
-                                        loading="lazy"
-                                        decoding="async"
-                                    />
-                                    {item.phone.label && (
+                                    <div class="monitoring-phone-img relative w-full h-full">
                                         <img
-                                            src={item.phone.label}
-                                            alt=""
-                                            class="absolute w-full object-contain bottom-0 left-0 right-0 mx-auto max-w-[300px]"
+                                            src={item.phone.bg}
+                                            alt={item.title}
+                                            class="absolute inset-0 w-full h-full object-cover"
                                             loading="lazy"
                                             decoding="async"
                                         />
-                                    )}
+                                        {item.phone.label && (
+                                            <img
+                                                src={item.phone.label}
+                                                alt=""
+                                                class="absolute w-full object-contain bottom-0 left-0 right-0 mx-auto max-w-[300px]"
+                                                loading="lazy"
+                                                decoding="async"
+                                            />
+                                        )}
+                                    </div>
                                     <div class="absolute inset-0 bg-black/35 rounded-[28px]" />
                                 </div>
                                 <div>
@@ -233,104 +237,133 @@ const items: AccordionItem[] = [
                     }
                 </div>
             </div>
+
+            {/* Dots horizontales mobile */}
+            <div class="flex justify-center mt-12">
+                <div
+                    id="monitoring-dots-mobile"
+                    class="flex flex-row gap-[10px]"
+                >
+                    {
+                        items.map((_, i) => (
+                            <button
+                                type="button"
+                                class:list={[
+                                    "h-2 w-2 rounded-full transition-all duration-300",
+                                    i === 0
+                                        ? "bg-kapital-black w-6"
+                                        : "bg-gray-4",
+                                ]}
+                                data-dot-index={i}
+                                aria-label={`Ir a ${items[i].title}`}
+                            />
+                        ))
+                    }
+                </div>
+            </div>
         </div>
     </div>
-</section>
 
-<script>
-    import Swiper from "swiper";
-    import { Pagination } from "swiper/modules";
+    <script>
+        import Swiper from "swiper";
+        import { Pagination } from "swiper/modules";
 
-    // Desktop: Accordion + Phone images
-    const accordion = document.querySelector<HTMLElement>("[data-accordion]");
-    const phoneImages = Array.from(
-        document.querySelectorAll<HTMLElement>(".monitoring-phone-img"),
-    );
-    const desktopDots = Array.from(
-        document.querySelectorAll<HTMLButtonElement>(
-            "#monitoring-dots-desktop button",
-        ),
-    );
-    const mobileDots = Array.from(
-        document.querySelectorAll<HTMLButtonElement>(
-            "#monitoring-dots-mobile button",
-        ),
-    );
+        // Desktop: Accordion + Phone images
+        const accordion =
+            document.querySelector<HTMLElement>("[data-accordion]");
+        const phoneImages = Array.from(
+            document.querySelectorAll<HTMLElement>(".monitoring-phone-img"),
+        );
+        const desktopDots = Array.from(
+            document.querySelectorAll<HTMLButtonElement>(
+                "#monitoring-dots-desktop button",
+            ),
+        );
+        const mobileDots = Array.from(
+            document.querySelectorAll<HTMLButtonElement>(
+                "#monitoring-dots-mobile button",
+            ),
+        );
 
-    function setActiveIndex(index: number) {
-        // Update accordion items
-        accordion
-            ?.querySelectorAll<HTMLElement>("[data-accordion-item]")
-            .forEach((item, i) => {
-                const isOpen = i === index;
-                item.dataset.open = String(isOpen);
-                item.querySelector("[data-accordion-trigger]")?.setAttribute(
-                    "aria-expanded",
-                    String(isOpen),
-                );
+        function setActiveIndex(index: number) {
+            // Update accordion items
+            accordion
+                ?.querySelectorAll<HTMLElement>("[data-accordion-item]")
+                .forEach((item, i) => {
+                    const isOpen = i === index;
+                    item.dataset.open = String(isOpen);
+                    item.querySelector(
+                        "[data-accordion-trigger]",
+                    )?.setAttribute("aria-expanded", String(isOpen));
+                });
+
+            // Update phone images with a crossfade (opacity + subtle translate).
+            // The active slide always gets the higher z-index so it fully
+            // covers the outgoing one — no container background can ever
+            // show through mid-transition, so there is no gray flash.
+            phoneImages.forEach((el, i) => {
+                if (i === index) {
+                    el.style.zIndex = "2";
+                    el.style.opacity = "1";
+                    el.style.transform = "translateY(0%) scale(1)";
+                } else {
+                    el.style.zIndex = "1";
+                    el.style.opacity = "0";
+                    el.style.transform = "translateY(4%) scale(1.02)";
+                }
             });
 
-        // Update phone images with clip-path animation
-        phoneImages.forEach((el, i) => {
-            if (i === index) {
-                el.style.clipPath = "inset(0)";
-                el.querySelectorAll<HTMLElement>("img").forEach((child) => {
-                    child.style.transform = "translateY(0%)";
-                });
-            } else {
-                el.style.clipPath = "inset(100% 0 0 0)";
-                el.querySelectorAll<HTMLElement>("img").forEach((child) => {
-                    child.style.transform = "translateY(5%)";
-                });
-            }
-        });
+            // Update desktop dots
+            desktopDots.forEach((dot, i) => {
+                if (i === index) {
+                    dot.classList.add("bg-kapital-black", "h-6");
+                    dot.classList.remove("bg-gray-4");
+                } else {
+                    dot.classList.remove("bg-kapital-black", "h-6");
+                    dot.classList.add("bg-gray-4");
+                }
+            });
 
-        // Update desktop dots
+            // Update mobile dots
+            mobileDots.forEach((dot, i) => {
+                if (i === index) {
+                    dot.classList.add("bg-kapital-black", "w-6");
+                    dot.classList.remove("bg-gray-4");
+                } else {
+                    dot.classList.remove("bg-kapital-black", "w-6");
+                    dot.classList.add("bg-gray-4");
+                }
+            });
+        }
+
+        // Accordion triggers
+        accordion
+            ?.querySelectorAll<HTMLElement>("[data-accordion-trigger]")
+            .forEach((trigger, i) => {
+                trigger.addEventListener("click", () => setActiveIndex(i));
+            });
+
+        // Desktop dot triggers
         desktopDots.forEach((dot, i) => {
-            if (i === index) {
-                dot.dataset.active = "true";
-            } else {
-                dot.dataset.active = "false";
-            }
+            dot.addEventListener("click", () => setActiveIndex(i));
         });
 
-        // Update mobile dots
+        // Mobile dot triggers
         mobileDots.forEach((dot, i) => {
-            if (i === index) {
-                dot.dataset.active = "true";
-            } else {
-                dot.dataset.active = "false";
-            }
-        });
-    }
-
-    // Accordion triggers
-    accordion
-        ?.querySelectorAll<HTMLElement>("[data-accordion-trigger]")
-        .forEach((trigger, i) => {
-            trigger.addEventListener("click", () => setActiveIndex(i));
+            dot.addEventListener("click", () => setActiveIndex(i));
         });
 
-    // Desktop dot triggers
-    desktopDots.forEach((dot, i) => {
-        dot.addEventListener("click", () => setActiveIndex(i));
-    });
-
-    // Mobile dot triggers
-    mobileDots.forEach((dot, i) => {
-        dot.addEventListener("click", () => setActiveIndex(i));
-    });
-
-    // Mobile Swiper
-    const mobileSwiper = new Swiper(".monitoring-mobile-swiper", {
-        modules: [Pagination],
-        slidesPerView: 1,
-        spaceBetween: 20,
-        grabCursor: true,
-        on: {
-            slideChange(swiper) {
-                setActiveIndex(swiper.realIndex);
+        // Mobile: Swiper
+        const mobileSwiper = new Swiper(".monitoring-mobile-swiper", {
+            modules: [Pagination],
+            slidesPerView: 1,
+            spaceBetween: 20,
+            grabCursor: true,
+            on: {
+                slideChange(swiper) {
+                    setActiveIndex(swiper.realIndex);
+                },
             },
-        },
-    });
-</script>
+        });
+    </script>
+</section>

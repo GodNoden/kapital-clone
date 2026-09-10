@@ -1,4 +1,6 @@
 ---
+import SliderArrows from './SliderArrows.astro';
+
 interface Slide {
     id: number;
     eyebrow?: string;
@@ -9,6 +11,9 @@ interface Slide {
     desktop: string;
     mobile: string;
     secondaryImage?: string;
+    btnColor: string;
+    btnColorHover: string;
+    btnTextColor: string; // ← NUEVO
 }
 
 const slides: Slide[] = [
@@ -22,9 +27,12 @@ const slides: Slide[] = [
             href: "https://onboarding.kapital.com/",
             type: "link",
         },
-        theme: "light", // ← Agregar esto
+        theme: "light",
         desktop: "/hero/slide-1-desktop.webp",
         mobile: "/hero/slide-1-mobile.webp",
+        btnColor: "rgba(220, 214, 207, 0.75)",
+        btnColorHover: "rgba(220, 214, 207, 0.9)",
+        btnTextColor: "text-kapital-black", // ← NEGRO solo para el slide 1
     },
     {
         id: 1,
@@ -34,9 +42,12 @@ const slides: Slide[] = [
             label: "Transfiere hoy",
             href: "/divisas/cambio-divisas-en-efectivo-personas",
         },
-        theme: "dark", // ← Agregar esto
+        theme: "dark",
         desktop: "/hero/slide-2-desktop.webp",
         mobile: "/hero/slide-2-mobile.webp",
+        btnColor: "rgba(114, 108, 100, 0.75)",
+        btnColorHover: "rgba(114, 108, 100, 0.9)",
+        btnTextColor: "text-white", // ← BLANCO
     },
     {
         id: 2,
@@ -47,9 +58,12 @@ const slides: Slide[] = [
             href: "#",
             type: "button",
         },
-        theme: "dark", // ← Agregar esto
+        theme: "dark",
         desktop: "/hero/slide-3-desktop.webp",
         mobile: "/hero/slide-3-mobile.webp",
+        btnColor: "rgba(160, 155, 148, 0.75)",
+        btnColorHover: "rgba(160, 155, 148, 0.9)",
+        btnTextColor: "text-white", // ← BLANCO
     },
     {
         id: 3,
@@ -59,10 +73,13 @@ const slides: Slide[] = [
             label: "Quiero Invertir",
             href: "/inversiones/cedes-empresarial",
         },
-        theme: "dark", // ← Agregar esto
+        theme: "dark",
         desktop: "/hero/slide-4-desktop.webp",
         mobile: "/hero/slide-4-desktop.webp",
         secondaryImage: "/hero/slide-4-inversion.svg",
+        btnColor: "rgba(144, 136, 127, 0.75)",
+        btnColorHover: "rgba(144, 136, 127, 0.9)",
+        btnTextColor: "text-white", // ← BLANCO
     },
 ];
 ---
@@ -118,7 +135,7 @@ const slides: Slide[] = [
 
                         {/* Contenido */}
                         <div class="container mx-auto relative items-end lg:items-center h-full grid gap-y-12 xl:grid-cols-12 px-4 lg:px-[56px] xl:max-w-[1600px] pt-36 pb-20 xl:py-40">
-                            <div class="flex flex-col gap-y-8 xl:col-span-8">
+                            <div class="flex flex-col gap-y-8 xl:col-span-8 hero-content-to-fade">
                                 {slide.eyebrow && (
                                     <p class="text-lg font-semibold">
                                         {slide.eyebrow}
@@ -136,14 +153,22 @@ const slides: Slide[] = [
                                     {slide.cta.type === "button" ? (
                                         <button
                                             type="button"
-                                            class="rounded-full px-6 py-4 text-sm lg:px-8 lg:py-5 bg-white/90 backdrop-blur-md text-kapital-black hover:bg-white transition-colors"
+                                            class:list={[
+                                                "btn-glass-bg rounded-full px-6 py-4 text-base lg:px-8 lg:py-5 text-lg hover:brightness-110 transition-all duration-300",
+                                                slide.btnTextColor,
+                                            ]}
+                                            style={`background-color: ${slide.btnColor}; backdrop-filter: blur(12.5px);`}
                                         >
                                             {slide.cta.label}
                                         </button>
                                     ) : (
                                         <a
                                             href={slide.cta.href}
-                                            class="rounded-full px-6 py-4 text-sm lg:px-8 lg:py-5 bg-white/90 backdrop-blur-md text-kapital-black hover:bg-white transition-colors"
+                                            class:list={[
+                                                "btn-glass-bg rounded-full px-6 py-4 text-base lg:px-8 lg:py-5 text-lg hover:brightness-110 transition-all duration-300",
+                                                slide.btnTextColor,
+                                            ]}
+                                            style={`background-color: ${slide.btnColor}; backdrop-filter: blur(12.5px);`}
                                         >
                                             {slide.cta.label}
                                         </a>
@@ -174,38 +199,11 @@ const slides: Slide[] = [
         <div class="flex items-center justify-center pb-4 md:pb-8">
             <div class="flex items-center gap-8">
                 <div class="hero-dots flex items-center gap-2.5"></div>
-                <div class="flex items-center gap-4">
-                    <button
-                        class="hero-prev rotate-180 text-gray-500 hover:text-kapital-black disabled:opacity-40 disabled:cursor-not-allowed"
-                        aria-label="Anterior"
-                    >
-                        <svg
-                            width="30"
-                            height="30"
-                            viewBox="0 0 30 30"
-                            fill="none"
-                        >
-                            <path
-                                d="M16.5033 25L15.1843 23.6963L22.9297 15.9356H3.52783V14.0644H22.9297L15.1843 6.30368L16.5033 5L26.4726 15L16.5033 25Z"
-                                fill="currentColor"></path>
-                        </svg>
-                    </button>
-                    <button
-                        class="hero-next text-gray-500 hover:text-kapital-black disabled:opacity-40 disabled:cursor-not-allowed"
-                        aria-label="Siguiente"
-                    >
-                        <svg
-                            width="30"
-                            height="30"
-                            viewBox="0 0 30 30"
-                            fill="none"
-                        >
-                            <path
-                                d="M16.5033 25L15.1843 23.6963L22.9297 15.9356H3.52783V14.0644H22.9297L15.1843 6.30368L16.5033 5L26.4726 15L16.5033 25Z"
-                                fill="currentColor"></path>
-                        </svg>
-                    </button>
-                </div>
+                <SliderArrows
+                    prevClass="hero-prev"
+                    nextClass="hero-next"
+                    size={32}
+                />
             </div>
         </div>
     </div>
@@ -260,21 +258,10 @@ const slides: Slide[] = [
                 if (header) {
                     header.setAttribute("data-theme", theme);
                 }
-
-                // Animación de entrada del contenido
-                document.querySelectorAll(".swiper-slide").forEach((slide) => {
-                    const content = slide.querySelector(".container > div");
-                    if (slide.classList.contains("swiper-slide-active")) {
-                        content?.classList.add("animate-in");
-                    } else {
-                        content?.classList.remove("animate-in");
-                    }
-                });
             },
         },
     });
 
-    // Set initial theme
     document.addEventListener("DOMContentLoaded", () => {
         const firstSlide = document.querySelector(
             ".swiper-slide",

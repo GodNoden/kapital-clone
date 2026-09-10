@@ -1,4 +1,6 @@
 ---
+import SliderArrows from "./SliderArrows.astro";
+
 interface BlogPost {
     title: string;
     description: string;
@@ -116,38 +118,7 @@ const posts: BlogPost[] = [
                     >
                     </div>
                 </div>
-                <div class="flex items-center gap-[18px] shrink-0">
-                    <button
-                        class="blog-prev -scale-x-100 text-kapital-black disabled:opacity-40 disabled:cursor-not-allowed transition"
-                        aria-label="Anterior"
-                    >
-                        <svg
-                            width="30"
-                            height="30"
-                            viewBox="0 0 30 30"
-                            fill="none"
-                        >
-                            <path
-                                d="M16.5033 25L15.1843 23.6963L22.9297 15.9356H3.52783V14.0644H22.9297L15.1843 6.30368L16.5033 5L26.4726 15L16.5033 25Z"
-                                fill="currentColor"></path>
-                        </svg>
-                    </button>
-                    <button
-                        class="blog-next text-kapital-black disabled:opacity-40 disabled:cursor-not-allowed transition"
-                        aria-label="Siguiente"
-                    >
-                        <svg
-                            width="30"
-                            height="30"
-                            viewBox="0 0 30 30"
-                            fill="none"
-                        >
-                            <path
-                                d="M16.5033 25L15.1843 23.6963L22.9297 15.9356H3.52783V14.0644H22.9297L15.1843 6.30368L16.5033 5L26.4726 15L16.5033 25Z"
-                                fill="currentColor"></path>
-                        </svg>
-                    </button>
-                </div>
+                <SliderArrows prevClass="blog-prev" nextClass="blog-next" />
             </div>
         </div>
     </div>
@@ -190,7 +161,7 @@ const posts: BlogPost[] = [
     new Swiper(".blog-swiper", {
         modules: [Navigation],
         slidesPerView: "auto",
-        spaceBetween: 20,
+        spaceBetween: 24,
         grabCursor: true,
         watchSlidesProgress: true,
         navigation: {
@@ -200,9 +171,27 @@ const posts: BlogPost[] = [
         on: {
             slideChange(s) {
                 const bar = document.getElementById("blog-progress");
-                const total = s.slides.length;
-                const current = Math.min(s.realIndex + 1, total);
-                if (bar) bar.style.width = `${(current / total) * 100}%`;
+                if (!bar) return;
+
+                // Contar solo slides reales (excluye los duplicados si hay loop)
+                const realSlides = Array.from(
+                    s.slides.filter(
+                        (slide) =>
+                            !slide.classList.contains("swiper-slide-duplicate"),
+                    ),
+                );
+                const total = realSlides.length;
+
+                // Encontrar el último slide visible en pantalla
+                const visibleSlides = realSlides.filter((slide) =>
+                    slide.classList.contains("swiper-slide-visible"),
+                );
+                const lastVisible =
+                    visibleSlides[visibleSlides.length - 1] ||
+                    s.slides[s.activeIndex];
+
+                const currentIndex = realSlides.indexOf(lastVisible);
+                bar.style.width = `${((currentIndex + 1) / total) * 100}%`;
             },
         },
     });

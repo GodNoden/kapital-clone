@@ -23,6 +23,8 @@
     --color-gray-4: #E6E5E3;
     --color-gray-5: #F5F4F3;
     --color-divider: rgba(28, 24, 13, 0.1);
+    --container-max-width: 1440px;
+
 }
 
 /* 4. Base */
@@ -51,4 +53,159 @@ body {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* Hero slide animations */
+@keyframes heroFadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Los hijos directos del contenido del hero están ocultos por defecto */
+.hero-content-to-fade>* {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Delays escalonados para cada hijo */
+.hero-content-to-fade>*:nth-child(1) {
+    transition-delay: 0.5s;
+}
+
+.hero-content-to-fade>*:nth-child(2) {
+    transition-delay: 0.6s;
+}
+
+.hero-content-to-fade>*:nth-child(3) {
+    transition-delay: 0.7s;
+}
+
+.hero-content-to-fade>*:nth-child(4) {
+    transition-delay: 0.8s;
+}
+
+/* Cuando el slide está activo, muestra los hijos */
+.swiper-slide-active .hero-content-to-fade>* {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Cuando el slide deja de estar activo, los oculta rápido */
+.swiper-slide:not(.swiper-slide-active) .hero-content-to-fade>* {
+    transition-delay: 0s;
+}
+
+/* Colores de botones glass por slide */
+.hero-slide-1 .btn-glass-bg {
+    background-color: rgba(220, 214, 207, 0.75);
+}
+
+.hero-slide-2 .btn-glass-bg {
+    background-color: rgba(114, 108, 100, 0.75);
+}
+
+.hero-slide-3 .btn-glass-bg {
+    background-color: rgba(160, 155, 148, 0.75);
+}
+
+.hero-slide-4 .btn-glass-bg {
+    background-color: rgba(144, 136, 127, 0.75);
+}
+
+/* Hover: hacer el fondo un poco más sólido */
+.hero-slide-1 .btn-glass-bg:hover {
+    background-color: rgba(220, 214, 207, 0.9);
+}
+
+.hero-slide-2 .btn-glass-bg:hover {
+    background-color: rgba(114, 108, 100, 0.9);
+}
+
+.hero-slide-3 .btn-glass-bg:hover {
+    background-color: rgba(160, 155, 148, 0.9);
+}
+
+.hero-slide-4 .btn-glass-bg:hover {
+    background-color: rgba(144, 136, 127, 0.9);
+}
+
+/* Clase base del botón glass */
+.btn-glass-bg {
+    backdrop-filter: blur(12.5px);
+    -webkit-backdrop-filter: blur(12.5px);
+    transition: background-color 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* === Botones de flechas para sliders (patrón icon-button) === */
+.icon-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: color 200ms ease, opacity 200ms ease;
+}
+
+.icon-button svg {
+    width: var(--icon-size, 36px);
+    height: var(--icon-size, 36px);
+    transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* La flecha "anterior" se voltea sobre el SVG (no sobre el botón,
+     para que el hover-scale no cancele el flip) */
+.icon-button .icon-flip {
+    transform: scaleX(-1);
+}
+
+.icon-button:hover:not(:disabled) svg {
+    transform: scale(1.15);
+}
+
+.icon-button:hover:not(:disabled) .icon-flip {
+    transform: scaleX(-1) scale(1.15);
+}
+
+.icon-button:active:not(:disabled) svg {
+    transform: scale(0.92);
+}
+
+.icon-button:active:not(:disabled) .icon-flip {
+    transform: scaleX(-1) scale(0.92);
+}
+
+/* Swiper agrega .swiper-button-disabled automáticamente en los extremos */
+.icon-button:disabled,
+.icon-button.swiper-button-disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.icon-button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+}
+
+/* Cursor pointer para todos los elementos interactivos */
+button,
+[role="button"],
+a,
+summary,
+select,
+label[for] {
+    cursor: pointer;
+}
+
+.max-w-container {
+    max-width: 1440px;
 }

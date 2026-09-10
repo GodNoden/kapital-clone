@@ -1,0 +1,48 @@
+---
+interface Props {
+    prevClass: string;
+    nextClass: string;
+    tone?: "light" | "dark";
+    size?: number;
+}
+
+const { prevClass, nextClass, tone = "light", size = 36 } = Astro.props;
+
+const toneClasses =
+    tone === "dark"
+        ? "text-white/80 hover:text-white"
+        : "text-gray-500 hover:text-kapital-black";
+---
+
+<div
+    class="flex items-center gap-3 md:gap-4 shrink-0"
+    style={`--icon-size: ${size}px`}
+>
+    <button
+        type="button"
+        class={`icon-button ${toneClasses} ${prevClass}`}
+        aria-label="Anterior"
+    >
+        <svg
+            class="icon-flip"
+            viewBox="0 0 30 30"
+            fill="none"
+            aria-hidden="true"
+        >
+            <path
+                d="M16.5033 25L15.1843 23.6963L22.9297 15.9356H3.52783V14.0644H22.9297L15.1843 6.30368L16.5033 5L26.4726 15L16.5033 25Z"
+                fill="currentColor"></path>
+        </svg>
+    </button>
+    <button
+        type="button"
+        class={`icon-button ${toneClasses} ${nextClass}`}
+        aria-label="Siguiente"
+    >
+        <svg viewBox="0 0 30 30" fill="none" aria-hidden="true">
+            <path
+                d="M16.5033 25L15.1843 23.6963L22.9297 15.9356H3.52783V14.0644H22.9297L15.1843 6.30368L16.5033 5L26.4726 15L16.5033 25Z"
+                fill="currentColor"></path>
+        </svg>
+    </button>
+</div>

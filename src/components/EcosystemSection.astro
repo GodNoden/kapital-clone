@@ -1,6 +1,7 @@
 ---
 import { ecosystemCards } from "../data/ecosystem";
 import EcosystemPopup from "./EcosystemPopup.astro";
+import SliderArrows from "./SliderArrows.astro";
 ---
 
 <section class="w-full overflow-hidden bg-white">
@@ -48,7 +49,7 @@ import EcosystemPopup from "./EcosystemPopup.astro";
                                         <button
                                             type="button"
                                             data-ecosystem-trigger={index}
-                                            class="inline-flex items-center justify-center px-6 py-5 rounded-full text-sm lg:text-base text-white bg-white/20 backdrop-blur-md hover:bg-white/30 transition-colors"
+                                            class="inline-flex items-center justify-center px-6 py-5 rounded-full text-base lg:text-lg text-white bg-white/20 backdrop-blur-md hover:bg-white/30 transition-colors"
                                         >
                                             Más información
                                         </button>
@@ -72,38 +73,10 @@ import EcosystemPopup from "./EcosystemPopup.astro";
                     </div>
                 </div>
 
-                <div class="flex items-center gap-[18px] shrink-0">
-                    <button
-                        class="ecosystem-prev -scale-x-100 text-kapital-black disabled:opacity-40 disabled:cursor-not-allowed transition"
-                        aria-label="Anterior"
-                    >
-                        <svg
-                            width="30"
-                            height="30"
-                            viewBox="0 0 30 30"
-                            fill="none"
-                        >
-                            <path
-                                d="M16.5033 25L15.1843 23.6963L22.9297 15.9356H3.52783V14.0644H22.9297L15.1843 6.30368L16.5033 5L26.4726 15L16.5033 25Z"
-                                fill="currentColor"></path>
-                        </svg>
-                    </button>
-                    <button
-                        class="ecosystem-next text-kapital-black disabled:opacity-40 disabled:cursor-not-allowed transition"
-                        aria-label="Siguiente"
-                    >
-                        <svg
-                            width="30"
-                            height="30"
-                            viewBox="0 0 30 30"
-                            fill="none"
-                        >
-                            <path
-                                d="M16.5033 25L15.1843 23.6963L22.9297 15.9356H3.52783V14.0644H22.9297L15.1843 6.30368L16.5033 5L26.4726 15L16.5033 25Z"
-                                fill="currentColor"></path>
-                        </svg>
-                    </button>
-                </div>
+                <SliderArrows
+                    prevClass="ecosystem-prev"
+                    nextClass="ecosystem-next"
+                />
             </div>
         </div>
     </div>
@@ -124,6 +97,7 @@ import EcosystemPopup from "./EcosystemPopup.astro";
         slidesPerView: "auto",
         spaceBetween: 24,
         grabCursor: true,
+        watchSlidesProgress: true, // ← agregar esto
         navigation: {
             nextEl: ".ecosystem-next",
             prevEl: ".ecosystem-prev",
@@ -131,9 +105,27 @@ import EcosystemPopup from "./EcosystemPopup.astro";
         on: {
             slideChange(s) {
                 const bar = document.getElementById("ecosystem-progress");
-                const total = s.slides.length;
-                const current = Math.min(s.realIndex + 1, total);
-                if (bar) bar.style.width = `${(current / total) * 100}%`;
+                if (!bar) return;
+
+                // Contar solo slides reales (excluye los duplicados si hay loop)
+                const realSlides = Array.from(
+                    s.slides.filter(
+                        (slide) =>
+                            !slide.classList.contains("swiper-slide-duplicate"),
+                    ),
+                );
+                const total = realSlides.length;
+
+                // Encontrar el último slide visible en pantalla
+                const visibleSlides = realSlides.filter((slide) =>
+                    slide.classList.contains("swiper-slide-visible"),
+                );
+                const lastVisible =
+                    visibleSlides[visibleSlides.length - 1] ||
+                    s.slides[s.activeIndex];
+
+                const currentIndex = realSlides.indexOf(lastVisible);
+                bar.style.width = `${((currentIndex + 1) / total) * 100}%`;
             },
         },
     });
