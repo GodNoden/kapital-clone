@@ -112,7 +112,14 @@
                     "Rendimiento real."
                 ],
                 "copy": "La inversión que te da rentabilidad, seguridad y ganancias de hasta 8.50%*",
-                "cta": "Quiero Invertir"
+                "cta": "Quiero Invertir",
+                "investmentCard": {
+                    "title": "Inversión Kapital • 4602",
+                    "investedLabel": "Monto invertido",
+                    "investedAmount": "$1,028,666",
+                    "estimatedLabel": "Rendimiento estimado",
+                    "estimatedAmount": "$92,580"
+                }
             }
         ],
         "prev": "Anterior",
@@ -308,7 +315,40 @@
                 "title": "Productos a tu medida",
                 "body": "Consulta, revisa condiciones y contrata productos en minutos desde la app Kapital, sin afectar tu operación."
             }
-        ]
+        ],
+        "phones": {
+            "pagos": {
+                "title": "Pagos",
+                "items": [
+                    {
+                        "label": "Créditos"
+                    },
+                    {
+                        "label": "Pago de servicios"
+                    }
+                ],
+                "subItems": [
+                    {
+                        "label": "Teléfono Casa",
+                        "amount": "$2,123"
+                    },
+                    {
+                        "label": "Luz Casa",
+                        "amount": "$1,167"
+                    },
+                    {
+                        "label": "Gas",
+                        "amount": "$1,112"
+                    }
+                ]
+            },
+            "claveDinamica": {
+                "title": "Clave dinámica",
+                "description": "Ingresa la clave dinámica generada por tu token físico. Si no lo tienes, utiliza tu token digital para generarla.",
+                "resend": "Reenviar (2:44)",
+                "button": "Registra tu token digital"
+            }
+        }
     },
     "applePay": {
         "title": "Privacidad. Seguridad. Eso es Apple Pay.",

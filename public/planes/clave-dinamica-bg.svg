@@ -1,0 +1,28 @@
+<svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <mask id="frame-mask" fill="white">
+        <path d="M0 24C0 10.7452 10.7452 0 24 0H276C289.255 0 300 10.7452 300 24V300H0V24Z" />
+    </mask>
+    <path
+        d="M-2 24C-2 9.6406 9.6406 -2 24 -2H276C290.359 -2 302 9.6406 302 24H298C298 11.8497 288.15 2 276 2H24C11.8497 2 2 11.8497 2 24H-2ZM2 24M300 300H0H300M-2 300V24C-2 9.6406 9.6406 -2 24 -2V2C11.8497 2 2 11.8497 2 24V300H-2ZM276 -2C290.359 -2 302 9.6406 302 24V300H298V24C298 11.8497 288.15 2 276 2V-2Z"
+        fill="white" fill-opacity="0.5" mask="url(#frame-mask)" />
+
+    <!-- OTP container -->
+    <rect x="28.5" y="71.5" width="243" height="47" rx="7.5" stroke="#EDEDED" stroke-opacity="0.2" />
+
+    <!-- 6 OTP boxes -->
+    <rect x="36" y="79" width="28" height="32" rx="6" fill="white" fill-opacity="0.25" />
+    <circle cx="50" cy="95" r="3" fill="#D9D9D9" />
+    <rect x="76" y="79" width="28" height="32" rx="6" fill="white" fill-opacity="0.25" />
+    <circle cx="90" cy="95" r="3" fill="#D9D9D9" />
+    <rect x="116" y="79" width="28" height="32" rx="6" fill="white" fill-opacity="0.25" />
+    <circle cx="130" cy="95" r="3" fill="#D9D9D9" />
+    <rect x="156" y="79" width="28" height="32" rx="6" fill="white" fill-opacity="0.25" />
+    <circle cx="170" cy="95" r="3" fill="#D9D9D9" />
+    <rect x="196" y="79" width="28" height="32" rx="6" fill="white" fill-opacity="0.25" />
+    <circle cx="210" cy="95" r="3" fill="#D9D9D9" />
+    <rect x="236" y="79" width="28" height="32" rx="6" fill="white" fill-opacity="0.25" />
+    <circle cx="250" cy="95" r="3" fill="#D9D9D9" />
+
+    <!-- Button background -->
+    <rect x="72" y="242" width="156" height="33" rx="16.5" fill="#DBD0C2" fill-opacity="0.25" />
+</svg>

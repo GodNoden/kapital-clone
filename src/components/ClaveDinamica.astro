@@ -1,0 +1,107 @@
+---
+import { t, type Lang } from "../i18n";
+
+interface Props {
+    lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const title = t(lang, "appSection.phones.claveDinamica.title");
+const description = t(lang, "appSection.phones.claveDinamica.description");
+const resend = t(lang, "appSection.phones.claveDinamica.resend");
+const button = t(lang, "appSection.phones.claveDinamica.button");
+---
+
+<div class="clave-wrapper">
+    <img
+        src="/planes/clave-dinamica-bg.svg"
+        alt=""
+        aria-hidden="true"
+        class="clave-bg"
+    />
+    <div class="clave-overlay">
+        <h3 class="clave-title">{title}</h3>
+        <p class="clave-description">{description}</p>
+        <p class="clave-resend">{resend}</p>
+        <div class="clave-button-wrap">
+            <span class="clave-button">{button}</span>
+        </div>
+    </div>
+</div>
+
+<style>
+    .clave-wrapper {
+        display: grid;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        container-type: inline-size;
+    }
+    .clave-bg,
+    .clave-overlay {
+        grid-area: 1 / 1;
+        width: 100%;
+        height: 100%;
+    }
+    .clave-bg {
+        display: block;
+    }
+    .clave-overlay {
+        position: relative;
+        font-family:
+            "Inter",
+            system-ui,
+            -apple-system,
+            sans-serif;
+        -webkit-font-smoothing: antialiased;
+        color: #fff;
+    }
+    .clave-title {
+        position: absolute;
+        top: 6cqw;
+        left: 9cqw;
+        right: 9cqw;
+        margin: 0;
+        font-size: 7cqw;
+        font-weight: 400;
+        letter-spacing: -0.01em;
+    }
+    .clave-description {
+        position: absolute;
+        top: 42cqw;
+        left: 9cqw;
+        right: 9cqw;
+        margin: 0;
+        font-size: 3.8cqw;
+        font-weight: 400;
+        line-height: 1.4;
+        text-align: center;
+        opacity: 0.85;
+    }
+    .clave-resend {
+        position: absolute;
+        top: 66cqw;
+        left: 9cqw;
+        right: 9cqw;
+        margin: 0;
+        font-size: 4.2cqw;
+        font-weight: 500;
+        text-align: center;
+        opacity: 0.75;
+    }
+    .clave-button-wrap {
+        position: absolute;
+        top: 86cqw;
+        left: 9cqw;
+        right: 9cqw;
+        transform: translateY(-50%);
+        display: flex;
+        justify-content: center;
+    }
+    .clave-button {
+        font-size: 3.8cqw;
+        font-weight: 500;
+        color: #fff;
+        white-space: nowrap;
+    }
+</style>

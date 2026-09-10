@@ -532,12 +532,7 @@ const regulatoryLogos = [
                 </div>
                 <div class="block md:hidden w-full max-w-[372px]">
                     <!-- Mobile logotype SVG (simplified) -->
-                    <svg
-                        width="100%"
-                        height="auto"
-                        viewBox="0 0 372 98"
-                        fill="none"
-                    >
+                    <svg width="100%" viewBox="0 0 372 98" fill="none">
                         <path
                             d="M66.7816 76.8782H80.2767L65.0947 50.1275C64.1315 48.4406 63.6474 46.7538 63.6474 45.0669C63.6474 43.38 64.1315 41.6931 65.0947 40.0062L80.2767 13.2556H66.7816L52.3182 38.3193C50.8709 40.7299 50.1523 43.1405 50.1523 45.0669C50.1523 46.9933 50.8709 49.4039 52.3182 51.8144L66.7816 76.8782ZM36.4126 43.38C39.3073 43.38 41.7128 42.8958 43.6443 41.6931C45.0916 40.9745 46.7785 39.2825 48.2259 36.6324L62.9288 11.5687L56.4208 0L40.5151 26.506C39.5519 28.1929 38.3492 29.4007 36.9018 30.1193C35.2149 31.0825 33.7676 31.3221 31.8412 31.3221H0.987964L7.73551 43.1303L36.4177 43.3698V43.38H36.4126ZM56.4157 90.6179L62.9186 79.0492L48.2157 53.9855C46.7683 51.3354 45.0814 49.6485 43.6341 48.9248C41.7026 47.7221 39.2971 47.2379 36.4024 47.2379L7.72022 47.4774L0.977772 59.2805H31.8259C33.7574 59.2805 35.1996 59.5201 36.8865 60.4833C38.3339 61.2019 39.5366 62.4148 40.4998 64.1017L56.4055 90.6077V90.6179H56.4157Z"
                             fill="#F6F6F6"
@@ -620,15 +615,17 @@ const regulatoryLogos = [
                 </p>
                 <p>
                     {t(lang, "footer.regulatory.claims")}
-                    <strong>800 999 8080</strong>
-                    {t(lang, "footer.regulatory.or")}
-                    <a href="https://www.condusef.gob.mx" class="underline"
-                        >www.condusef.gob.mx</a
+                    <strong>800 999 8080</strong>&nbsp;{
+                        t(lang, "footer.regulatory.or")
+                    }&nbsp;<a
+                        href="https://www.condusef.gob.mx"
+                        class="underline">www.condusef.gob.mx</a
                     >
                 </p>
                 <p>
-                    {t(lang, "footer.regulatory.copyright")}
-                    <a href="/recursos/terminos-y-condiciones" class="underline"
+                    {t(lang, "footer.regulatory.copyright")}&nbsp;<a
+                        href="/recursos/terminos-y-condiciones"
+                        class="underline"
                         >{t(lang, "footer.regulatory.terms")}</a
                     >
                 </p>

@@ -1,6 +1,9 @@
 ---
 import SliderArrows from "./SliderArrows.astro";
 import { t, type Lang } from "../i18n";
+import Planes from "./Planes.astro";
+import Pagos from "./Pagos.astro";
+import ClaveDinamica from "./ClaveDinamica.astro";
 
 interface Props {
     lang: Lang;
@@ -11,6 +14,7 @@ const { lang } = Astro.props;
 interface PhoneImage {
     bg: string;
     label?: string;
+    component?: "planes" | "pagos" | "claveDinamica";
 }
 
 interface AccordionItem {
@@ -30,7 +34,7 @@ const items: AccordionItem[] = [
     {
         title: getText(0, "title"),
         body: getText(0, "body"),
-        phone: { bg: "/app/phone-1-bg.webp", label: "/app/phone-1-label.svg" },
+        phone: { bg: "/app/phone-1-bg.webp", component: "planes" },
     },
     {
         title: getText(1, "title"),
@@ -40,7 +44,7 @@ const items: AccordionItem[] = [
     {
         title: getText(2, "title"),
         body: getText(2, "body"),
-        phone: { bg: "/app/phone-3-bg.webp", label: "/app/phone-3-label.svg" },
+        phone: { bg: "/app/phone-3-bg.webp", component: "claveDinamica" },
     },
     {
         title: getText(3, "title"),
@@ -170,6 +174,21 @@ const items: AccordionItem[] = [
                                         decoding="async"
                                     />
                                 )}
+                                {item.phone.component === "planes" && (
+                                    <div class="absolute w-full bottom-0 left-0 right-0 mx-auto max-w-[300px]">
+                                        <Planes lang={lang} />
+                                    </div>
+                                )}
+                                {item.phone.component === "claveDinamica" && (
+                                    <div class="absolute w-full bottom-0 left-0 right-0 mx-auto max-w-[300px]">
+                                        <ClaveDinamica lang={lang} />
+                                    </div>
+                                )}
+                                {item.phone.component === "pagos" && (
+                                    <div class="absolute w-full bottom-0 left-0 right-0 mx-auto max-w-[300px]">
+                                        <Pagos lang={lang} />
+                                    </div>
+                                )}
                             </div>
                         ))
                     }
@@ -236,6 +255,22 @@ const items: AccordionItem[] = [
                                                 loading="lazy"
                                                 decoding="async"
                                             />
+                                        )}
+                                        {item.phone.component === "planes" && (
+                                            <div class="absolute w-full bottom-0 left-0 right-0 mx-auto max-w-[300px]">
+                                                <Planes lang={lang} />
+                                            </div>
+                                        )}
+                                        {item.phone.component ===
+                                            "claveDinamica" && (
+                                            <div class="absolute w-full bottom-0 left-0 right-0 mx-auto max-w-[300px]">
+                                                <ClaveDinamica lang={lang} />
+                                            </div>
+                                        )}
+                                        {item.phone.component === "pagos" && (
+                                            <div class="absolute w-full bottom-0 left-0 right-0 mx-auto max-w-[300px]">
+                                                <Pagos lang={lang} />
+                                            </div>
                                         )}
                                     </div>
                                     <div class="absolute inset-0 bg-black/35 rounded-[28px]" />

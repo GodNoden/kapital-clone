@@ -150,7 +150,7 @@ const containerClasses =
         </span>
         <span class="font-medium">{current.code}</span>
         <svg
-            class="w-3 h-3 transition-transform duration-300"
+            class="language-chevron w-3 h-3 transition-transform duration-300"
             viewBox="0 0 24 24"
             fill="none"
             aria-hidden="true"
@@ -310,7 +310,9 @@ const containerClasses =
                 "pointer-events-auto",
                 "translate-y-0",
             );
-            trigger.querySelector("svg")?.classList.add("rotate-180");
+            trigger
+                .querySelector(".language-chevron")
+                ?.classList.remove("rotate-180");
         };
 
         const close = () => {
@@ -328,7 +330,9 @@ const containerClasses =
                     "pointer-events-auto",
                     "translate-y-0",
                 );
-                trigger.querySelector("svg")?.classList.remove("rotate-180");
+                trigger
+                    .querySelector(".language-chevron")
+                    ?.classList.add("rotate-180");
             }, 150);
         };
 

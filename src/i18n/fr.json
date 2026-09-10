@@ -112,7 +112,14 @@
                     "Rendement réel."
                 ],
                 "copy": "L'investissement qui vous offre rentabilité, sécurité et des gains jusqu'à 8,50 %*",
-                "cta": "Je veux investir"
+                "cta": "Je veux investir",
+                "investmentCard": {
+                    "title": "Investissement Kapital • 4602",
+                    "investedLabel": "Montant investi",
+                    "investedAmount": "$1,028,666",
+                    "estimatedLabel": "Rendement estimé",
+                    "estimatedAmount": "$92,580"
+                }
             }
         ],
         "prev": "Précédent",
@@ -308,7 +315,40 @@
                 "title": "Des produits sur mesure",
                 "body": "Consultez, vérifiez les conditions et souscrivez des produits en quelques minutes depuis l'application Kapital, sans affecter votre activité."
             }
-        ]
+        ],
+        "phones": {
+            "pagos": {
+                "title": "Paiements",
+                "items": [
+                    {
+                        "label": "Crédits"
+                    },
+                    {
+                        "label": "Paiement de services"
+                    }
+                ],
+                "subItems": [
+                    {
+                        "label": "Téléphone maison",
+                        "amount": "2.123 $"
+                    },
+                    {
+                        "label": "Électricité maison",
+                        "amount": "1.167 $"
+                    },
+                    {
+                        "label": "Gaz",
+                        "amount": "1.112 $"
+                    }
+                ]
+            },
+            "claveDinamica": {
+                "title": "Clé dynamique",
+                "description": "Saisissez la clé dynamique générée par votre token physique. Si vous n'en avez pas, utilisez votre token numérique pour la générer.",
+                "resend": "Renvoyer (2:44)",
+                "button": "Enregistrer votre token numérique"
+            }
+        }
     },
     "applePay": {
         "title": "Confidentialité. Sécurité. C'est Apple Pay.",
@@ -461,9 +501,21 @@
     "planes": {
         "netReturn": "RENDEMENT NET",
         "rows": [
-            { "title": "CEDE",           "money": "10 926 000 $", "percent": "1,3 %" },
-            { "title": "BILLET À ORDRE", "money": "1 867 $",      "percent": "1,5 %" },
-            { "title": "PLAN CRECE",     "money": "1 867 $",      "percent": "1,8 %" }
+            {
+                "title": "CEDE",
+                "money": "10.926.000 $",
+                "percent": "1,3 %"
+            },
+            {
+                "title": "BILLET À ORDRE",
+                "money": "1.867 $",
+                "percent": "1,5 %"
+            },
+            {
+                "title": "PLAN CRECE",
+                "money": "1.867 $",
+                "percent": "1,8 %"
+            }
         ]
     }
 }

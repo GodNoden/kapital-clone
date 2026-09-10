@@ -1,6 +1,7 @@
 ---
 import SliderArrows from "./SliderArrows.astro";
 import { t, type Lang } from "../i18n";
+import InversionCard from "./InversionCard.astro";
 
 interface Props {
     lang: Lang;
@@ -18,6 +19,7 @@ interface Slide {
     desktop: string;
     mobile: string;
     secondaryImage?: string;
+    secondaryComponent?: "inversion";
     btnColor: string;
     btnColorHover: string;
     btnTextColor: string;
@@ -105,7 +107,7 @@ const slides: Slide[] = [
         theme: "dark",
         desktop: "/hero/slide-4-desktop.webp",
         mobile: "/hero/slide-4-desktop.webp",
-        secondaryImage: "/hero/slide-4-inversion.svg",
+        secondaryComponent: "inversion",
         btnColor: "rgba(144, 136, 127, 0.75)",
         btnColorHover: "rgba(144, 136, 127, 0.9)",
         btnTextColor: "text-white",
@@ -209,17 +211,25 @@ const slides: Slide[] = [
                                 </div>
                             </div>
 
-                            {slide.secondaryImage && (
+                            {slide.secondaryComponent === "inversion" && (
                                 <div class="hidden lg:block xl:col-span-4">
-                                    <img
-                                        src={slide.secondaryImage}
-                                        alt=""
-                                        loading="lazy"
-                                        decoding="async"
-                                        class="max-w-[450px] w-full"
-                                    />
+                                    <div class="max-w-[450px] w-full">
+                                        <InversionCard lang={lang} />
+                                    </div>
                                 </div>
                             )}
+                            {slide.secondaryImage &&
+                                !slide.secondaryComponent && (
+                                    <div class="hidden lg:block xl:col-span-4">
+                                        <img
+                                            src={slide.secondaryImage}
+                                            alt=""
+                                            loading="lazy"
+                                            decoding="async"
+                                            class="max-w-[450px] w-full"
+                                        />
+                                    </div>
+                                )}
                         </div>
                     </div>
                 ))

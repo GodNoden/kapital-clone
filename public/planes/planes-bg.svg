@@ -5,7 +5,7 @@
     <path
         d="M-2 20C-2 7.84974 7.84974 -2 20 -2H280C292.15 -2 302 7.84974 302 20H298C298 10.0589 289.941 2 280 2H20C10.0589 2 2 10.0589 2 20H-2ZM2 20M300 300H0H300M-2 300V20C-2 7.84974 7.84974 -2 20 -2V2C10.0589 2 2 10.0589 2 20V300H-2ZM280 -2C292.15 -2 302 7.84974 302 20V300H298V20C298 10.0589 289.941 2 280 2V-2Z"
         fill="white" fill-opacity="0.5" mask="url(#path-1-inside-1)" />
-    <path d="M276 117V116H24V117V118H276V117Z" fill="white" fill-opacity="0.15" />
-    <path d="M276 210V209H24V210V211H276V210Z" fill="white" fill-opacity="0.15" />
+    <path d="M276 100V99H24V100V101H276V100Z" fill="white" fill-opacity="0.15" />
+    <path d="M276 200V199H24V200V201H276V200Z" fill="white" fill-opacity="0.15" />
     <path d="M276 303V302H24V303V304H276V303Z" fill="white" fill-opacity="0.15" />
 </svg>

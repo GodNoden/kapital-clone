@@ -1,0 +1,172 @@
+---
+import { t, type Lang } from "../i18n";
+
+interface Props {
+    lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const title = t(lang, "appSection.phones.pagos.title");
+
+const getItems = (lang: Lang) => {
+    const items: { label: string }[] = [];
+    let i = 0;
+    while (true) {
+        const key = `appSection.phones.pagos.items.${i}.label`;
+        const label = t(lang, key);
+        if (label === key) break;
+        items.push({ label });
+        i++;
+    }
+    return items;
+};
+
+const getSubItems = (lang: Lang) => {
+    const subItems: { label: string; amount: string }[] = [];
+    let i = 0;
+    while (true) {
+        const key = `appSection.phones.pagos.subItems.${i}.label`;
+        const label = t(lang, key);
+        if (label === key) break;
+        subItems.push({
+            label,
+            amount: t(lang, `appSection.phones.pagos.subItems.${i}.amount`),
+        });
+        i++;
+    }
+    return subItems;
+};
+
+const items = getItems(lang);
+const subItems = getSubItems(lang);
+---
+
+<div class="pagos-wrapper">
+    <img
+        src="/planes/pagos-bg.svg"
+        alt=""
+        aria-hidden="true"
+        class="pagos-bg"
+    />
+    <div class="pagos-overlay">
+        <h3 class="pagos-title">{title}</h3>
+
+        {
+            items[0] && (
+                <div class="pagos-row" style="top: 26cqw">
+                    <span class="pagos-label">{items[0].label}</span>
+                    <svg class="pagos-chevron" viewBox="0 0 24 24" fill="none">
+                        <path
+                            d="M22 8L12 18L2 8"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        />
+                    </svg>
+                </div>
+            )
+        }
+
+        {
+            items[1] && (
+                <div class="pagos-row" style="top: 39cqw">
+                    <span class="pagos-label">{items[1].label}</span>
+                    <svg class="pagos-chevron" viewBox="0 0 24 24" fill="none">
+                        <path
+                            d="M2 16L12 6L22 16"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        />
+                    </svg>
+                </div>
+            )
+        }
+
+        {
+            subItems.map((sub, i) => (
+                <div class="pagos-subitem" style={`top: ${53 + i * 12.6}cqw`}>
+                    <span class="pagos-sub-label">{sub.label}</span>
+                    <span class="pagos-sub-amount">{sub.amount}</span>
+                </div>
+            ))
+        }
+    </div>
+</div>
+
+<style>
+    .pagos-wrapper {
+        display: grid;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        container-type: inline-size;
+    }
+    .pagos-bg,
+    .pagos-overlay {
+        grid-area: 1 / 1;
+        width: 100%;
+        height: 100%;
+    }
+    .pagos-bg {
+        display: block;
+    }
+    .pagos-overlay {
+        position: relative;
+        font-family:
+            "Inter",
+            system-ui,
+            -apple-system,
+            sans-serif;
+        -webkit-font-smoothing: antialiased;
+        color: #fff;
+    }
+    .pagos-title {
+        position: absolute;
+        top: 6cqw;
+        left: 9cqw;
+        margin: 0;
+        font-size: 7cqw;
+        font-weight: 400;
+        letter-spacing: -0.01em;
+    }
+    .pagos-row {
+        position: absolute;
+        left: 9cqw;
+        right: 9cqw;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2cqw;
+    }
+    .pagos-label {
+        font-size: 4.5cqw;
+        font-weight: 500;
+        letter-spacing: 0.01em;
+    }
+    .pagos-chevron {
+        width: 4.5cqw;
+        height: 4.5cqw;
+        flex-shrink: 0;
+    }
+    .pagos-subitem {
+        position: absolute;
+        left: 9cqw;
+        right: 9cqw;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2cqw;
+    }
+    .pagos-sub-label {
+        font-size: 4cqw;
+        font-weight: 400;
+        opacity: 0.65;
+    }
+    .pagos-sub-amount {
+        font-size: 4cqw;
+        font-weight: 400;
+    }
+</style>

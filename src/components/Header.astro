@@ -294,7 +294,7 @@ const entrarLinks = [
         </div>
 
         <div
-            class="max-w-[700px] mx-auto px-6 md:px-8 flex items-center justify-between py-2.5 w-full relative z-50"
+            class="max-w-[1440px] mx-auto px-6 md:px-8 flex items-center justify-between py-2.5 w-full relative z-50"
         >
             {/* Logo + Nav agrupados a la izquierda */}
             <div class="flex items-center gap-11">
@@ -327,18 +327,21 @@ const entrarLinks = [
                     class="hidden md:flex items-center"
                     aria-label="Navegación principal"
                 >
-                    <ul role="list" class="flex items-center gap-3">
+                    <ul
+                        role="list"
+                        class="flex items-center gap-3 whitespace-nowrap"
+                    >
                         {
                             navigation.map((item) => (
                                 <li class="relative group/trigger">
                                     <a
                                         href={item.href}
-                                        class="menu-trigger text-sm flex items-center transition-all duration-300 py-2
-         text-kapital-black 
-         group-data-[theme=dark]/site-header:text-white 
-         group-data-[sticky=true]/site-header:!text-kapital-black 
-         md:group-hover/header:text-kapital-black
-         hover:opacity-70"
+                                        class="menu-trigger text-sm flex items-center transition-all duration-300 py-2 whitespace-nowrap
+     text-kapital-black 
+     group-data-[theme=dark]/site-header:text-white 
+     group-data-[sticky=true]/site-header:!text-kapital-black 
+     md:group-hover/header:text-kapital-black
+     hover:opacity-70"
                                     >
                                         {item.label}
                                         {item.groups && (
@@ -405,18 +408,16 @@ const entrarLinks = [
             </div>
 
             {/* Actions (derecha) */}
+            {/* Actions (derecha) */}
             <div class="flex items-center gap-6 md:gap-[10px] relative">
-                <div class="hidden md:block">
-                    <LanguageSelector lang={lang} variant="header" />
-                </div>
+                {/* Botón Open an account */}
                 <a
                     href="https://onboarding.kapital.com/"
                     class="text-sm px-4 py-2 rounded-full transition-colors whitespace-nowrap text-kapital-black
-           transition-colors whitespace-nowrap
-           bg-[rgba(191,187,178)]
-           md:group-hover/header:text-kapital-black
-           group-data-[sticky=true]/site-header:text-kapital-black
-           hover:bg-[rgba(191,187,178,0.8)]"
+         bg-[rgba(191,187,178)]
+         md:group-hover/header:text-kapital-black
+         group-data-[sticky=true]/site-header:text-kapital-black
+         hover:bg-[rgba(191,187,178,0.8)]"
                 >
                     {t(lang, "header.nav.openAccount")}
                 </a>
@@ -425,12 +426,12 @@ const entrarLinks = [
                 <div class="relative hidden md:block" id="entrar-container">
                     <button
                         type="button"
-                        class="group entrar-trigger flex items-center translate-x-2 text-sm transition-all duration-300 py-2
-                           text-kapital-black
-                           group-data-[theme=dark]/site-header:text-white
-                           group-data-[sticky=true]/site-header:!text-kapital-black
-                           group-hover/header:text-kapital-black
-                           hover:opacity-70"
+                        class="group entrar-trigger flex items-center translate-x-2 text-sm transition-all duration-300 py-2 whitespace-nowrap
+               text-kapital-black
+               group-data-[theme=dark]/site-header:text-white
+               group-data-[sticky=true]/site-header:!text-kapital-black
+               group-hover/header:text-kapital-black
+               hover:opacity-70"
                     >
                         {t(lang, "header.nav.login")}
                         <svg
@@ -451,9 +452,9 @@ const entrarLinks = [
                     <div
                         id="entrar-dropdown"
                         class="absolute right-0 top-full mt-[18px] w-fit p-4 rounded-md
-                   bg-[rgba(237,235,233,0.75)] backdrop-blur-[25px]
-                   transition-all duration-500 z-20 flex flex-col
-                   opacity-0 invisible translate-y-2 pointer-events-none"
+           bg-[rgba(237,235,233,0.75)] backdrop-blur-[25px]
+           transition-all duration-500 z-20 flex flex-col
+           opacity-0 invisible translate-y-2 pointer-events-none"
                     >
                         {
                             entrarLinks.map((link, i) => (
@@ -473,15 +474,20 @@ const entrarLinks = [
                     </div>
                 </div>
 
+                {/* Selector de idioma - AL FINAL */}
+                <div class="hidden md:block">
+                    <LanguageSelector lang={lang} variant="header" />
+                </div>
+
                 {/* Mobile menu button */}
                 <button
                     id="mobile-menu-btn"
                     class="group menu-trigger-close md:hidden transition-all duration-300
-         text-kapital-black
-         group-data-[theme=dark]/site-header:text-white
-         group-data-[sticky=true]/site-header:!text-kapital-black
-         group-hover/header:text-kapital-black
-         hover:opacity-70"
+     text-kapital-black
+     group-data-[theme=dark]/site-header:text-white
+     group-data-[sticky=true]/site-header:!text-kapital-black
+     group-hover/header:text-kapital-black
+     hover:opacity-70"
                 >
                     <span class="block group-aria-[expanded=true]:hidden">
                         <svg

@@ -28,37 +28,91 @@ const rows = getRows(lang);
 const netReturn = t(lang, "planes.netReturn");
 ---
 
-<div style="display: grid; width: 100%; max-width: 450px;">
+<div class="planes-wrapper">
     <img
         src="/planes/planes-bg.svg"
         alt=""
         aria-hidden="true"
-        width="300"
-        height="300"
-        style="grid-area: 1 / 1; width: 100%; height: auto; display: block;"
+        class="planes-bg"
     />
-    <div
-        style="grid-area: 1 / 1; display: grid; grid-template-rows: repeat(3, minmax(0, 1fr));"
-    >
+    <div class="planes-overlay">
         {
-            rows.map((row) => (
-                <div style="color: #ffffff; display: flex; flex-direction: column; justify-content: space-between; padding: 5% 11% 7% 11%;">
-                    <div style="display: flex; align-items: center; justify-content: space-between;">
-                        <span style="font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">
-                            {row.title}
-                        </span>
-                        <span style="font-size: 10px; font-weight: 500;">
-                            {row.percent}
-                        </span>
+            rows.map((row, index) => (
+                <div class="planes-row">
+                    <div class="planes-row-top">
+                        <span class="planes-label">{row.title}</span>
+                        <span class="planes-percent">↑ {row.percent}</span>
                     </div>
-
-                    <p style="font-size: 20px; line-height: 1; font-weight: 400; margin: 0;">
-                        {netReturn}
-                    </p>
-
-                    <p style="font-size: 10px; margin: 0;">{row.money}</p>
+                    <p class="planes-amount">{row.money}</p>
+                    {index < 2 && <p class="planes-neto">{netReturn}</p>}
                 </div>
             ))
         }
     </div>
 </div>
+
+<style>
+    .planes-wrapper {
+        display: grid;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        container-type: inline-size;
+    }
+    .planes-bg,
+    .planes-overlay {
+        grid-area: 1 / 1;
+        width: 100%;
+        height: 100%;
+    }
+    .planes-bg {
+        display: block;
+    }
+    .planes-overlay {
+        display: grid;
+        grid-template-rows: repeat(3, minmax(0, 1fr));
+        font-family:
+            "Inter",
+            system-ui,
+            -apple-system,
+            sans-serif;
+        -webkit-font-smoothing: antialiased;
+    }
+    .planes-row {
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 1.2cqw;
+        padding: 3cqw 10cqw;
+    }
+    .planes-row-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2cqw;
+    }
+    .planes-label {
+        font-size: 4cqw;
+        font-weight: 500;
+        letter-spacing: 0.01em;
+    }
+    .planes-percent {
+        font-size: 3.8cqw;
+        font-weight: 500;
+        letter-spacing: 0.01em;
+        white-space: nowrap;
+    }
+    .planes-amount {
+        font-size: 9.5cqw;
+        line-height: 1;
+        font-weight: 500;
+        letter-spacing: -0.02em;
+        margin: 0;
+    }
+    .planes-neto {
+        font-size: 3.6cqw;
+        font-weight: 400;
+        margin: 0;
+        opacity: 0.75;
+    }
+</style>
