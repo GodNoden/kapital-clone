@@ -198,8 +198,9 @@ const entrarLinks = [
                     href="/"
                     aria-label="Inicio"
                     class="flex-shrink-0 transition-colors duration-500
+         text-kapital-black
          group-data-[theme=dark]/site-header:text-white
-         group-data-[theme=light]/site-header:text-kapital-black
+         group-data-[sticky=true]/site-header:!text-kapital-black
          md:group-hover/header:text-kapital-black"
                 >
                     <svg
@@ -229,15 +230,11 @@ const entrarLinks = [
                                     <a
                                         href={item.href}
                                         class="menu-trigger text-sm flex items-center transition-all duration-300 py-2
-         group-data-[theme=dark]/site-header:text-white
-         group-data-[theme=light]/site-header:text-kapital-black
+         text-kapital-black 
+         group-data-[theme=dark]/site-header:text-white 
+         group-data-[sticky=true]/site-header:!text-kapital-black 
          md:group-hover/header:text-kapital-black
-         group-data-[sticky=true]/site-header:text-kapital-black
          hover:opacity-70"
-                                        aria-haspopup={
-                                            item.groups ? "true" : "false"
-                                        }
-                                        aria-expanded="false"
                                     >
                                         {item.label}
                                         {item.groups && (
@@ -322,14 +319,11 @@ const entrarLinks = [
                     <button
                         type="button"
                         class="group entrar-trigger flex items-center translate-x-2 text-sm transition-all duration-300 py-2
-         group-data-[theme=dark]/site-header:text-white
-         group-data-[theme=light]/site-header:text-kapital-black
-         group-hover/header:text-kapital-black
-         group-data-[sticky=true]/site-header:text-kapital-black
-         hover:opacity-70"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                        aria-controls="entrar-dropdown"
+                           text-kapital-black
+                           group-data-[theme=dark]/site-header:text-white
+                           group-data-[sticky=true]/site-header:!text-kapital-black
+                           group-hover/header:text-kapital-black
+                           hover:opacity-70"
                     >
                         Entrar
                         <svg
@@ -376,15 +370,11 @@ const entrarLinks = [
                 <button
                     id="mobile-menu-btn"
                     class="group menu-trigger-close md:hidden transition-all duration-300
+         text-kapital-black
          group-data-[theme=dark]/site-header:text-white
-         group-data-[theme=light]/site-header:text-kapital-black
+         group-data-[sticky=true]/site-header:!text-kapital-black
          group-hover/header:text-kapital-black
-         group-data-[sticky=true]/site-header:text-kapital-black
          hover:opacity-70"
-                    type="button"
-                    aria-expanded="false"
-                    aria-controls="mobile-menu-panel"
-                    aria-label="Abrir menú"
                 >
                     <span class="block group-aria-[expanded=true]:hidden">
                         <svg

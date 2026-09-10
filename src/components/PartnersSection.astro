@@ -203,23 +203,33 @@ const partners: Partner[] = [
                     lastTime: 0,
                     isPaused: false,
                     isInView: false,
+                    // Drag state
+                    isDragging: false,
+                    dragStartX: 0,
+                    dragStartOffset: 0,
+                    dragVelocity: 0,
+                    lastDragX: 0,
+                    lastDragTime: 0,
                 };
 
-                const getGap = () => {
+                const getGap = (): number => {
                     const style = window.getComputedStyle(track);
                     return parseFloat(style.columnGap || style.gap || "0") || 0;
                 };
 
-                const getSpeed = () =>
+                const getSpeed = (): number =>
                     window.matchMedia("(min-width: 768px)").matches ? 102 : 84;
 
-                const cloneGroup = () => {
+                const cloneGroup = (): HTMLElement => {
                     const clone = group.cloneNode(true) as HTMLElement;
                     clone.removeAttribute("data-partners-group");
+                    clone.setAttribute("data-partners-clone", "");
                     clone.setAttribute("aria-hidden", "true");
-                    clone.querySelectorAll("a").forEach((a) => {
-                        a.tabIndex = -1;
-                    });
+                    clone
+                        .querySelectorAll<HTMLAnchorElement>("a")
+                        .forEach((a) => {
+                            a.tabIndex = -1;
+                        });
                     return clone;
                 };
 
@@ -256,14 +266,32 @@ const partners: Partner[] = [
                         ? (time - state.lastTime) / 1000
                         : 0;
                     state.lastTime = time;
-                    updateTargetSpeed();
-                    state.speed = lerp(state.speed, state.targetSpeed, 0.05);
 
-                    if (state.loopWidth) {
-                        state.x =
-                            (state.x + state.speed * dt) % state.loopWidth;
-                        track.style.transform = `translate3d(${-state.x}px, 0, 0)`;
+                    if (!state.isDragging) {
+                        updateTargetSpeed();
+                        state.speed = lerp(
+                            state.speed,
+                            state.targetSpeed,
+                            0.05,
+                        );
+
+                        if (state.loopWidth) {
+                            state.x =
+                                (state.x + state.speed * dt) % state.loopWidth;
+                            track.style.transform = `translate3d(${-state.x}px, 0, 0)`;
+                        }
+                    } else {
+                        // Durante el arrastre, aplicar inercia
+                        state.dragVelocity *= 0.95; // Deceleración
+                        if (Math.abs(state.dragVelocity) > 0.1) {
+                            state.x =
+                                (state.x + state.dragVelocity) %
+                                state.loopWidth;
+                            if (state.x < 0) state.x += state.loopWidth;
+                            track.style.transform = `translate3d(${-state.x}px, 0, 0)`;
+                        }
                     }
+
                     state.raf = requestAnimationFrame(animate);
                 };
 
@@ -282,11 +310,78 @@ const partners: Partner[] = [
                     }
                 };
 
+                // === Drag handlers ===
+                const onPointerDown = (e: PointerEvent) => {
+                    state.isDragging = true;
+                    state.dragStartX = e.clientX;
+                    state.dragStartOffset = state.x;
+                    state.lastDragX = e.clientX;
+                    state.lastDragTime = performance.now();
+                    state.dragVelocity = 0;
+
+                    track.style.cursor = "grabbing";
+                    track.style.userSelect = "none";
+
+                    // Prevenir comportamiento por defecto (como selección de texto)
+                    e.preventDefault();
+
+                    // Capturar el puntero para eventos fuera del elemento
+                    track.setPointerCapture(e.pointerId);
+                };
+
+                const onPointerMove = (e: PointerEvent) => {
+                    if (!state.isDragging) return;
+
+                    const dx = e.clientX - state.dragStartX;
+                    state.x = (state.dragStartOffset - dx) % state.loopWidth;
+                    if (state.x < 0) state.x += state.loopWidth;
+
+                    // Calcular velocidad para inercia
+                    const now = performance.now();
+                    const dt = now - state.lastDragTime;
+                    if (dt > 0) {
+                        state.dragVelocity =
+                            ((e.clientX - state.lastDragX) / dt) * 16; // Normalizar a ~60fps
+                    }
+
+                    state.lastDragX = e.clientX;
+                    state.lastDragTime = now;
+
+                    track.style.transform = `translate3d(${-state.x}px, 0, 0)`;
+                };
+
+                const onPointerUp = (e: PointerEvent) => {
+                    if (!state.isDragging) return;
+
+                    state.isDragging = false;
+                    track.style.cursor = "grab";
+                    track.style.userSelect = "";
+
+                    // Liberar el puntero
+                    track.releasePointerCapture(e.pointerId);
+
+                    // La inercia se aplica automáticamente en el animate loop
+                };
+
+                // Agregar event listeners
+                track.style.cursor = "grab";
+                track.addEventListener("pointerdown", onPointerDown);
+                track.addEventListener("pointermove", onPointerMove);
+                track.addEventListener("pointerup", onPointerUp);
+                track.addEventListener("pointercancel", onPointerUp);
+                track.addEventListener("pointerleave", onPointerUp);
+
+                // Prevenir drag de imágenes y links
+                track.querySelectorAll("a, img").forEach((el) => {
+                    el.setAttribute("draggable", "false");
+                    el.addEventListener("dragstart", (e) => e.preventDefault());
+                });
+
                 setup();
                 setPaused(false);
 
                 if ("IntersectionObserver" in window) {
-                    new IntersectionObserver(
+                    const observer = new IntersectionObserver(
                         ([entry]) => {
                             state.isInView = entry?.isIntersecting ?? false;
                             if (state.isInView) {
@@ -297,16 +392,19 @@ const partners: Partner[] = [
                             }
                         },
                         { rootMargin: "200px 0px", threshold: 0 },
-                    ).observe(container);
+                    );
+                    observer.observe(container);
                 } else {
                     state.isInView = true;
                     start();
                 }
 
-                container.addEventListener("mouseenter", () => setPaused(true));
-                container.addEventListener("mouseleave", () =>
-                    setPaused(false),
-                );
+                container.addEventListener("mouseenter", () => {
+                    if (!state.isDragging) setPaused(true);
+                });
+                container.addEventListener("mouseleave", () => {
+                    if (!state.isDragging) setPaused(false);
+                });
                 container.addEventListener("focusin", () => setPaused(true));
                 container.addEventListener("focusout", () => setPaused(false));
                 window.addEventListener("resize", setup);
