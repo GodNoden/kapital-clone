@@ -1,0 +1,19 @@
+## 🇲🇽 Nota en Español
+
+**Proyecto de estudio, no producto oficial.**
+
+Todo el **crédito de diseño, marca, copy y concepto** pertenece a **Kapital**. 
+Este repositorio **no redistribuye assets originales** de Kapital (imágenes, 
+fuentes, SVGs ni textos). Los assets usados en el demo fueron **recreados desde 
+cero** para fines ilustrativos.
+
+El **código** (componentes Astro, sistema i18n, CSS, TypeScript) es trabajo 
+original mío y está bajo licencia MIT.
+
+Este proyecto **no tiene fines comerciales**, **no está afiliado a Kapital** y 
+**no pretende ser un reemplazo oficial** de su sitio.
+
+**Origen:** Soy Backend Engineer y apliqué a una vacante en Kapital. Antes de 
+la entrevista, pasé una noche explorando su landing y decidí mostrar iniciativa 
+construyendo una versión que abordara algunas oportunidades que noté. Este es 
+ese proyecto.
