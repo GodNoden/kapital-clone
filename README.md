@@ -109,23 +109,24 @@ updates everything in place.
 ---
 
 ## Architecture Highlights
+```
 src/
 ├── components/
-│ ├── Header.astro
-│ ├── Hero.astro
-│ ├── AppSection.astro
-│ ├── Planes.astro # Translated investment card
-│ ├── Pagos.astro # Translated payments card
-│ ├── ClaveDinamica.astro # Translated OTP card
-│ └── InversionCard.astro # Translated hero card
+│   ├── Header.astro
+│   ├── Hero.astro
+│   ├── AppSection.astro
+│   ├── Planes.astro          # Translated investment card
+│   ├── Pagos.astro           # Translated payments card
+│   ├── ClaveDinamica.astro   # Translated OTP card
+│   └── InversionCard.astro   # Translated hero card
 ├── i18n/
-│ ├── index.ts # t(lang, key) with dot notation
-│ ├── es.json
-│ ├── en.json
-│ └── fr.json
+│   ├── index.ts              # t(lang, key) with dot notation
+│   ├── es.json
+│   ├── en.json
+│   └── fr.json
 └── layouts/
-└── Layout.astro
-
+    └── Layout.astro
+```
 
 **Key decisions:**
 
