@@ -15,9 +15,9 @@ const { lang } = Astro.props;
 >
     <div class="w-full py-2.5">
         <div
-            class="max-w-container mx-auto px-4 flex items-center justify-center gap-6"
+            class="max-w-container mx-auto px-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 md:gap-6"
         >
-            <p class="text-xs md:text-sm whitespace-nowrap">
+            <p class="text-xs md:text-sm text-center">
                 {t(lang, "header.announcement.text")}
             </p>
             <a

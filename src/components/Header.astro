@@ -269,7 +269,7 @@ const entrarLinks = [
 
 <header
     id="rebrand-site-header"
-    class="group/site-header group/header fixed top-0 left-0 z-50 w-full bg-transparent transition-all duration-[1000ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
+    class="group/site-header group/header fixed top-0 left-0 z-50 w-screen max-w-[100vw] bg-transparent transition-all duration-[1000ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
     data-sticky="false"
     data-mobile-menu-open="false"
 >
@@ -281,14 +281,14 @@ const entrarLinks = [
         }
         <div
             class="nav-background absolute w-full h-full -z-10 pointer-events-none
-             bg-transparent backdrop-blur-none
-             transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]
-             md:group-hover/site-header:bg-[rgba(236,235,234,0.75)]
-             md:group-hover/site-header:backdrop-blur-[50px]
-             md:group-data-[sticky=true]/site-header:bg-[rgba(236,235,234,0.75)]
-             md:group-data-[sticky=true]/site-header:backdrop-blur-[50px]
-             max-md:group-data-[mobile-menu-open=true]/site-header:!bg-[rgba(236,235,234,0.9)]
-             max-md:group-data-[mobile-menu-open=true]/site-header:!backdrop-blur-[75px]"
+ bg-transparent backdrop-blur-none
+ transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]
+ md:group-hover/site-header:bg-[rgba(236,235,234,0.75)]
+ md:group-hover/site-header:backdrop-blur-[50px]
+ group-data-[sticky=true]/site-header:bg-[rgba(236,235,234,0.75)]
+ group-data-[sticky=true]/site-header:backdrop-blur-[50px]
+ max-md:group-data-[mobile-menu-open=true]/site-header:!bg-[rgba(236,235,234,0.9)]
+ max-md:group-data-[mobile-menu-open=true]/site-header:!backdrop-blur-[75px]"
             aria-hidden="true"
         >
         </div>
