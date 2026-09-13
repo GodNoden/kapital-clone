@@ -75,6 +75,14 @@ Measured in Chrome DevTools (Incognito, cache disabled, same machine):
 reflects **first-party content only** — it is not a claim that "my version is 
 faster than Kapital."
 
+### Why I don't compare Lighthouse scores
+
+Lighthouse measures a live environment, not just code. Kapital serves from 
+a CDN with brotli compression, HTTP/2, and aggressive caching. This rebuild 
+runs on localhost — no CDN, no compression, no cache. A direct Lighthouse 
+score comparison would reflect those infrastructure differences more than 
+the code itself, so I've left it out of the comparison table.
+
 ### 3. Mobile experience
 
 On a Samsung S24 Ultra (high-end device, good connection), the original site's 
